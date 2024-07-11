@@ -1,0 +1,52 @@
+#!/bin/bash
+
+# XQEMU to test LFS system
+# set drive LFS is installed on
+
+# lsusb and find bus and device number
+#  -usb -device usb-host,hostbus=2,hostaddr=7 \
+
+# ssh, if you decide to go blfs
+# connect from local host
+# ssh username@localhost -p10022
+
+MEMORY=2G
+DRIVE=$1
+VGA=$2
+
+if mount | grep /mnt/lfs > /dev/null; then
+  echo
+  echo "Please un-mount the LFS partition /mnt/lfs"
+  echo
+  exit
+fi
+
+if [ "$EUID" -ne 0 ]; then
+  echo "Please run as root"
+  exit
+fi
+
+if [ -z ${LFS} ]; then
+  echo "LFS is not defined. example: export LFS=/mnt/lfs; sudo -E ./qemu.sh /dev/sdb"
+  exit
+fi
+
+if [ -z ${DRIVE} ]; then
+  echo "No drive defined. example: sudo -E ./qemu.sh /dev/sdb"
+  exit
+fi
+
+if [ -z ${VGA} ]; then
+  echo "No graphics defined, use vmware. example: sudo -E ./qemu.sh /dev/sdb vmware"
+  VGA=vmware
+fi
+
+qemu-system-x86_64		\
+	-enable-kvm		\
+  -vga ${VGA} \
+  -net user,hostfwd=tcp::10022-:22 \
+  -net nic \
+	-m $MEMORY		\
+	-cpu host		\
+	-boot d			\
+	-drive format=raw,file=$DRIVE
