@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source /alfs/scripts/logging.sh
+source /alfs/scripts/kbuild.sh
 
 # 10.2. Creating the /etc/fstab File
 cat > /etc/fstab << "EOF"
@@ -30,7 +30,7 @@ EOF
 cp /alfs/defaults/bashrc /root/.bashrc
 
 # 10.3. Linux-6.7.4
-logging /alfs packages linux
+kbuild /alfs packages linux
 
 # 10.4. Using GRUB to Set Up the Boot Process
 

@@ -24,60 +24,60 @@ else
   exit
 fi
 
-source $ALFS/scripts/logging.sh
+source $ALFS/scripts/kbuild.sh
 
 # Chapter 6. Cross Compiling Temporary Tools
 
 # 6.2. M4-1.4.19
-logging $ALFS toolchain m4
+kbuild $ALFS toolchain m4
 
 # 6.3. Ncurses-6.4-20230520
-logging $ALFS toolchain ncurses
+kbuild $ALFS toolchain ncurses
 
 # 6.4. Bash-5.2.21
-logging $ALFS toolchain bash
+kbuild $ALFS toolchain bash
 
 # 6.5. Coreutils-9.4
-logging $ALFS toolchain coreutils
+kbuild $ALFS toolchain coreutils
 
 # 6.6. Diffutils-3.10
-logging $ALFS toolchain diffutils
+kbuild $ALFS toolchain diffutils
 
 # 6.7. File-5.45
-logging $ALFS toolchain file
+kbuild $ALFS toolchain file
 
 # 6.8. Findutils-4.9.0
-logging $ALFS toolchain findutils
+kbuild $ALFS toolchain findutils
 
 # 6.9. Gawk-5.3.0
-logging $ALFS toolchain gawk
+kbuild $ALFS toolchain gawk
 
 # 6.10. Grep-3.11
-logging $ALFS toolchain grep
+kbuild $ALFS toolchain grep
 
 # 6.11. Gzip-1.13
-logging $ALFS toolchain gzip
+kbuild $ALFS toolchain gzip
 
 # 6.12. Make-4.4.1
-logging $ALFS toolchain make
+kbuild $ALFS toolchain make
 
 # 6.13. Patch-2.7.6
-logging $ALFS toolchain patch
+kbuild $ALFS toolchain patch
 
 # 6.14. Sed-4.9
-logging $ALFS toolchain sed
+kbuild $ALFS toolchain sed
 
 # 6.15. Tar-1.35
-logging $ALFS toolchain tar
+kbuild $ALFS toolchain tar
 
 # 6.16. Xz-5.4.6
-logging $ALFS toolchain xz
+kbuild $ALFS toolchain xz
 
 # 6.17. Binutils-2.42 - Pass 2
-logging $ALFS toolchain binutils-pass-2
+kbuild $ALFS toolchain binutils-pass-2
 
 # 6.18. GCC-13.2.0 - Pass 2
-logging $ALFS toolchain gcc-pass-2
+kbuild $ALFS toolchain gcc-pass-2
 
 echo
 echo "Temp Toolchain completed."

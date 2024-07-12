@@ -1,9 +1,9 @@
 #!/bin/bash
 
-source /alfs/scripts/logging.sh
+source /alfs/scripts/kbuild.sh
 
 # 9.2.1. Installation of LFS-Bootscripts
-logging /alfs packages lfs-bootscripts
+kbuild /alfs packages lfs-bootscripts
 
 # 9.4.1.2. Creating Custom Udev Rules
 bash /usr/lib/udev/init-net-rules.sh
