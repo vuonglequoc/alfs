@@ -1,20 +1,13 @@
 #!/bin/bash
 
-cd /sources/
+SRC_FILE=bison-3.8.2.tar.xz
+SRC_FOLDER=bison-3.8.2
 
-tar xvf bison-3.8.2.tar.xz
+k_configure() {
+  ./configure --prefix=/usr \
+              --docdir=/usr/share/doc/bison-3.8.2
+}
 
-cd bison-3.8.2
-
-./configure --prefix=/usr \
-            --docdir=/usr/share/doc/bison-3.8.2
-
-make
-
-make install
-
-cd /sources/
-
-rm -rf bison-3.8.2
-
-echo "Done"
+k_check() {
+  :
+}

@@ -1,59 +1,54 @@
 #!/bin/bash
 
-if [ "$EUID" -ne 0 ]
-  then echo "Please run as root"
-  exit
-fi
+SRC_FILE=tcl8.6.13-src.tar.gz
+SRC_FOLDER=tcl8.6.13
 
-cd /sources
+k_pre_configure() {
+  SRCDIR=$(pwd)
+  cd unix
+}
 
-tar xvf tcl8.6.13-src.tar.gz
+k_configure() {
+  ./configure --prefix=/usr \
+              --mandir=/usr/share/man
+}
 
-cd tcl8.6.13
+k_build() {
+  make
 
-SRCDIR=$(pwd)
-cd unix
-./configure --prefix=/usr           \
-            --mandir=/usr/share/man
+  sed -e "s|$SRCDIR/unix|/usr/lib|" \
+      -e "s|$SRCDIR|/usr/include|"  \
+      -i tclConfig.sh
 
-make
+  sed -e "s|$SRCDIR/unix/pkgs/tdbc1.1.5|/usr/lib/tdbc1.1.5|" \
+      -e "s|$SRCDIR/pkgs/tdbc1.1.5/generic|/usr/include|"    \
+      -e "s|$SRCDIR/pkgs/tdbc1.1.5/library|/usr/lib/tcl8.6|" \
+      -e "s|$SRCDIR/pkgs/tdbc1.1.5|/usr/include|"            \
+      -i pkgs/tdbc1.1.5/tdbcConfig.sh
 
-sed -e "s|$SRCDIR/unix|/usr/lib|" \
-    -e "s|$SRCDIR|/usr/include|"  \
-    -i tclConfig.sh
+  sed -e "s|$SRCDIR/unix/pkgs/itcl4.2.3|/usr/lib/itcl4.2.3|" \
+      -e "s|$SRCDIR/pkgs/itcl4.2.3/generic|/usr/include|"    \
+      -e "s|$SRCDIR/pkgs/itcl4.2.3|/usr/include|"            \
+      -i pkgs/itcl4.2.3/itclConfig.sh
 
-sed -e "s|$SRCDIR/unix/pkgs/tdbc1.1.5|/usr/lib/tdbc1.1.5|" \
-    -e "s|$SRCDIR/pkgs/tdbc1.1.5/generic|/usr/include|"    \
-    -e "s|$SRCDIR/pkgs/tdbc1.1.5/library|/usr/lib/tcl8.6|" \
-    -e "s|$SRCDIR/pkgs/tdbc1.1.5|/usr/include|"            \
-    -i pkgs/tdbc1.1.5/tdbcConfig.sh
+  unset SRCDIR
+}
 
-sed -e "s|$SRCDIR/unix/pkgs/itcl4.2.3|/usr/lib/itcl4.2.3|" \
-    -e "s|$SRCDIR/pkgs/itcl4.2.3/generic|/usr/include|"    \
-    -e "s|$SRCDIR/pkgs/itcl4.2.3|/usr/include|"            \
-    -i pkgs/itcl4.2.3/itclConfig.sh
+k_check() {
+  make test
+}
 
-unset SRCDIR
+k_post_install() {
+  chmod -v u+w /usr/lib/libtcl8.6.so
 
-make test
+  make install-private-headers
 
-make install
+  ln -sfv tclsh8.6 /usr/bin/tclsh
 
-chmod -v u+w /usr/lib/libtcl8.6.so
+  mv /usr/share/man/man3/{Thread,Tcl_Thread}.3
 
-make install-private-headers
-
-ln -sfv tclsh8.6 /usr/bin/tclsh
-
-mv /usr/share/man/man3/{Thread,Tcl_Thread}.3
-
-cd ..
-tar -xf ../tcl8.6.13-html.tar.gz --strip-components=1
-mkdir -v -p /usr/share/doc/tcl-8.6.13
-cp -v -r  ./html/* /usr/share/doc/tcl-8.6.13
-
-cd /sources
-
-rm -rf tcl8.6.13
-
-echo "Done"
+  cd ..
+  tar -xf ../tcl8.6.13-html.tar.gz --strip-components=1
+  mkdir -v -p /usr/share/doc/tcl-8.6.13
+  cp -v -r  ./html/* /usr/share/doc/tcl-8.6.13
+}

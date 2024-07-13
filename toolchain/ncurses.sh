@@ -1,47 +1,44 @@
 #!/bin/bash
 
-if [ "$(whoami)" != "lfs" ]; then
-  echo "Script must be run as user: lfs"
-  exit 255
-fi
+SRC_FILE=ncurses-6.4-20230520.tar.xz
+SRC_FOLDER=ncurses-6.4-20230520
 
-cd $LFS/sources
+k_pre_configure() {
+  sed -i s/mawk// configure
 
-tar xvf ncurses-6.4-20230520.tar.xz
+  mkdir build
+  pushd build
+    ../configure
+    make -C include
+    make -C progs tic
+  popd
+}
 
-cd  ncurses-6.4-20230520
+k_configure() {
+  ./configure --prefix=/usr                \
+              --host=$LFS_TGT              \
+              --build=$(./config.guess)    \
+              --mandir=/usr/share/man      \
+              --with-manpage-format=normal \
+              --with-shared                \
+              --without-normal             \
+              --with-cxx-shared            \
+              --without-debug              \
+              --without-ada                \
+              --disable-stripping          \
+              --enable-widec
+}
 
-sed -i s/mawk// configure
+k_check() {
+  :
+}
 
-mkdir build
-pushd build
-  ../configure
-  make -C include
-  make -C progs tic
-popd
+k_install() {
+  make DESTDIR=$LFS TIC_PATH=$(pwd)/build/progs/tic install
+}
 
-./configure --prefix=/usr                \
-            --host=$LFS_TGT              \
-            --build=$(./config.guess)    \
-            --mandir=/usr/share/man      \
-            --with-manpage-format=normal \
-            --with-shared                \
-            --without-normal             \
-            --with-cxx-shared            \
-            --without-debug              \
-            --without-ada                \
-            --disable-stripping          \
-            --enable-widec
-
-make
-
-make DESTDIR=$LFS TIC_PATH=$(pwd)/build/progs/tic install
-ln -sv libncursesw.so $LFS/usr/lib/libncurses.so
-sed -e 's/^#if.*XOPEN.*$/#if 1/' \
-    -i $LFS/usr/include/curses.h
-
-cd $LFS/sources
-
-rm -rf ncurses-6.4-20230520
-
-echo "Done"
+k_post_install() {
+  ln -sv libncursesw.so $LFS/usr/lib/libncurses.so
+  sed -e 's/^#if.*XOPEN.*$/#if 1/' \
+      -i $LFS/usr/include/curses.h
+}

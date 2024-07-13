@@ -1,26 +1,18 @@
-\#!/bin/bash
+#!/bin/bash
 
-if [ "$(whoami)" != "lfs" ]; then
-  echo "Script must be run as user: lfs"
-  exit 255
-fi
+SRC_FILE=m4-1.4.19.tar.xz
+SRC_FOLDER=m4-1.4.19
 
-cd $LFS/sources
+k_configure() {
+  ./configure --prefix=/usr   \
+              --host=$LFS_TGT \
+              --build=$(build-aux/config.guess)
+}
 
-tar xvf m4-1.4.19.tar.xz
+k_check() {
+  :
+}
 
-cd m4-1.4.19
-
-./configure --prefix=/usr   \
-            --host=$LFS_TGT \
-            --build=$(build-aux/config.guess)
-
-make
-
-make DESTDIR=$LFS install
-
-cd $LFS/sources
-
-rm -rf m4-1.4.19
-
-echo "Done"
+k_install() {
+  make DESTDIR=$LFS install
+}

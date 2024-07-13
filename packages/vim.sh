@@ -1,33 +1,23 @@
 #!/bin/bash
 
-if [ "$EUID" -ne 0 ]
-  then echo "Please run as root"
-  exit
-fi
-
 SRC_FILE=vim-9.1.0041.tar.gz
 SRC_FOLDER=vim-9.1.0041
 
-cd /sources
+k_pre_configure() {
+  echo '#define SYS_VIMRC_FILE "/etc/vimrc"' >> src/feature.h
+}
 
-tar xvf $SRC_FILE
+k_configure() {
+  ./configure --prefix=/usr
+}
 
-cd $SRC_FOLDER
+k_check() {
+  chown -Rv tester .
+  su tester -c "TERM=xterm-256color LANG=en_US.UTF-8 make -j1 test" \
+    &> vim-test.log
+}
 
-# BUILD
-
-echo '#define SYS_VIMRC_FILE "/etc/vimrc"' >> src/feature.h
-
-./configure --prefix=/usr
-
-make
-
-chown -Rv tester .
-su tester -c "TERM=xterm-256color LANG=en_US.UTF-8 make -j1 test" \
-   &> vim-test.log
-
-make install
-
+k_post_install() {
 ln -sv vim /usr/bin/vi
 for L in  /usr/share/man/{,*/}man1/vim.1; do
     ln -sv vim.1 $(dirname $L)/vi.1
@@ -52,12 +42,4 @@ endif
 
 " End /etc/vimrc
 EOF
-
-# EBC
-
-cd /sources
-
-rm -rf $SRC_FOLDER
-
-echo Deleting $SRC_FOLDER
-echo Done with $SRC_FILE
+}

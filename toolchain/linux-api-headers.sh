@@ -1,24 +1,25 @@
 #!/bin/bash
 
-if [ "$(whoami)" != "lfs" ]; then
-  echo "Script must be run as user: lfs"
-  exit 255
-fi
+SRC_FILE=linux-6.7.4.tar.xz
+SRC_FOLDER=linux-6.7.4
 
-cd $LFS/sources
+k_pre_configure() {
+  make mrproper
+}
 
-tar xvf linux-6.7.4.tar.xz
+k_configure() {
+  :
+}
 
-cd linux-6.7.4
+k_build() {
+  make headers
+}
 
-make mrproper
+k_check() {
+  :
+}
 
-make headers
-find usr/include -type f ! -name '*.h' -delete
-cp -rv usr/include $LFS/usr
-
-cd $LFS/sources
-
-rm -rf linux-6.7.4
-
-echo "Done"
+k_install() {
+  find usr/include -type f ! -name '*.h' -delete
+  cp -rv usr/include $LFS/usr
+}

@@ -1,21 +1,14 @@
 #!/bin/bash
 
-cd /sources/
+SRC_FILE=Python-3.12.2.tar.xz
+SRC_FOLDER=Python-3.12.2
 
-tar xvf Python-3.12.2.tar.xz
+k_configure() {
+  ./configure --prefix=/usr   \
+              --enable-shared \
+              --without-ensurepip
+}
 
-cd Python-3.12.2
-
-./configure --prefix=/usr   \
-            --enable-shared \
-            --without-ensurepip
-
-make
-
-make install
-
-cd /sources/
-
-rm -rf Python-3.12.2
-
-echo "Done"
+k_check() {
+  :
+}

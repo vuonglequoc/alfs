@@ -1,45 +1,35 @@
 #!/bin/bash
 
-if [ "$EUID" -ne 0 ]
-  then echo "Please run as root"
-  exit
-fi
-
 SRC_FILE=glibc-2.39.tar.xz
 SRC_FOLDER=glibc-2.39
 
-cd /sources
+k_pre_configure() {
+  patch -Np1 -i ../glibc-2.39-fhs-1.patch
 
-tar xvf $SRC_FILE
+  mkdir -v build
+  cd       build
 
-cd $SRC_FOLDER
+  echo "rootsbindir=/usr/sbin" > configparms
+}
 
-# BUILD 
+k_configure() {
+  ../configure --prefix=/usr                  \
+              --disable-werror                \
+              --enable-kernel=4.19            \
+              --enable-stack-protector=strong \
+              --disable-nscd                  \
+              libc_cv_slibdir=/usr/lib
+}
 
-patch -Np1 -i ../glibc-2.39-fhs-1.patch
+k_install() {
+  touch /etc/ld.so.conf
 
-mkdir -v build
-cd       build
+  sed '/test-installation/s@$(PERL)@echo not running@' -i ../Makefile
 
-echo "rootsbindir=/usr/sbin" > configparms
+  make install
+}
 
-../configure --prefix=/usr                            \
-             --disable-werror                         \
-             --enable-kernel=4.19                     \
-             --enable-stack-protector=strong          \
-             --disable-nscd                           \
-             libc_cv_slibdir=/usr/lib
-
-make
-
-make check
-
-touch /etc/ld.so.conf
-
-sed '/test-installation/s@$(PERL)@echo not running@' -i ../Makefile
-
-make install
-
+k_post_install() {
 sed '/RTLDLIST=/s@/usr@@g' -i /usr/bin/ldd
 
 mkdir -pv /usr/lib/locale
@@ -104,13 +94,6 @@ cat >> /etc/ld.so.conf << "EOF"
 include /etc/ld.so.conf.d/*.conf
 
 EOF
+
 mkdir -pv /etc/ld.so.conf.d
-
-# EBC
-
-cd /sources
-
-rm -rf $SRC_FOLDER
-
-echo Deleting $SRC_FOLDER
-echo Done with $SRC_FILE
+}

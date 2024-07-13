@@ -1,19 +1,12 @@
 #!/bin/bash
 
-cd /sources/
+SRC_FILE=texinfo-7.1.tar.xz
+SRC_FOLDER=texinfo-7.1
 
-tar xvf texinfo-7.1.tar.xz
+k_configure() {
+  ./configure --prefix=/usr
+}
 
-cd texinfo-7.1
-
-./configure --prefix=/usr
-
-make
-
-make install
-
-cd /sources/
-
-rm -rf texinfo-7.1
-
-echo "Done"
+k_check() {
+  :
+}

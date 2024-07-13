@@ -1,48 +1,33 @@
 #!/bin/bash
 
-if [ "$EUID" -ne 0 ]
-  then echo "Please run as root"
-  exit
-fi
-
 SRC_FILE=grub-2.12.tar.xz
 SRC_FOLDER=grub-2.12
 
-cd /sources
+k_pre_configure() {
+  mkdir -pv /usr/share/fonts/unifont
+  gunzip -c ../unifont-15.1.04.pcf.gz > /usr/share/fonts/unifont/unifont.pcf
 
-tar xvf $SRC_FILE
+  unset {C,CPP,CXX,LD}FLAGS
 
-cd $SRC_FOLDER
+  echo depends bli part_gpt > grub-core/extra_deps.lst
+}
 
-# BUILD for EFI
+k_configure() {
+  ./configure --prefix=/usr        \
+              --sysconfdir=/etc    \
+              --disable-efiemu     \
+              --enable-grub-mkfont \
+              --with-platform=efi  \
+              --target=x86_64      \
+              --disable-werror
 
-mkdir -pv /usr/share/fonts/unifont &&
-gunzip -c ../unifont-15.1.04.pcf.gz > /usr/share/fonts/unifont/unifont.pcf
+  unset TARGET_CC
+}
 
-unset {C,CPP,CXX,LD}FLAGS
+k_check() {
+  :
+}
 
-echo depends bli part_gpt > grub-core/extra_deps.lst
-
-./configure --prefix=/usr        \
-            --sysconfdir=/etc    \
-            --disable-efiemu     \
-            --enable-grub-mkfont \
-            --with-platform=efi  \
-            --target=x86_64      \
-            --disable-werror
-
-unset TARGET_CC
-
-make
-
-make install &&
-mv -v /etc/bash_completion.d/grub /usr/share/bash-completion/completions
-
-# EBC
-
-cd /sources
-
-rm -rf $SRC_FOLDER
-
-echo Deleting $SRC_FOLDER
-echo Done with $SRC_FILE
+k_post_install() {
+  mv -v /etc/bash_completion.d/grub /usr/share/bash-completion/completions
+}

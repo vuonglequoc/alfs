@@ -1,26 +1,18 @@
 #!/bin/bash
 
-if [ "$(whoami)" != "lfs" ]; then
-  echo "Script must be run as user: lfs"
-  exit 255
-fi
+SRC_FILE=diffutils-3.10.tar.xz
+SRC_FOLDER=diffutils-3.10
 
-cd $LFS/sources
+k_configure() {
+  ./configure --prefix=/usr   \
+              --host=$LFS_TGT \
+              --build=$(./build-aux/config.guess)
+}
 
-tar xvf diffutils-3.10.tar.xz
+k_check() {
+  :
+}
 
-cd diffutils-3.10
-
-./configure --prefix=/usr   \
-            --host=$LFS_TGT \
-            --build=$(./build-aux/config.guess)
-
-make
-
-make DESTDIR=$LFS install
-
-cd $LFS/sources
-
-rm -rf diffutils-3.10
-
-echo "Done"
+k_install() {
+  make DESTDIR=$LFS install
+}

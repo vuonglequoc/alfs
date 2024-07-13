@@ -1,30 +1,24 @@
 #!/bin/bash
 
-if [ "$(whoami)" != "lfs" ]; then
-  echo "Script must be run as user: lfs"
-  exit 255
-fi
+SRC_FILE=xz-5.4.6.tar.xz
+SRC_FOLDER=xz-5.4.6
 
-cd $LFS/sources
+k_configure() {
+  ./configure --prefix=/usr                     \
+              --host=$LFS_TGT                   \
+              --build=$(build-aux/config.guess) \
+              --disable-static                  \
+              --docdir=/usr/share/doc/xz-5.4.6
+}
 
-tar xvf xz-5.4.6.tar.xz
+k_check() {
+  :
+}
 
-cd xz-5.4.6
+k_install() {
+  make DESTDIR=$LFS install
+}
 
-./configure --prefix=/usr                     \
-            --host=$LFS_TGT                   \
-            --build=$(build-aux/config.guess) \
-            --disable-static                  \
-            --docdir=/usr/share/doc/xz-5.4.6
-
-make
-
-make DESTDIR=$LFS install
-
-rm -v $LFS/usr/lib/liblzma.la
-
-cd $LFS/sources
-
-rm -rf xz-5.4.6
-
-echo "Done"
+k_post_install() {
+  rm -v $LFS/usr/lib/liblzma.la
+}

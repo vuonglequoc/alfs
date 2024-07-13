@@ -1,30 +1,20 @@
 #!/bin/bash
 
-if [ "$EUID" -ne 0 ]
-  then echo "Please run as root"
-  exit
-fi
-
 SRC_FILE=wheel-0.42.0.tar.gz
 SRC_FOLDER=wheel-0.42.0
 
-cd /sources
+k_configure() {
+  :
+}
 
-tar xvf $SRC_FILE
+k_build() {
+  pip3 wheel -w dist --no-cache-dir --no-build-isolation --no-deps $PWD
+}
 
-cd $SRC_FOLDER
+k_check() {
+  :
+}
 
-# BUILD 
-
-pip3 wheel -w dist --no-cache-dir --no-build-isolation --no-deps $PWD
-
-pip3 install --no-index --find-links=dist wheel
-
-# EBC
-
-cd /sources
-
-rm -rf $SRC_FOLDER
-
-echo Deleting $SRC_FOLDER
-echo Done with $SRC_FILE
+k_install() {
+  pip3 install --no-index --find-links=dist wheel
+}

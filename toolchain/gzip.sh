@@ -1,24 +1,17 @@
 #!/bin/bash
 
-if [ "$(whoami)" != "lfs" ]; then
-  echo "Script must be run as user: lfs"
-  exit 255
-fi
+SRC_FILE=gzip-1.13.tar.xz
+SRC_FOLDER=gzip-1.13
 
-cd $LFS/sources
+k_configure() {
+  ./configure --prefix=/usr \
+              --host=$LFS_TGT
+}
 
-tar xvf gzip-1.13.tar.xz
+k_check() {
+  :
+}
 
-cd gzip-1.13
-
-./configure --prefix=/usr --host=$LFS_TGT
-
-make
-
-make DESTDIR=$LFS install
-
-cd $LFS/sources
-
-rm -rf gzip-1.13
-
-echo "Done"
+k_install() {
+  make DESTDIR=$LFS install
+}

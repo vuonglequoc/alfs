@@ -1,39 +1,24 @@
 #!/bin/bash
 
-if [ "$EUID" -ne 0 ]
-  then echo "Please run as root"
-  exit
-fi
-
 SRC_FILE=sed-4.9.tar.xz
 SRC_FOLDER=sed-4.9
 
-cd /sources
+k_configure() {
+  ./configure --prefix=/usr
+}
 
-tar xvf $SRC_FILE
+k_build() {
+  make
+  make html
+}
 
-cd $SRC_FOLDER
+k_check() {
+  chown -Rv tester .
+  su tester -c "PATH=$PATH make check"
+}
 
-# BUILD 
-
-./configure --prefix=/usr
-
-make
-make html
-
-# TEST
-chown -Rv tester .
-su tester -c "PATH=$PATH make check"
-
-make install
-install -d -m755           /usr/share/doc/sed-4.9
-install -m644 doc/sed.html /usr/share/doc/sed-4.9
-
-# EBC
-
-cd /sources
-
-rm -rf $SRC_FOLDER
-
-echo Deleting $SRC_FOLDER
-echo Done with $SRC_FILE
+k_install() {
+  make install
+  install -d -m755           /usr/share/doc/sed-4.9
+  install -m644 doc/sed.html /usr/share/doc/sed-4.9
+}

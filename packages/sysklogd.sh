@@ -1,27 +1,26 @@
 #!/bin/bash
 
-if [ "$EUID" -ne 0 ]
-  then echo "Please run as root"
-  exit
-fi
-
 SRC_FILE=sysklogd-1.5.1.tar.gz
 SRC_FOLDER=sysklogd-1.5.1
 
-cd /sources
+k_pre_configure() {
+  sed -i '/Error loading kernel symbols/{n;n;d}' ksym_mod.c
+  sed -i 's/union wait/int/' syslogd.c
+}
 
-tar xvf $SRC_FILE
+k_configure() {
+  :
+}
 
-cd $SRC_FOLDER
+k_check() {
+  :
+}
 
-# BUILD
+k_install() {
+  make BINDIR=/sbin install
+}
 
-sed -i '/Error loading kernel symbols/{n;n;d}' ksym_mod.c
-sed -i 's/union wait/int/' syslogd.c
-
-make
-make BINDIR=/sbin install
-
+k_post_install() {
 cat > /etc/syslog.conf << "EOF"
 # Begin /etc/syslog.conf
 
@@ -35,12 +34,4 @@ user.* -/var/log/user.log
 
 # End /etc/syslog.conf
 EOF
-
-# EBC
-
-cd /sources
-
-rm -rf $SRC_FOLDER
-
-echo Deleting $SRC_FOLDER
-echo Done with $SRC_FILE
+}

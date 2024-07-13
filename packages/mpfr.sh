@@ -1,37 +1,21 @@
 #!/bin/bash
 
-if [ "$EUID" -ne 0 ]
-  then echo "Please run as root"
-  exit
-fi
-
 SRC_FILE=mpfr-4.2.1.tar.xz
 SRC_FOLDER=mpfr-4.2.1
 
-cd /sources
+k_configure() {
+  ./configure --prefix=/usr        \
+              --disable-static     \
+              --enable-thread-safe \
+              --docdir=/usr/share/doc/mpfr-4.2.1
+}
 
-tar xvf $SRC_FILE
+k_build() {
+  make
+  make html
+}
 
-cd $SRC_FOLDER
-
-# BUILD
-
-./configure --prefix=/usr        \
-            --disable-static     \
-            --enable-thread-safe \
-            --docdir=/usr/share/doc/mpfr-4.2.1
-
-make
-make html
-make check
-make install
-make install-html
-
-# EBC
-
-cd /sources
-
-rm -rf $SRC_FOLDER
-
-echo Deleting $SRC_FOLDER
-echo Done with $SRC_FILE
+k_install() {
+  make install
+  make install-html
+}

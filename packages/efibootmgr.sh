@@ -1,25 +1,20 @@
 #!/bin/bash
 
-if [ "$EUID" -ne 0 ]
-  then echo "Please run as root"
-  exit
-fi
-
 SRC_FILE=efibootmgr-18.tar.gz
 SRC_FOLDER=efibootmgr-18
 
-cd /sources
+k_configure() {
+  :
+}
 
-tar xvf $SRC_FILE
+k_build() {
+  make EFIDIR=LFS EFI_LOADER=grubx64.efi
+}
 
-cd $SRC_FOLDER
+k_check() {
+  :
+}
 
-make EFIDIR=LFS EFI_LOADER=grubx64.efi
-make install EFIDIR=LFS
-
-cd /sources
-
-rm -rf $SRC_FOLDER
-
-echo Deleting $SRC_FOLDER
-echo Done with $SRC_FILE
+k_install() {
+  make install EFIDIR=LFS
+}

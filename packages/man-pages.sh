@@ -1,22 +1,24 @@
 #!/bin/bash
 
-if [ "$EUID" -ne 0 ]
-  then echo "Please run as root"
-  exit
-fi
+SRC_FILE=man-pages-6.06.tar.xz
+SRC_FOLDER=man-pages-6.06
 
-cd /sources
+k_pre_configure() {
+  rm -v man3/crypt*
+}
 
-tar xvf man-pages-6.06.tar.xz
+k_configure() {
+  :
+}
 
-cd man-pages-6.06
+k_build() {
+  :
+}
 
-rm -v man3/crypt*
+k_check() {
+  :
+}
 
-make prefix=/usr install
-
-cd /sources
-
-rm -rf man-pages-6.06
-
-echo "Done"
+k_install() {
+  make prefix=/usr install
+}

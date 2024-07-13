@@ -1,27 +1,19 @@
 #!/bin/bash
 
-if [ "$(whoami)" != "lfs" ]; then
-  echo "Script must be run as user: lfs"
-  exit 255
-fi
+SRC_FILE=make-4.4.1.tar.gz
+SRC_FOLDER=make-4.4.1
 
-cd $LFS/sources
+k_configure() {
+  ./configure --prefix=/usr   \
+              --without-guile \
+              --host=$LFS_TGT \
+              --build=$(build-aux/config.guess)
+}
 
-tar xvf make-4.4.1.tar.gz
+k_check() {
+  :
+}
 
-cd make-4.4.1
-
-./configure --prefix=/usr   \
-            --without-guile \
-            --host=$LFS_TGT \
-            --build=$(build-aux/config.guess)
-
-make
-
-make DESTDIR=$LFS install
-
-cd $LFS/sources
-
-rm -rf make-4.4.1
-
-echo "Done"
+k_install() {
+  make DESTDIR=$LFS install
+}

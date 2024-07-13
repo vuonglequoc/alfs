@@ -1,26 +1,18 @@
 #!/bin/bash
 
-if [ "$(whoami)" != "lfs" ]; then
-  echo "Script must be run as user: lfs"
-  exit 255
-fi
+SRC_FILE=patch-2.7.6.tar.xz
+SRC_FOLDER=patch-2.7.6
 
-cd $LFS/sources
+k_configure() {
+  ./configure --prefix=/usr   \
+              --host=$LFS_TGT \
+              --build=$(build-aux/config.guess)
+}
 
-tar xvf patch-2.7.6.tar.xz
+k_check() {
+  :
+}
 
-cd patch-2.7.6
-
-./configure --prefix=/usr   \
-            --host=$LFS_TGT \
-            --build=$(build-aux/config.guess)
-
-make
-
-make DESTDIR=$LFS install
-
-cd $LFS/sources
-
-rm -rf patch-2.7.6
-
-echo "Done"
+k_install() {
+  make DESTDIR=$LFS install
+}

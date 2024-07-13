@@ -1,28 +1,20 @@
 #!/bin/bash
 
-if [ "$EUID" -ne 0 ]
-  then echo "Please run as root"
-  exit
-fi
-
 SRC_FILE=iana-etc-20240125.tar.gz
 SRC_FOLDER=iana-etc-20240125
 
-cd /sources
+k_configure() {
+  :
+}
 
-tar xvf $SRC_FILE
+k_build() {
+  :
+}
 
-cd $SRC_FOLDER
+k_check() {
+  :
+}
 
-# BUILD 
-
-cp services protocols /etc
-
-# EBC
-
-cd /sources
-
-rm -rf $SRC_FOLDER
-
-echo Deleting $SRC_FOLDER
-echo Done with $SRC_FILE
+k_install() {
+  cp services protocols /etc
+}

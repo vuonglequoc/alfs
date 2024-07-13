@@ -1,29 +1,23 @@
 #!/bin/bash
 
-if [ "$(whoami)" != "lfs" ]; then
-  echo "Script must be run as user: lfs"
-  exit 255
-fi
+SRC_FILE=bash-5.2.21.tar.gz
+SRC_FOLDER=bash-5.2.21
 
-cd $LFS/sources
+k_configure() {
+  ./configure --prefix=/usr                      \
+              --build=$(sh support/config.guess) \
+              --host=$LFS_TGT                    \
+              --without-bash-malloc
+}
 
-tar xvf bash-5.2.21.tar.gz
+k_check() {
+  :
+}
 
-cd bash-5.2.21
+k_install() {
+  make DESTDIR=$LFS install
+}
 
-./configure --prefix=/usr                      \
-            --build=$(sh support/config.guess) \
-            --host=$LFS_TGT                    \
-            --without-bash-malloc
-
-make
-
-make DESTDIR=$LFS install
-
-ln -sv bash $LFS/bin/sh
-
-cd $LFS/sources
-
-rm -rf bash-5.2.21
-
-echo "Done"
+k_post_install() {
+  ln -sv bash $LFS/bin/sh
+}

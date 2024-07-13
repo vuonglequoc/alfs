@@ -1,40 +1,36 @@
 #!/bin/bash
 
-if [ "$(whoami)" != "lfs" ]; then
-  echo "Script must be run as user: lfs"
-  exit 255
-fi
+SRC_FILE=binutils-2.42.tar.xz
+SRC_FOLDER=binutils-2.42
 
-cd $LFS/sources
+k_pre_configure() {
+  sed '6009s/$add_dir//' -i ltmain.sh
 
-tar xvf binutils-2.42.tar.xz
+  mkdir -v build
+  cd       build
+}
 
-cd binutils-2.42
+k_configure() {
+  ../configure                   \
+      --prefix=/usr              \
+      --build=$(../config.guess) \
+      --host=$LFS_TGT            \
+      --disable-nls              \
+      --enable-shared            \
+      --enable-gprofng=no        \
+      --disable-werror           \
+      --enable-64-bit-bfd        \
+      --enable-default-hash-style=gnu
+}
 
-sed '6009s/$add_dir//' -i ltmain.sh
+k_check() {
+  :
+}
 
-mkdir -v build
-cd       build
+k_install() {
+  make DESTDIR=$LFS install
+}
 
-../configure                   \
-    --prefix=/usr              \
-    --build=$(../config.guess) \
-    --host=$LFS_TGT            \
-    --disable-nls              \
-    --enable-shared            \
-    --enable-gprofng=no        \
-    --disable-werror           \
-    --enable-64-bit-bfd        \
-    --enable-default-hash-style=gnu
-
-make
-
-make DESTDIR=$LFS install
-
-rm -v $LFS/usr/lib/lib{bfd,ctf,ctf-nobfd,opcodes,sframe}.{a,la}
-
-cd $LFS/sources
-
-rm -rf binutils-2.42
-
-echo "Done"
+k_post_install() {
+  rm -v $LFS/usr/lib/lib{bfd,ctf,ctf-nobfd,opcodes,sframe}.{a,la}
+}

@@ -1,28 +1,16 @@
 #!/bin/bash
 
-if [ "$EUID" -ne 0 ]
-  then echo "Please run as root"
-  exit
-fi
-
 SRC_FILE=lfs-bootscripts-20230728.tar.xz
 SRC_FOLDER=lfs-bootscripts-20230728
 
-cd /sources
+k_configure() {
+  :
+}
 
-tar xvf $SRC_FILE
+k_build() {
+  :
+}
 
-cd $SRC_FOLDER
-
-# BUILD
-
-make install
-
-# EBC
-
-cd /sources
-
-rm -rf $SRC_FOLDER
-
-echo Deleting $SRC_FOLDER
-echo Done with $SRC_FILE
+k_check() {
+  :
+}

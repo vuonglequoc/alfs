@@ -1,33 +1,23 @@
 #!/bin/bash
 
-if [ "$(whoami)" != "lfs" ]; then
-  echo "Script must be run as user: lfs"
-  exit 255
-fi
+SRC_FILE=binutils-2.42.tar.xz
+SRC_FOLDER=binutils-2.42
 
-cd $LFS/sources
+k_pre_configure() {
+  mkdir -v build
+  cd       build
+}
 
-tar xvf binutils-2.42.tar.xz
+k_configure() {
+  ../configure --prefix=$LFS/tools \
+               --with-sysroot=$LFS \
+               --target=$LFS_TGT   \
+               --disable-nls       \
+               --enable-gprofng=no \
+               --disable-werror    \
+               --enable-default-hash-style=gnu
+}
 
-cd binutils-2.42
-
-mkdir -v build
-cd       build
-
-../configure --prefix=$LFS/tools \
-             --with-sysroot=$LFS \
-             --target=$LFS_TGT   \
-             --disable-nls       \
-             --enable-gprofng=no \
-             --disable-werror    \
-             --enable-default-hash-style=gnu
-
-make
-
-make install             
-
-cd $LFS/sources
-
-rm -rf binutils-2.42
-
-echo "Done"
+k_check() {
+  :
+}

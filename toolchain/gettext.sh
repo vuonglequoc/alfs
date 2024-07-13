@@ -1,19 +1,16 @@
 #!/bin/bash
 
-cd /sources/
+SRC_FILE=gettext-0.22.4.tar.xz
+SRC_FOLDER=gettext-0.22.4
 
-tar xvf gettext-0.22.4.tar.xz
+k_configure() {
+  ./configure --disable-shared
+}
 
-cd gettext-0.22.4
+k_check() {
+  :
+}
 
-./configure --disable-shared
-
-make
-
-cp -v gettext-tools/src/{msgfmt,msgmerge,xgettext} /usr/bin
-
-cd /sources/
-
-rm -rf gettext-0.22.4
-
-echo "Done"
+k_install() {
+  cp -v gettext-tools/src/{msgfmt,msgmerge,xgettext} /usr/bin
+}

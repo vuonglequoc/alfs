@@ -1,43 +1,26 @@
 #!/bin/bash
 
-if [ "$EUID" -ne 0 ]
-  then echo "Please run as root"
-  exit
-fi
-
 SRC_FILE=openssl-3.2.1.tar.gz
 SRC_FOLDER=openssl-3.2.1
 
-cd /sources
+k_configure() {
+  ./config --prefix=/usr         \
+          --openssldir=/etc/ssl \
+          --libdir=lib          \
+          shared                \
+          zlib-dynamic
+}
 
-tar xvf $SRC_FILE
+k_check() {
+  HARNESS_JOBS=$(nproc) make test
+}
 
-cd $SRC_FOLDER
+k_install() {
+  sed -i '/INSTALL_LIBS/s/libcrypto.a libssl.a//' Makefile
+  make MANSUFFIX=ssl install
+}
 
-# BUILD
-
-./config --prefix=/usr         \
-         --openssldir=/etc/ssl \
-         --libdir=lib          \
-         shared                \
-         zlib-dynamic
-
-make
-
-HARNESS_JOBS=$(nproc) make test
-
-sed -i '/INSTALL_LIBS/s/libcrypto.a libssl.a//' Makefile
-make MANSUFFIX=ssl install
-
-mv -v /usr/share/doc/openssl /usr/share/doc/openssl-3.2.1
-
-cp -vfr doc/* /usr/share/doc/openssl-3.2.1
-
-# EBC
-
-cd /sources
-
-rm -rf $SRC_FOLDER
-
-echo Deleting $SRC_FOLDER
-echo Done with $SRC_FILE
+k_post_install() {
+  mv -v /usr/share/doc/openssl /usr/share/doc/openssl-3.2.1
+  cp -vfr doc/* /usr/share/doc/openssl-3.2.1
+}

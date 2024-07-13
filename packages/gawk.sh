@@ -1,43 +1,29 @@
 #!/bin/bash
 
-if [ "$EUID" -ne 0 ]
-  then echo "Please run as root"
-  exit
-fi
-
 SRC_FILE=gawk-5.3.0.tar.xz
 SRC_FOLDER=gawk-5.3.0
 
-cd /sources
+k_pre_configure() {
+  sed -i 's/extras//' Makefile.in
+}
 
-tar xvf $SRC_FILE
+k_configure() {
+  ./configure --prefix=/usr
+}
 
-cd $SRC_FOLDER
+k_check() {
+  chown -Rv tester .
+  su tester -c "PATH=$PATH make check"
+}
 
-# BUILD
+k_install() {
+  rm -f /usr/bin/gawk-5.3.0
+  make install
+}
 
-sed -i 's/extras//' Makefile.in
+k_post_install() {
+  ln -sv gawk.1 /usr/share/man/man1/awk.1
 
-./configure --prefix=/usr
-
-make
-
-chown -Rv tester .
-su tester -c "PATH=$PATH make check"
-
-rm -f /usr/bin/gawk-5.3.0
-make install
-
-ln -sv gawk.1 /usr/share/man/man1/awk.1
-
-mkdir -pv                                   /usr/share/doc/gawk-5.3.0
-cp    -v doc/{awkforai.txt,*.{eps,pdf,jpg}} /usr/share/doc/gawk-5.3.0
-
-# EBC
-
-cd /sources
-
-rm -rf $SRC_FOLDER
-
-echo Deleting $SRC_FOLDER
-echo Done with $SRC_FILE
+  mkdir -pv                                   /usr/share/doc/gawk-5.3.0
+  cp    -v doc/{awkforai.txt,*.{eps,pdf,jpg}} /usr/share/doc/gawk-5.3.0
+}

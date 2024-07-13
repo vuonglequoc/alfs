@@ -1,35 +1,37 @@
 #!/bin/bash
 
-if [ "$(whoami)" != "lfs" ]; then
-  echo "Script must be run as user: lfs"
-  exit 255
-fi
+SRC_FILE=file-5.45.tar.gz
+SRC_FOLDER=file-5.45
 
-cd $LFS/sources
+k_pre_configure() {
+  mkdir build
+  pushd build
+    ../configure --disable-bzlib      \
+                 --disable-libseccomp \
+                 --disable-xzlib      \
+                 --disable-zlib
+    make
+  popd
+}
 
-tar xvf file-5.45.tar.gz
+k_configure() {
+  ./configure --prefix=/usr   \
+              --host=$LFS_TGT \
+              --build=$(./config.guess)
+}
 
-cd file-5.45
+k_build() {
+  make FILE_COMPILE=$(pwd)/build/src/file
+}
 
-mkdir build
-pushd build
-  ../configure --disable-bzlib      \
-               --disable-libseccomp \
-               --disable-xzlib      \
-               --disable-zlib
-  make
-popd
+k_check() {
+  :
+}
 
-./configure --prefix=/usr --host=$LFS_TGT --build=$(./config.guess)
+k_install() {
+  make DESTDIR=$LFS install
+}
 
-make FILE_COMPILE=$(pwd)/build/src/file
-
-make DESTDIR=$LFS install
-
-rm -v $LFS/usr/lib/libmagic.la
-
-cd $LFS/sources
-
-rm -rf file-5.45
-
-echo "Done"
+k_post_install() {
+  rm -v $LFS/usr/lib/libmagic.la
+}

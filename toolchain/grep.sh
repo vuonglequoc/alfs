@@ -1,26 +1,18 @@
 #!/bin/bash
 
-if [ "$(whoami)" != "lfs" ]; then
-  echo "Script must be run as user: lfs"
-  exit 255
-fi
+SRC_FILE=grep-3.11.tar.xz
+SRC_FOLDER=grep-3.11
 
-cd $LFS/sources
+k_configure() {
+  ./configure --prefix=/usr   \
+              --host=$LFS_TGT \
+              --build=$(./build-aux/config.guess)
+}
 
-tar xvf grep-3.11.tar.xz
+k_check() {
+  :
+}
 
-cd grep-3.11
-
-./configure --prefix=/usr   \
-            --host=$LFS_TGT \
-            --build=$(./build-aux/config.guess)
-
-make
-
-make DESTDIR=$LFS install
-
-cd $LFS/sources
-
-rm -rf grep-3.11
-
-echo "Done"
+k_install() {
+  make DESTDIR=$LFS install
+}

@@ -1,27 +1,19 @@
 #!/bin/bash
 
-if [ "$(whoami)" != "lfs" ]; then
-  echo "Script must be run as user: lfs"
-  exit 255
-fi
+SRC_FILE=findutils-4.9.0.tar.xz
+SRC_FOLDER=findutils-4.9.0
 
-cd $LFS/sources
+k_configure() {
+  ./configure --prefix=/usr                   \
+              --localstatedir=/var/lib/locate \
+              --host=$LFS_TGT                 \
+              --build=$(build-aux/config.guess)
+}
 
-tar xvf findutils-4.9.0.tar.xz
+k_check() {
+  :
+}
 
-cd findutils-4.9.0
-
-./configure --prefix=/usr                   \
-            --localstatedir=/var/lib/locate \
-            --host=$LFS_TGT                 \
-            --build=$(build-aux/config.guess)
-
-make
-
-make DESTDIR=$LFS install
-
-cd $LFS/sources  
-
-rm -rf findutils-4.9.0
-
-echo "Done"
+k_install() {
+  make DESTDIR=$LFS install
+}

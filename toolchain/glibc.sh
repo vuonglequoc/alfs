@@ -1,48 +1,44 @@
 #!/bin/bash
 
-if [ "$(whoami)" != "lfs" ]; then
-  echo "Script must be run as user: lfs"
-  exit 255
-fi
+SRC_FILE=glibc-2.39.tar.xz
+SRC_FOLDER=glibc-2.39
 
-cd $LFS/sources
+k_pre_configure() {
+  case $(uname -m) in
+      i?86)   ln -sfv ld-linux.so.2 $LFS/lib/ld-lsb.so.3
+      ;;
+      x86_64) ln -sfv ../lib/ld-linux-x86-64.so.2 $LFS/lib64
+              ln -sfv ../lib/ld-linux-x86-64.so.2 $LFS/lib64/ld-lsb-x86-64.so.3
+      ;;
+  esac
 
-tar xvf glibc-2.39.tar.xz
+  patch -Np1 -i ../glibc-2.39-fhs-1.patch
 
-cd glibc-2.39
+  mkdir -v build
+  cd       build
 
-case $(uname -m) in
-    i?86)   ln -sfv ld-linux.so.2 $LFS/lib/ld-lsb.so.3
-    ;;
-    x86_64) ln -sfv ../lib/ld-linux-x86-64.so.2 $LFS/lib64
-            ln -sfv ../lib/ld-linux-x86-64.so.2 $LFS/lib64/ld-lsb-x86-64.so.3
-    ;;
-esac
+  echo "rootsbindir=/usr/sbin" > configparms
+}
 
-patch -Np1 -i ../glibc-2.39-fhs-1.patch
+k_configure() {
+  ../configure                             \
+        --prefix=/usr                      \
+        --host=$LFS_TGT                    \
+        --build=$(../scripts/config.guess) \
+        --enable-kernel=4.19               \
+        --with-headers=$LFS/usr/include    \
+        --disable-nscd                     \
+        libc_cv_slibdir=/usr/lib
+}
 
-mkdir -v build
-cd       build
+k_check() {
+  :
+}
 
-echo "rootsbindir=/usr/sbin" > configparms
+k_install() {
+  make DESTDIR=$LFS install
+}
 
-../configure                             \
-      --prefix=/usr                      \
-      --host=$LFS_TGT                    \
-      --build=$(../scripts/config.guess) \
-      --enable-kernel=4.19               \
-      --with-headers=$LFS/usr/include    \
-      --disable-nscd                     \
-      libc_cv_slibdir=/usr/lib
-
-make
-
-make DESTDIR=$LFS install
-
-sed '/RTLDLIST=/s@/usr@@g' -i $LFS/usr/bin/ldd
-
-cd $LFS/sources
-
-rm -rf glibc-2.39
-
-echo "Done"
+k_post_install() {
+  sed '/RTLDLIST=/s@/usr@@g' -i $LFS/usr/bin/ldd
+}
