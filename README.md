@@ -179,6 +179,7 @@ sudo -E $ALFS/scripts/backup_os.sh
 Un-mount LFS partitions
 
 ```bash
+cd /home
 sudo umount $LFS/boot/efi
 sudo umount $LFS/boot
 sudo umount $LFS
