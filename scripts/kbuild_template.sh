@@ -10,6 +10,10 @@ k_build
 k_check
 k_install
 k_post_install
+if [[ "$K_RECORD" -eq 1 ]]; then
+  k_pre_record
+  k_record
+fi
 
 cd $KROOT/sources
 rm -rf $SRC_FOLDER

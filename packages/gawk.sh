@@ -27,3 +27,12 @@ k_post_install() {
   mkdir -pv                                   /usr/share/doc/gawk-5.3.0
   cp    -v doc/{awkforai.txt,*.{eps,pdf,jpg}} /usr/share/doc/gawk-5.3.0
 }
+
+k_pre_record() {
+  make DESTDIR=$KPKG_DEST_DIR install
+
+  ln -sv gawk.1 $KPKG_DEST_DIR/usr/share/man/man1/awk.1
+
+  mkdir -pv                                   $KPKG_DEST_DIR/usr/share/doc/gawk-5.3.0
+  cp    -v doc/{awkforai.txt,*.{eps,pdf,jpg}} $KPKG_DEST_DIR/usr/share/doc/gawk-5.3.0
+}

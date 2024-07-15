@@ -24,3 +24,8 @@ k_install() {
   make install
   make install-html
 }
+
+k_pre_record() {
+  make DESTDIR=$KPKG_DEST_DIR install
+  make DESTDIR=$KPKG_DEST_DIR install-html
+}

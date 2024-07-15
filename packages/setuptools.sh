@@ -18,3 +18,11 @@ k_check() {
 k_install() {
   pip3 install --no-index --find-links dist setuptools
 }
+
+k_pre_record() {
+  :
+}
+
+k_record() {
+  :
+}

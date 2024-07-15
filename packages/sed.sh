@@ -22,3 +22,10 @@ k_install() {
   install -d -m755           /usr/share/doc/sed-4.9
   install -m644 doc/sed.html /usr/share/doc/sed-4.9
 }
+
+k_pre_record() {
+  make DESTDIR=$KPKG_DEST_DIR install
+
+  install -d -m755           $KPKG_DEST_DIR/usr/share/doc/sed-4.9
+  install -m644 doc/sed.html $KPKG_DEST_DIR/usr/share/doc/sed-4.9
+}

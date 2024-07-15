@@ -22,3 +22,7 @@ k_check() {
 k_install() {
   make prefix=/usr lib=lib install
 }
+
+k_pre_record() {
+  make DESTDIR=$KPKG_DEST_DIR prefix=/usr lib=lib install
+}

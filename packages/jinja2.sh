@@ -18,3 +18,11 @@ k_check() {
 k_install() {
   pip3 install --no-index --no-user --find-links dist Jinja2
 }
+
+k_pre_record() {
+  :
+}
+
+k_record() {
+  :
+}

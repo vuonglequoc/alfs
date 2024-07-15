@@ -47,3 +47,14 @@ k_post_install() {
   # passwd root
   echo 'root:root' | chpasswd
 }
+
+k_pre_record() {
+  cp /etc/shadow $KPKG_DEST_DIR/etc/shadow
+  cp /etc/gshadow $KPKG_DEST_DIR/etc/gshadow
+
+  make DESTDIR=$KPKG_DEST_DIR exec_prefix=/usr install
+  make DESTDIR=$KPKG_DEST_DIR -C man install-man
+
+  mkdir -p $KPKG_DEST_DIR/etc/default
+  cp -v /etc/default/* $KPKG_DEST_DIR/etc/default/*
+}

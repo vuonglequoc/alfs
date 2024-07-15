@@ -28,3 +28,10 @@ k_post_install() {
   mkdir -pv             /usr/share/doc/iproute2-6.7.0
   cp -v COPYING README* /usr/share/doc/iproute2-6.7.0
 }
+
+k_pre_record() {
+  make DESTDIR=$KPKG_DEST_DIR SBINDIR=/usr/sbin install
+
+  mkdir -pv             $KPKG_DEST_DIR/usr/share/doc/iproute2-6.7.0
+  cp -v COPYING README* $KPKG_DEST_DIR/usr/share/doc/iproute2-6.7.0
+}

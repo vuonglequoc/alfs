@@ -37,3 +37,9 @@ k_install() {
 k_post_install() {
   rm -fv /usr/lib/lib{bfd,ctf,ctf-nobfd,gprofng,opcodes,sframe}.a
 }
+
+k_pre_record() {
+  make DESTDIR=$KPKG_DEST_DIR tooldir=/usr install
+
+  rm -fv $KPKG_DEST_DIR/usr/lib/lib{bfd,ctf,ctf-nobfd,gprofng,opcodes,sframe}.a
+}

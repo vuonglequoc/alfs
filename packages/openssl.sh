@@ -24,3 +24,10 @@ k_post_install() {
   mv -v /usr/share/doc/openssl /usr/share/doc/openssl-3.2.1
   cp -vfr doc/* /usr/share/doc/openssl-3.2.1
 }
+
+k_pre_record() {
+  make DESTDIR=$KPKG_DEST_DIR MANSUFFIX=ssl install
+
+  mv -v /usr/share/doc/openssl $KPKG_DEST_DIR/usr/share/doc/openssl-3.2.1
+  cp -vfr doc/* $KPKG_DEST_DIR/usr/share/doc/openssl-3.2.1
+}

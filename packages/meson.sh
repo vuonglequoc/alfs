@@ -20,3 +20,10 @@ k_install() {
   install -vDm644 data/shell-completions/bash/meson /usr/share/bash-completion/completions/meson
   install -vDm644 data/shell-completions/zsh/_meson /usr/share/zsh/site-functions/_meson
 }
+
+k_pre_record() {
+  mkdir -p $KPKG_DEST_DIR/usr/share/bash-completion/completions/
+  mkdir -p $KPKG_DEST_DIR/usr/share/zsh/site-functions/
+  install -vDm644 data/shell-completions/bash/meson $KPKG_DEST_DIR/usr/share/bash-completion/completions/meson
+  install -vDm644 data/shell-completions/zsh/_meson $KPKG_DEST_DIR/usr/share/zsh/site-functions/_meson
+}

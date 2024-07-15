@@ -32,3 +32,9 @@ k_install() {
 k_post_install() {
   install -v -m644 doc/*.{ps,pdf,html,dvi} /usr/share/doc/readline-8.2
 }
+
+k_pre_record() {
+  make DESTDIR=$KPKG_DEST_DIR SHLIB_LIBS="-lncursesw" install
+
+  install -v -m644 doc/*.{ps,pdf,html,dvi} $KPKG_DEST_DIR/usr/share/doc/readline-8.2
+}

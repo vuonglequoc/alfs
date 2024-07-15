@@ -30,3 +30,17 @@ k_post_install() {
 
   rm -fv /usr/lib/libbz2.a
 }
+
+k_pre_record() {
+  make DESTDIR=$KPKG_DEST_DIR PREFIX=/usr install
+
+  cp -av libbz2.so.* $KPKG_DEST_DIR/usr/lib
+  ln -sv libbz2.so.1.0.8 $KPKG_DEST_DIR/usr/lib/libbz2.so
+
+  cp -v bzip2-shared $KPKG_DEST_DIR/usr/bin/bzip2
+  for i in $KPKG_DEST_DIR/usr/bin/{bzcat,bunzip2}; do
+    ln -sfv bzip2 $i
+  done
+
+  rm -fv $KPKG_DEST_DIR/usr/lib/libbz2.a
+}

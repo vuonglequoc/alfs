@@ -30,3 +30,10 @@ k_install() {
   install -vDm644 misc/bash-completion /usr/share/bash-completion/completions/ninja
   install -vDm644 misc/zsh-completion  /usr/share/zsh/site-functions/_ninja
 }
+
+k_pre_record() {
+  mkdir -p $KPKG_DEST_DIR/usr/bin/
+  install -vm755 ninja $KPKG_DEST_DIR/usr/bin/
+  install -vDm644 misc/bash-completion $KPKG_DEST_DIR/usr/share/bash-completion/completions/ninja
+  install -vDm644 misc/zsh-completion  $KPKG_DEST_DIR/usr/share/zsh/site-functions/_ninja
+}

@@ -11,3 +11,7 @@ k_configure() {
 k_install() {
   make docdir=/usr/share/doc/check-0.15.2 install
 }
+
+k_pre_record() {
+  make DESTDIR=$KPKG_DEST_DIR docdir=/usr/share/doc/check-0.15.2 install
+}

@@ -18,3 +18,7 @@ k_check() {
 k_install() {
   make install EFIDIR=LFS
 }
+
+k_pre_record() {
+  make DESTDIR=$KPKG_DEST_DIR install EFIDIR=LFS
+}

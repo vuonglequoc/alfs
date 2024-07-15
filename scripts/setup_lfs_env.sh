@@ -62,6 +62,7 @@ esac
 chown -Rv lfs $LFS/sources
 mkdir -p $LFS/alfs/logs/toolchain
 mkdir -p $LFS/alfs/logs/packages
+mkdir -p $LFS/etc/kpkg/tmp
 chown -Rv lfs $LFS/alfs
 
 # 4.4. Setting Up the Environment

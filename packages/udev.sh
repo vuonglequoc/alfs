@@ -59,9 +59,11 @@ k_install() {
   install -vm755 $udev_helpers                       /usr/lib/udev
   install -vm644 ../network/99-default.link          /usr/lib/udev/network
 
+  # Install some custom rules and support files useful in an LFS environment
   tar -xvf ../../udev-lfs-20230818.tar.xz
   make -f udev-lfs-20230818/Makefile.lfs install
 
+  # Install the man pages
   tar -xf ../../systemd-man-pages-255.tar.xz                            \
       --no-same-owner --strip-components=1                              \
       -C /usr/share/man --wildcards '*/udev*' '*/libudev*'              \
@@ -81,7 +83,37 @@ k_install() {
 
   rm /usr/share/man/man*/systemd*
 
-  unset udev_helpers
+  # unset udev_helpers
+  # unset later in k_pre_record
 
   udev-hwdb update
+}
+
+k_pre_record() {
+  install -vm755 -d {$KPKG_DEST_DIR/usr/lib,$KPKG_DEST_DIR/etc}/udev/{hwdb.d,rules.d,network}
+  install -vm755 -d $KPKG_DEST_DIR/usr/{lib,share}/pkgconfig
+  install -vm755 udevadm                             $KPKG_DEST_DIR/usr/bin/
+  install -vm755 systemd-hwdb                        $KPKG_DEST_DIR/usr/bin/udev-hwdb
+  ln      -svfn  ../bin/udevadm                      $KPKG_DEST_DIR/usr/sbin/udevd
+  cp      -av    libudev.so{,*[0-9]}                 $KPKG_DEST_DIR/usr/lib/
+  install -vm644 ../src/libudev/libudev.h            $KPKG_DEST_DIR/usr/include/
+  install -vm644 src/libudev/*.pc                    $KPKG_DEST_DIR/usr/lib/pkgconfig/
+  install -vm644 src/udev/*.pc                       $KPKG_DEST_DIR/usr/share/pkgconfig/
+  install -vm644 ../src/udev/udev.conf               $KPKG_DEST_DIR/etc/udev/
+  install -vm644 rules.d/* ../rules.d/README         $KPKG_DEST_DIR/usr/lib/udev/rules.d/
+  install -vm644 $(find ../rules.d/*.rules \
+                        -not -name '*power-switch*') $KPKG_DEST_DIR/usr/lib/udev/rules.d/
+  install -vm644 hwdb.d/*  ../hwdb.d/{*.hwdb,README} $KPKG_DEST_DIR/usr/lib/udev/hwdb.d/
+  install -vm755 $udev_helpers                       $KPKG_DEST_DIR/usr/lib/udev
+  install -vm644 ../network/99-default.link          $KPKG_DEST_DIR/usr/lib/udev/network
+
+  tar -xf $KROOT/sources/systemd-man-pages-255.tar.xz                            \
+      --no-same-owner --strip-components=1                              \
+      -C $KPKG_DEST_DIR/usr/share/man --wildcards '*/udev*' '*/libudev*'              \
+                                    '*/systemd.link.5'                  \
+                                    '*/systemd-'{hwdb,udevd.service}.8
+
+  rm $KPKG_DEST_DIR/usr/share/man/man*/systemd*
+
+  unset udev_helpers
 }

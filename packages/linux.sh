@@ -43,3 +43,23 @@ install uhci_hcd /sbin/modprobe ehci_hcd ; /sbin/modprobe -i uhci_hcd ; true
 # End /etc/modprobe.d/usb.conf
 EOF
 }
+
+k_pre_record() {
+  mkdir -p $KPKG_DEST_DIR/boot/
+  mkdir -p $KPKG_DEST_DIR/lib/modules/
+  mkdir -p $KPKG_DEST_DIR/usr/share/doc/linux-6.7.4
+  mkdir -p $KPKG_DEST_DIR/etc/modprobe.d
+
+  cp -r /lib/modules/ $KPKG_DEST_DIR/lib/modules/
+
+  cp -iv arch/x86_64/boot/bzImage $KPKG_DEST_DIR/boot/vmlinuz-6.7.4-lfs-12.1
+
+  cp -iv System.map $KPKG_DEST_DIR/boot/System.map-6.7.4
+
+  cp -iv .config $KPKG_DEST_DIR/boot/config-6.7.4
+
+  cp -r Documentation -T $KPKG_DEST_DIR/usr/share/doc/linux-6.7.4
+
+  install -v -m755 -d $KPKG_DEST_DIR/etc/modprobe.d
+  cp /etc/modprobe.d/usb.conf $KPKG_DEST_DIR/etc/modprobe.d/usb.conf
+}

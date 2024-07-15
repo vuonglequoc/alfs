@@ -35,3 +35,9 @@ user.* -/var/log/user.log
 # End /etc/syslog.conf
 EOF
 }
+
+k_pre_record() {
+  make DESTDIR=$KPKG_DEST_DIR BINDIR=/sbin install
+
+  cp -v /etc/syslog.conf $KPKG_DEST_DIR/etc/syslog.conf
+}
