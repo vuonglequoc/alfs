@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SRC_FILE=gettext-0.22.4.tar.xz
-SRC_FOLDER=gettext-0.22.4
+KPKG_SRC_FILE=gettext-0.22.4.tar.xz
+KPKG_SRC_FOLDER=gettext-0.22.4
 
 k_configure() {
   ./configure --disable-shared

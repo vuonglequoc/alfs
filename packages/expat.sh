@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SRC_FILE=expat-2.6.0.tar.xz
-SRC_FOLDER=expat-2.6.0
+KPKG_SRC_FILE=expat-2.6.0.tar.xz
+KPKG_SRC_FOLDER=expat-2.6.0
 
 k_configure() {
   ./configure --prefix=/usr    \

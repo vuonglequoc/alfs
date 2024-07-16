@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SRC_FILE=systemd-255.tar.gz
-SRC_FOLDER=systemd-255
+KPKG_SRC_FILE=systemd-255.tar.gz
+KPKG_SRC_FOLDER=systemd-255
 
 k_pre_configure() {
   sed -i -e 's/GROUP="render"/GROUP="video"/' \
@@ -90,30 +90,30 @@ k_install() {
 }
 
 k_pre_record() {
-  install -vm755 -d {$KPKG_DEST_DIR/usr/lib,$KPKG_DEST_DIR/etc}/udev/{hwdb.d,rules.d,network}
-  install -vm755 -d $KPKG_DEST_DIR/usr/{lib,share}/pkgconfig
-  install -vm755 udevadm                             $KPKG_DEST_DIR/usr/bin/
-  install -vm755 systemd-hwdb                        $KPKG_DEST_DIR/usr/bin/udev-hwdb
-  ln      -svfn  ../bin/udevadm                      $KPKG_DEST_DIR/usr/sbin/udevd
-  cp      -av    libudev.so{,*[0-9]}                 $KPKG_DEST_DIR/usr/lib/
-  install -vm644 ../src/libudev/libudev.h            $KPKG_DEST_DIR/usr/include/
-  install -vm644 src/libudev/*.pc                    $KPKG_DEST_DIR/usr/lib/pkgconfig/
-  install -vm644 src/udev/*.pc                       $KPKG_DEST_DIR/usr/share/pkgconfig/
-  install -vm644 ../src/udev/udev.conf               $KPKG_DEST_DIR/etc/udev/
-  install -vm644 rules.d/* ../rules.d/README         $KPKG_DEST_DIR/usr/lib/udev/rules.d/
+  install -vm755 -d {$KPKG_TMP_DIR/usr/lib,$KPKG_TMP_DIR/etc}/udev/{hwdb.d,rules.d,network}
+  install -vm755 -d $KPKG_TMP_DIR/usr/{lib,share}/pkgconfig
+  install -vm755 udevadm                             $KPKG_TMP_DIR/usr/bin/
+  install -vm755 systemd-hwdb                        $KPKG_TMP_DIR/usr/bin/udev-hwdb
+  ln      -svfn  ../bin/udevadm                      $KPKG_TMP_DIR/usr/sbin/udevd
+  cp      -av    libudev.so{,*[0-9]}                 $KPKG_TMP_DIR/usr/lib/
+  install -vm644 ../src/libudev/libudev.h            $KPKG_TMP_DIR/usr/include/
+  install -vm644 src/libudev/*.pc                    $KPKG_TMP_DIR/usr/lib/pkgconfig/
+  install -vm644 src/udev/*.pc                       $KPKG_TMP_DIR/usr/share/pkgconfig/
+  install -vm644 ../src/udev/udev.conf               $KPKG_TMP_DIR/etc/udev/
+  install -vm644 rules.d/* ../rules.d/README         $KPKG_TMP_DIR/usr/lib/udev/rules.d/
   install -vm644 $(find ../rules.d/*.rules \
-                        -not -name '*power-switch*') $KPKG_DEST_DIR/usr/lib/udev/rules.d/
-  install -vm644 hwdb.d/*  ../hwdb.d/{*.hwdb,README} $KPKG_DEST_DIR/usr/lib/udev/hwdb.d/
-  install -vm755 $udev_helpers                       $KPKG_DEST_DIR/usr/lib/udev
-  install -vm644 ../network/99-default.link          $KPKG_DEST_DIR/usr/lib/udev/network
+                        -not -name '*power-switch*') $KPKG_TMP_DIR/usr/lib/udev/rules.d/
+  install -vm644 hwdb.d/*  ../hwdb.d/{*.hwdb,README} $KPKG_TMP_DIR/usr/lib/udev/hwdb.d/
+  install -vm755 $udev_helpers                       $KPKG_TMP_DIR/usr/lib/udev
+  install -vm644 ../network/99-default.link          $KPKG_TMP_DIR/usr/lib/udev/network
 
-  tar -xf $KROOT/sources/systemd-man-pages-255.tar.xz                            \
+  tar -xf $KPKG_ROOT/sources/systemd-man-pages-255.tar.xz                            \
       --no-same-owner --strip-components=1                              \
-      -C $KPKG_DEST_DIR/usr/share/man --wildcards '*/udev*' '*/libudev*'              \
+      -C $KPKG_TMP_DIR/usr/share/man --wildcards '*/udev*' '*/libudev*'              \
                                     '*/systemd.link.5'                  \
                                     '*/systemd-'{hwdb,udevd.service}.8
 
-  rm $KPKG_DEST_DIR/usr/share/man/man*/systemd*
+  rm $KPKG_TMP_DIR/usr/share/man/man*/systemd*
 
   unset udev_helpers
 }

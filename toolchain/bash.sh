@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SRC_FILE=bash-5.2.21.tar.gz
-SRC_FOLDER=bash-5.2.21
+KPKG_SRC_FILE=bash-5.2.21.tar.gz
+KPKG_SRC_FOLDER=bash-5.2.21
 
 k_configure() {
   ./configure --prefix=/usr                      \

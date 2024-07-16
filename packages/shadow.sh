@@ -1,8 +1,8 @@
 #!/bin/bash
 # default pwd is root
 
-SRC_FILE=shadow-4.14.5.tar.xz
-SRC_FOLDER=shadow-4.14.5
+KPKG_SRC_FILE=shadow-4.14.5.tar.xz
+KPKG_SRC_FOLDER=shadow-4.14.5
 
 k_pre_configure() {
   sed -i 's/groups$(EXEEXT) //' src/Makefile.in
@@ -49,12 +49,12 @@ k_post_install() {
 }
 
 k_pre_record() {
-  cp /etc/shadow $KPKG_DEST_DIR/etc/shadow
-  cp /etc/gshadow $KPKG_DEST_DIR/etc/gshadow
+  cp /etc/shadow $KPKG_TMP_DIR/etc/shadow
+  cp /etc/gshadow $KPKG_TMP_DIR/etc/gshadow
 
-  make DESTDIR=$KPKG_DEST_DIR exec_prefix=/usr install
-  make DESTDIR=$KPKG_DEST_DIR -C man install-man
+  make DESTDIR=$KPKG_TMP_DIR exec_prefix=/usr install
+  make DESTDIR=$KPKG_TMP_DIR -C man install-man
 
-  mkdir -p $KPKG_DEST_DIR/etc/default
-  cp -v /etc/default/* $KPKG_DEST_DIR/etc/default/*
+  mkdir -p $KPKG_TMP_DIR/etc/default
+  cp -v /etc/default/* $KPKG_TMP_DIR/etc/default/*
 }

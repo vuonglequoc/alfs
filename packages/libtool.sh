@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SRC_FILE=libtool-2.4.7.tar.xz
-SRC_FOLDER=libtool-2.4.7
+KPKG_SRC_FILE=libtool-2.4.7.tar.xz
+KPKG_SRC_FOLDER=libtool-2.4.7
 
 k_configure() {
   ./configure --prefix=/usr

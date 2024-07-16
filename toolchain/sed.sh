@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SRC_FILE=sed-4.9.tar.xz
-SRC_FOLDER=sed-4.9
+KPKG_SRC_FILE=sed-4.9.tar.xz
+KPKG_SRC_FOLDER=sed-4.9
 
 k_configure() {
   ./configure --prefix=/usr   \

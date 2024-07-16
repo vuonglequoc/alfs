@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SRC_FILE=libcap-2.69.tar.xz
-SRC_FOLDER=libcap-2.69
+KPKG_SRC_FILE=libcap-2.69.tar.xz
+KPKG_SRC_FOLDER=libcap-2.69
 
 k_pre_configure() {
   sed -i '/install -m.*STA/d' libcap/Makefile
@@ -24,5 +24,5 @@ k_install() {
 }
 
 k_pre_record() {
-  make DESTDIR=$KPKG_DEST_DIR prefix=/usr lib=lib install
+  make DESTDIR=$KPKG_TMP_DIR prefix=/usr lib=lib install
 }

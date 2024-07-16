@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SRC_FILE=tar-1.35.tar.xz
-SRC_FOLDER=tar-1.35
+KPKG_SRC_FILE=tar-1.35.tar.xz
+KPKG_SRC_FOLDER=tar-1.35
 
 k_configure() {
   FORCE_UNSAFE_CONFIGURE=1  \

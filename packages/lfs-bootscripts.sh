@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SRC_FILE=lfs-bootscripts-20230728.tar.xz
-SRC_FOLDER=lfs-bootscripts-20230728
+KPKG_SRC_FILE=lfs-bootscripts-20230728.tar.xz
+KPKG_SRC_FOLDER=lfs-bootscripts-20230728
 
 k_configure() {
   :

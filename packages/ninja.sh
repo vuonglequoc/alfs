@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SRC_FILE=ninja-1.11.1.tar.gz
-SRC_FOLDER=ninja-1.11.1
+KPKG_SRC_FILE=ninja-1.11.1.tar.gz
+KPKG_SRC_FOLDER=ninja-1.11.1
 
 k_pre_configure() {
   export NINJAJOBS=4
@@ -32,8 +32,8 @@ k_install() {
 }
 
 k_pre_record() {
-  mkdir -p $KPKG_DEST_DIR/usr/bin/
-  install -vm755 ninja $KPKG_DEST_DIR/usr/bin/
-  install -vDm644 misc/bash-completion $KPKG_DEST_DIR/usr/share/bash-completion/completions/ninja
-  install -vDm644 misc/zsh-completion  $KPKG_DEST_DIR/usr/share/zsh/site-functions/_ninja
+  mkdir -p $KPKG_TMP_DIR/usr/bin/
+  install -vm755 ninja $KPKG_TMP_DIR/usr/bin/
+  install -vDm644 misc/bash-completion $KPKG_TMP_DIR/usr/share/bash-completion/completions/ninja
+  install -vDm644 misc/zsh-completion  $KPKG_TMP_DIR/usr/share/zsh/site-functions/_ninja
 }

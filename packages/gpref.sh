@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SRC_FILE=gperf-3.1.tar.gz
-SRC_FOLDER=gperf-3.1
+KPKG_SRC_FILE=gperf-3.1.tar.gz
+KPKG_SRC_FOLDER=gperf-3.1
 
 k_configure() {
   ./configure --prefix=/usr \

@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SRC_FILE=iana-etc-20240125.tar.gz
-SRC_FOLDER=iana-etc-20240125
+KPKG_SRC_FILE=iana-etc-20240125.tar.gz
+KPKG_SRC_FOLDER=iana-etc-20240125
 
 k_configure() {
   :
@@ -20,6 +20,6 @@ k_install() {
 }
 
 k_pre_record() {
-  mkdir -p $KPKG_DEST_DIR/etc
-  cp services protocols $KPKG_DEST_DIR/etc
+  mkdir -p $KPKG_TMP_DIR/etc
+  cp services protocols $KPKG_TMP_DIR/etc
 }

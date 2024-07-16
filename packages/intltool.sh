@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SRC_FILE=intltool-0.51.0.tar.gz
-SRC_FOLDER=intltool-0.51.0
+KPKG_SRC_FILE=intltool-0.51.0.tar.gz
+KPKG_SRC_FOLDER=intltool-0.51.0
 
 k_pre_configure() {
   sed -i 's:\\\${:\\\$\\{:' intltool-update.in

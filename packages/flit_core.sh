@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SRC_FILE=flit_core-3.9.0.tar.gz
-SRC_FOLDER=flit_core-3.9.0
+KPKG_SRC_FILE=flit_core-3.9.0.tar.gz
+KPKG_SRC_FOLDER=flit_core-3.9.0
 
 k_configure() {
   :

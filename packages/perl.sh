@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SRC_FILE=perl-5.38.2.tar.xz
-SRC_FOLDER=perl-5.38.2
+KPKG_SRC_FILE=perl-5.38.2.tar.xz
+KPKG_SRC_FOLDER=perl-5.38.2
 
 k_pre_configure() {
   export BUILD_ZLIB=False

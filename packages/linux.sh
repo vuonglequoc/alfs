@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SRC_FILE=linux-6.7.4.tar.xz
-SRC_FOLDER=linux-6.7.4
+KPKG_SRC_FILE=linux-6.7.4.tar.xz
+KPKG_SRC_FOLDER=linux-6.7.4
 
 k_pre_configure() {
   make mrproper
@@ -45,21 +45,21 @@ EOF
 }
 
 k_pre_record() {
-  mkdir -p $KPKG_DEST_DIR/boot/
-  mkdir -p $KPKG_DEST_DIR/lib/modules/
-  mkdir -p $KPKG_DEST_DIR/usr/share/doc/linux-6.7.4
-  mkdir -p $KPKG_DEST_DIR/etc/modprobe.d
+  mkdir -p $KPKG_TMP_DIR/boot/
+  mkdir -p $KPKG_TMP_DIR/lib/modules/
+  mkdir -p $KPKG_TMP_DIR/usr/share/doc/linux-6.7.4
+  mkdir -p $KPKG_TMP_DIR/etc/modprobe.d
 
-  cp -r /lib/modules/ $KPKG_DEST_DIR/lib/modules/
+  cp -r /lib/modules/ $KPKG_TMP_DIR/lib/modules/
 
-  cp -iv arch/x86_64/boot/bzImage $KPKG_DEST_DIR/boot/vmlinuz-6.7.4-lfs-12.1
+  cp -iv arch/x86_64/boot/bzImage $KPKG_TMP_DIR/boot/vmlinuz-6.7.4-lfs-12.1
 
-  cp -iv System.map $KPKG_DEST_DIR/boot/System.map-6.7.4
+  cp -iv System.map $KPKG_TMP_DIR/boot/System.map-6.7.4
 
-  cp -iv .config $KPKG_DEST_DIR/boot/config-6.7.4
+  cp -iv .config $KPKG_TMP_DIR/boot/config-6.7.4
 
-  cp -r Documentation -T $KPKG_DEST_DIR/usr/share/doc/linux-6.7.4
+  cp -r Documentation -T $KPKG_TMP_DIR/usr/share/doc/linux-6.7.4
 
-  install -v -m755 -d $KPKG_DEST_DIR/etc/modprobe.d
-  cp /etc/modprobe.d/usb.conf $KPKG_DEST_DIR/etc/modprobe.d/usb.conf
+  install -v -m755 -d $KPKG_TMP_DIR/etc/modprobe.d
+  cp /etc/modprobe.d/usb.conf $KPKG_TMP_DIR/etc/modprobe.d/usb.conf
 }

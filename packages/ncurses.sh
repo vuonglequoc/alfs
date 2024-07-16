@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SRC_FILE=ncurses-6.4-20230520.tar.xz
-SRC_FOLDER=ncurses-6.4-20230520
+KPKG_SRC_FILE=ncurses-6.4-20230520.tar.xz
+KPKG_SRC_FOLDER=ncurses-6.4-20230520
 
 k_configure() {
   ./configure --prefix=/usr           \
@@ -40,14 +40,14 @@ k_post_install() {
 }
 
 k_pre_record() {
-  cp -av dest/* $KPKG_DEST_DIR
+  cp -av dest/* $KPKG_TMP_DIR
 
   for lib in ncurses form panel menu ; do
-      ln -sfv lib${lib}w.so $KPKG_DEST_DIR/usr/lib/lib${lib}.so
-      ln -sfv ${lib}w.pc    $KPKG_DEST_DIR/usr/lib/pkgconfig/${lib}.pc
+      ln -sfv lib${lib}w.so $KPKG_TMP_DIR/usr/lib/lib${lib}.so
+      ln -sfv ${lib}w.pc    $KPKG_TMP_DIR/usr/lib/pkgconfig/${lib}.pc
   done
 
-  ln -sfv libncursesw.so $KPKG_DEST_DIR/usr/lib/libcurses.so
+  ln -sfv libncursesw.so $KPKG_TMP_DIR/usr/lib/libcurses.so
 
-  cp -v -R doc -T $KPKG_DEST_DIR/usr/share/doc/ncurses-6.4-20230520
+  cp -v -R doc -T $KPKG_TMP_DIR/usr/share/doc/ncurses-6.4-20230520
 }

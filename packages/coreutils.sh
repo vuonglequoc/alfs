@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SRC_FILE=coreutils-9.4.tar.xz
-SRC_FOLDER=coreutils-9.4
+KPKG_SRC_FILE=coreutils-9.4.tar.xz
+KPKG_SRC_FOLDER=coreutils-9.4
 
 k_pre_configure() {
   patch -Np1 -i ../coreutils-9.4-i18n-1.patch

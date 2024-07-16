@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SRC_FILE=e2fsprogs-1.47.0.tar.gz
-SRC_FOLDER=e2fsprogs-1.47.0
+KPKG_SRC_FILE=e2fsprogs-1.47.0.tar.gz
+KPKG_SRC_FOLDER=e2fsprogs-1.47.0
 
 k_pre_configure() {
   mkdir -v build

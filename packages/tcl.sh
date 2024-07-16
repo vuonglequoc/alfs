@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SRC_FILE=tcl8.6.13-src.tar.gz
-SRC_FOLDER=tcl8.6.13
+KPKG_SRC_FILE=tcl8.6.13-src.tar.gz
+KPKG_SRC_FOLDER=tcl8.6.13
 
 k_pre_configure() {
   SRCDIR=$(pwd)

@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SRC_FILE=XML-Parser-2.47.tar.gz
-SRC_FOLDER=XML-Parser-2.47
+KPKG_SRC_FILE=XML-Parser-2.47.tar.gz
+KPKG_SRC_FOLDER=XML-Parser-2.47
 
 k_configure() {
   perl Makefile.PL

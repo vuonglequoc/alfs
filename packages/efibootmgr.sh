@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SRC_FILE=efibootmgr-18.tar.gz
-SRC_FOLDER=efibootmgr-18
+KPKG_SRC_FILE=efibootmgr-18.tar.gz
+KPKG_SRC_FOLDER=efibootmgr-18
 
 k_configure() {
   :
@@ -20,5 +20,5 @@ k_install() {
 }
 
 k_pre_record() {
-  make DESTDIR=$KPKG_DEST_DIR install EFIDIR=LFS
+  make DESTDIR=$KPKG_TMP_DIR install EFIDIR=LFS
 }

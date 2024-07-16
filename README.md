@@ -1,6 +1,8 @@
 # Automated Linux From Scratch 12.1 (SysV)
 
-Tested with Debian 12 Bookworm, CPU 4 cores (Intel(R) Core(TM) i5-8259U CPU @ 2.30GHz), RAM 4GB, swap 3GB.
+Tested with Debian 12 Bookworm:
+- CPU 4 cores (Intel(R) Core(TM) i5-8259U CPU @ 2.30GHz), RAM 4GB, swap 3GB.
+- CPU 3 cores (Intel(R) Core(TM) i5-5575R CPU @ 2.80GHz), RAM 4GB, swap 3GB.
 
 Target: x86_64 architecture with UEFI
 

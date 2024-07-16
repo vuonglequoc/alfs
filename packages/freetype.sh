@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SRC_FILE=freetype-2.13.2.tar.xz
-SRC_FOLDER=freetype-2.13.2
+KPKG_SRC_FILE=freetype-2.13.2.tar.xz
+KPKG_SRC_FOLDER=freetype-2.13.2
 
 k_pre_configure() {
   tar -xf ../freetype-doc-2.13.2.tar.xz --strip-components=2 -C docs

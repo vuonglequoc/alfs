@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SRC_FILE=libxcrypt-4.4.36.tar.xz
-SRC_FOLDER=libxcrypt-4.4.36
+KPKG_SRC_FILE=libxcrypt-4.4.36.tar.xz
+KPKG_SRC_FOLDER=libxcrypt-4.4.36
 
 k_configure() {
   ./configure --prefix=/usr                \

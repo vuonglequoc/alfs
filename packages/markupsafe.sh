@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SRC_FILE=MarkupSafe-2.1.5.tar.gz
-SRC_FOLDER=MarkupSafe-2.1.5
+KPKG_SRC_FILE=MarkupSafe-2.1.5.tar.gz
+KPKG_SRC_FOLDER=MarkupSafe-2.1.5
 
 k_configure() {
   :

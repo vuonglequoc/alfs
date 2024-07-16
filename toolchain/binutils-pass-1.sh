@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SRC_FILE=binutils-2.42.tar.xz
-SRC_FOLDER=binutils-2.42
+KPKG_SRC_FILE=binutils-2.42.tar.xz
+KPKG_SRC_FOLDER=binutils-2.42
 
 k_pre_configure() {
   mkdir -v build

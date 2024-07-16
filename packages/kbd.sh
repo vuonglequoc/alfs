@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SRC_FILE=kbd-2.6.4.tar.xz
-SRC_FOLDER=kbd-2.6.4
+KPKG_SRC_FILE=kbd-2.6.4.tar.xz
+KPKG_SRC_FOLDER=kbd-2.6.4
 
 k_pre_configure() {
   patch -Np1 -i ../kbd-2.6.4-backspace-1.patch

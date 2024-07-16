@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SRC_FILE=sed-4.9.tar.xz
-SRC_FOLDER=sed-4.9
+KPKG_SRC_FILE=sed-4.9.tar.xz
+KPKG_SRC_FOLDER=sed-4.9
 
 k_configure() {
   ./configure --prefix=/usr
@@ -24,8 +24,8 @@ k_install() {
 }
 
 k_pre_record() {
-  make DESTDIR=$KPKG_DEST_DIR install
+  make DESTDIR=$KPKG_TMP_DIR install
 
-  install -d -m755           $KPKG_DEST_DIR/usr/share/doc/sed-4.9
-  install -m644 doc/sed.html $KPKG_DEST_DIR/usr/share/doc/sed-4.9
+  install -d -m755           $KPKG_TMP_DIR/usr/share/doc/sed-4.9
+  install -m644 doc/sed.html $KPKG_TMP_DIR/usr/share/doc/sed-4.9
 }

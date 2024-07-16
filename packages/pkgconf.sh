@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SRC_FILE=pkgconf-2.1.1.tar.xz
-SRC_FOLDER=pkgconf-2.1.1
+KPKG_SRC_FILE=pkgconf-2.1.1.tar.xz
+KPKG_SRC_FOLDER=pkgconf-2.1.1
 
 k_configure() {
 ./configure --prefix=/usr              \

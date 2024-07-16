@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SRC_FILE=gawk-5.3.0.tar.xz
-SRC_FOLDER=gawk-5.3.0
+KPKG_SRC_FILE=gawk-5.3.0.tar.xz
+KPKG_SRC_FOLDER=gawk-5.3.0
 
 k_pre_configure() {
   sed -i 's/extras//' Makefile.in
@@ -29,10 +29,10 @@ k_post_install() {
 }
 
 k_pre_record() {
-  make DESTDIR=$KPKG_DEST_DIR install
+  make DESTDIR=$KPKG_TMP_DIR install
 
-  ln -sv gawk.1 $KPKG_DEST_DIR/usr/share/man/man1/awk.1
+  ln -sv gawk.1 $KPKG_TMP_DIR/usr/share/man/man1/awk.1
 
-  mkdir -pv                                   $KPKG_DEST_DIR/usr/share/doc/gawk-5.3.0
-  cp    -v doc/{awkforai.txt,*.{eps,pdf,jpg}} $KPKG_DEST_DIR/usr/share/doc/gawk-5.3.0
+  mkdir -pv                                   $KPKG_TMP_DIR/usr/share/doc/gawk-5.3.0
+  cp    -v doc/{awkforai.txt,*.{eps,pdf,jpg}} $KPKG_TMP_DIR/usr/share/doc/gawk-5.3.0
 }

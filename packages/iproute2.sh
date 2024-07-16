@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SRC_FILE=iproute2-6.7.0.tar.xz
-SRC_FOLDER=iproute2-6.7.0
+KPKG_SRC_FILE=iproute2-6.7.0.tar.xz
+KPKG_SRC_FOLDER=iproute2-6.7.0
 
 k_pre_configure() {
   sed -i /ARPD/d Makefile
@@ -30,8 +30,8 @@ k_post_install() {
 }
 
 k_pre_record() {
-  make DESTDIR=$KPKG_DEST_DIR SBINDIR=/usr/sbin install
+  make DESTDIR=$KPKG_TMP_DIR SBINDIR=/usr/sbin install
 
-  mkdir -pv             $KPKG_DEST_DIR/usr/share/doc/iproute2-6.7.0
-  cp -v COPYING README* $KPKG_DEST_DIR/usr/share/doc/iproute2-6.7.0
+  mkdir -pv             $KPKG_TMP_DIR/usr/share/doc/iproute2-6.7.0
+  cp -v COPYING README* $KPKG_TMP_DIR/usr/share/doc/iproute2-6.7.0
 }

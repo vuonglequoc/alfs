@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SRC_FILE=vim-9.1.0041.tar.gz
-SRC_FOLDER=vim-9.1.0041
+KPKG_SRC_FILE=vim-9.1.0041.tar.gz
+KPKG_SRC_FOLDER=vim-9.1.0041
 
 k_pre_configure() {
   echo '#define SYS_VIMRC_FILE "/etc/vimrc"' >> src/feature.h

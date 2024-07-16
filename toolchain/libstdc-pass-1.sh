@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SRC_FILE=gcc-13.2.0.tar.xz
-SRC_FOLDER=gcc-13.2.0
+KPKG_SRC_FILE=gcc-13.2.0.tar.xz
+KPKG_SRC_FOLDER=gcc-13.2.0
 
 k_pre_configure() {
   mkdir -v build

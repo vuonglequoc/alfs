@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SRC_FILE=mpc-1.3.1.tar.gz
-SRC_FOLDER=mpc-1.3.1
+KPKG_SRC_FILE=mpc-1.3.1.tar.gz
+KPKG_SRC_FOLDER=mpc-1.3.1
 
 k_configure() {
   ./configure --prefix=/usr    \
@@ -20,6 +20,6 @@ k_install() {
 }
 
 k_pre_record() {
-  make DESTDIR=$KPKG_DEST_DIR install
-  make DESTDIR=$KPKG_DEST_DIR install-html
+  make DESTDIR=$KPKG_TMP_DIR install
+  make DESTDIR=$KPKG_TMP_DIR install-html
 }

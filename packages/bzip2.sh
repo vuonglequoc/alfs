@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SRC_FILE=bzip2-1.0.8.tar.gz
-SRC_FOLDER=bzip2-1.0.8
+KPKG_SRC_FILE=bzip2-1.0.8.tar.gz
+KPKG_SRC_FOLDER=bzip2-1.0.8
 
 k_pre_configure() {
   patch -Np1 -i ../bzip2-1.0.8-install_docs-1.patch
@@ -32,15 +32,15 @@ k_post_install() {
 }
 
 k_pre_record() {
-  make DESTDIR=$KPKG_DEST_DIR PREFIX=/usr install
+  make DESTDIR=$KPKG_TMP_DIR PREFIX=/usr install
 
-  cp -av libbz2.so.* $KPKG_DEST_DIR/usr/lib
-  ln -sv libbz2.so.1.0.8 $KPKG_DEST_DIR/usr/lib/libbz2.so
+  cp -av libbz2.so.* $KPKG_TMP_DIR/usr/lib
+  ln -sv libbz2.so.1.0.8 $KPKG_TMP_DIR/usr/lib/libbz2.so
 
-  cp -v bzip2-shared $KPKG_DEST_DIR/usr/bin/bzip2
-  for i in $KPKG_DEST_DIR/usr/bin/{bzcat,bunzip2}; do
+  cp -v bzip2-shared $KPKG_TMP_DIR/usr/bin/bzip2
+  for i in $KPKG_TMP_DIR/usr/bin/{bzcat,bunzip2}; do
     ln -sfv bzip2 $i
   done
 
-  rm -fv $KPKG_DEST_DIR/usr/lib/libbz2.a
+  rm -fv $KPKG_TMP_DIR/usr/lib/libbz2.a
 }

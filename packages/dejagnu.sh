@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SRC_FILE=dejagnu-1.6.3.tar.gz
-SRC_FOLDER=dejagnu-1.6.3
+KPKG_SRC_FILE=dejagnu-1.6.3.tar.gz
+KPKG_SRC_FOLDER=dejagnu-1.6.3
 
 k_pre_configure() {
   mkdir -v build

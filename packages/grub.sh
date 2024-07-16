@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SRC_FILE=grub-2.12.tar.xz
-SRC_FOLDER=grub-2.12
+KPKG_SRC_FILE=grub-2.12.tar.xz
+KPKG_SRC_FOLDER=grub-2.12
 
 k_pre_configure() {
   mkdir -pv /usr/share/fonts/unifont

@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SRC_FILE=glibc-2.39.tar.xz
-SRC_FOLDER=glibc-2.39
+KPKG_SRC_FILE=glibc-2.39.tar.xz
+KPKG_SRC_FOLDER=glibc-2.39
 
 k_pre_configure() {
   patch -Np1 -i ../glibc-2.39-fhs-1.patch
@@ -99,14 +99,14 @@ mkdir -pv /etc/ld.so.conf.d
 }
 
 k_pre_record() {
-  make DESTDIR=$KPKG_DEST_DIR install
+  make DESTDIR=$KPKG_TMP_DIR install
 
-  mkdir -pv $KPKG_DEST_DIR/usr/lib/locale
-  cp /usr/lib/locale/locale-archive $KPKG_DEST_DIR/usr/lib/locale/locale-archive
+  mkdir -pv $KPKG_TMP_DIR/usr/lib/locale
+  cp /usr/lib/locale/locale-archive $KPKG_TMP_DIR/usr/lib/locale/locale-archive
 
-  cp /etc/nsswitch.conf $KPKG_DEST_DIR/etc/nsswitch.conf
+  cp /etc/nsswitch.conf $KPKG_TMP_DIR/etc/nsswitch.conf
 
-  ZONEINFO=$KPKG_DEST_DIR/usr/share/zoneinfo
+  ZONEINFO=$KPKG_TMP_DIR/usr/share/zoneinfo
   mkdir -pv $ZONEINFO/{posix,right}
 
   for tz in etcetera southamerica northamerica europe africa antarctica  \
@@ -120,7 +120,7 @@ k_pre_record() {
   zic -d $ZONEINFO -p America/New_York
   unset ZONEINFO
 
-  cp /etc/ld.so.conf $KPKG_DEST_DIR/etc/ld.so.conf
+  cp /etc/ld.so.conf $KPKG_TMP_DIR/etc/ld.so.conf
 
-  mkdir -pv $KPKG_DEST_DIR/etc/ld.so.conf.d
+  mkdir -pv $KPKG_TMP_DIR/etc/ld.so.conf.d
 }

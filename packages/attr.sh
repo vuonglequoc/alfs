@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SRC_FILE=attr-2.5.2.tar.gz
-SRC_FOLDER=attr-2.5.2
+KPKG_SRC_FILE=attr-2.5.2.tar.gz
+KPKG_SRC_FOLDER=attr-2.5.2
 
 k_configure() {
   ./configure --prefix=/usr     \

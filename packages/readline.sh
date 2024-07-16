@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SRC_FILE=readline-8.2.tar.gz
-SRC_FOLDER=readline-8.2
+KPKG_SRC_FILE=readline-8.2.tar.gz
+KPKG_SRC_FOLDER=readline-8.2
 
 k_pre_configure() {
   sed -i '/MV.*old/d' Makefile.in
@@ -34,7 +34,7 @@ k_post_install() {
 }
 
 k_pre_record() {
-  make DESTDIR=$KPKG_DEST_DIR SHLIB_LIBS="-lncursesw" install
+  make DESTDIR=$KPKG_TMP_DIR SHLIB_LIBS="-lncursesw" install
 
-  install -v -m644 doc/*.{ps,pdf,html,dvi} $KPKG_DEST_DIR/usr/share/doc/readline-8.2
+  install -v -m644 doc/*.{ps,pdf,html,dvi} $KPKG_TMP_DIR/usr/share/doc/readline-8.2
 }

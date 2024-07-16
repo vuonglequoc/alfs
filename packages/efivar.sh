@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SRC_FILE=efivar-39.tar.gz
-SRC_FOLDER=efivar-39
+KPKG_SRC_FILE=efivar-39.tar.gz
+KPKG_SRC_FOLDER=efivar-39
 
 k_configure() {
   :
@@ -16,5 +16,5 @@ k_install() {
 }
 
 k_pre_record() {
-  make DESTDIR=$KPKG_DEST_DIR install LIBDIR=/usr/lib
+  make DESTDIR=$KPKG_TMP_DIR install LIBDIR=/usr/lib
 }

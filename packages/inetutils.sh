@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SRC_FILE=inetutils-2.5.tar.xz
-SRC_FOLDER=inetutils-2.5
+KPKG_SRC_FILE=inetutils-2.5.tar.xz
+KPKG_SRC_FOLDER=inetutils-2.5
 
 k_configure() {
   ./configure --prefix=/usr        \

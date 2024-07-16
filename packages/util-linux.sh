@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SRC_FILE=util-linux-2.39.3.tar.xz
-SRC_FOLDER=util-linux-2.39.3
+KPKG_SRC_FILE=util-linux-2.39.3.tar.xz
+KPKG_SRC_FOLDER=util-linux-2.39.3
 
 k_pre_configure() {
   sed -i '/test_mkfds/s/^/#/' tests/helpers/Makemodule.am

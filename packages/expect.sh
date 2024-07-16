@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SRC_FILE=expect5.45.4.tar.gz
-SRC_FOLDER=expect5.45.4
+KPKG_SRC_FILE=expect5.45.4.tar.gz
+KPKG_SRC_FOLDER=expect5.45.4
 
 k_pre_configure() {
   python3 -c 'from pty import spawn; spawn(["echo", "ok"])'

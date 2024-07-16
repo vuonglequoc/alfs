@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SRC_FILE=kmod-31.tar.xz
-SRC_FOLDER=kmod-31
+KPKG_SRC_FILE=kmod-31.tar.xz
+KPKG_SRC_FOLDER=kmod-31
 
 k_configure() {
   ./configure --prefix=/usr     \

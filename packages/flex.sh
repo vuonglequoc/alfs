@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SRC_FILE=flex-2.6.4.tar.gz
-SRC_FOLDER=flex-2.6.4
+KPKG_SRC_FILE=flex-2.6.4.tar.gz
+KPKG_SRC_FOLDER=flex-2.6.4
 
 k_configure() {
   ./configure --prefix=/usr                      \

@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SRC_FILE=sysklogd-1.5.1.tar.gz
-SRC_FOLDER=sysklogd-1.5.1
+KPKG_SRC_FILE=sysklogd-1.5.1.tar.gz
+KPKG_SRC_FOLDER=sysklogd-1.5.1
 
 k_pre_configure() {
   sed -i '/Error loading kernel symbols/{n;n;d}' ksym_mod.c
@@ -37,7 +37,7 @@ EOF
 }
 
 k_pre_record() {
-  make DESTDIR=$KPKG_DEST_DIR BINDIR=/sbin install
+  make DESTDIR=$KPKG_TMP_DIR BINDIR=/sbin install
 
-  cp -v /etc/syslog.conf $KPKG_DEST_DIR/etc/syslog.conf
+  cp -v /etc/syslog.conf $KPKG_TMP_DIR/etc/syslog.conf
 }

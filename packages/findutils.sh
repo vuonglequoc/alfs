@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SRC_FILE=findutils-4.9.0.tar.xz
-SRC_FOLDER=findutils-4.9.0
+KPKG_SRC_FILE=findutils-4.9.0.tar.xz
+KPKG_SRC_FOLDER=findutils-4.9.0
 
 k_configure() {
   ./configure --prefix=/usr \

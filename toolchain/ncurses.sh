@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SRC_FILE=ncurses-6.4-20230520.tar.xz
-SRC_FOLDER=ncurses-6.4-20230520
+KPKG_SRC_FILE=ncurses-6.4-20230520.tar.xz
+KPKG_SRC_FOLDER=ncurses-6.4-20230520
 
 k_pre_configure() {
   sed -i s/mawk// configure

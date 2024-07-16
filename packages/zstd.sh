@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SRC_FILE=zstd-1.5.5.tar.gz
-SRC_FOLDER=zstd-1.5.5
+KPKG_SRC_FILE=zstd-1.5.5.tar.gz
+KPKG_SRC_FOLDER=zstd-1.5.5
 
 k_configure() {
   :
@@ -20,7 +20,7 @@ k_post_install() {
 }
 
 k_pre_record() {
-  make DESTDIR=$KPKG_DEST_DIR prefix=/usr install
+  make DESTDIR=$KPKG_TMP_DIR prefix=/usr install
 
-  rm -v $KPKG_DEST_DIR/usr/lib/libzstd.a
+  rm -v $KPKG_TMP_DIR/usr/lib/libzstd.a
 }

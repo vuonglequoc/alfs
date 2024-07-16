@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SRC_FILE=procps-ng-4.0.4.tar.xz
-SRC_FOLDER=procps-ng-4.0.4
+KPKG_SRC_FILE=procps-ng-4.0.4.tar.xz
+KPKG_SRC_FOLDER=procps-ng-4.0.4
 
 k_configure() {
   ./configure --prefix=/usr                           \

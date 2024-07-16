@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SRC_FILE=elfutils-0.190.tar.bz2
-SRC_FOLDER=elfutils-0.190
+KPKG_SRC_FILE=elfutils-0.190.tar.bz2
+KPKG_SRC_FOLDER=elfutils-0.190
 
 k_configure() {
   ./configure --prefix=/usr        \
@@ -19,9 +19,9 @@ k_post_install() {
 }
 
 k_pre_record() {
-  make DESTDIR=$KPKG_DEST_DIR -C libelf install
+  make DESTDIR=$KPKG_TMP_DIR -C libelf install
 
-  mkdir -p $KPKG_DEST_DIR/usr/lib/pkgconfig
-  install -vm644 config/libelf.pc $KPKG_DEST_DIR/usr/lib/pkgconfig
-  rm $KPKG_DEST_DIR/usr/lib/libelf.a
+  mkdir -p $KPKG_TMP_DIR/usr/lib/pkgconfig
+  install -vm644 config/libelf.pc $KPKG_TMP_DIR/usr/lib/pkgconfig
+  rm $KPKG_TMP_DIR/usr/lib/libelf.a
 }

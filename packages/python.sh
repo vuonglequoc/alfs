@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SRC_FILE=Python-3.12.2.tar.xz
-SRC_FOLDER=Python-3.12.2
+KPKG_SRC_FILE=Python-3.12.2.tar.xz
+KPKG_SRC_FOLDER=Python-3.12.2
 
 k_configure() {
   ./configure --prefix=/usr       \

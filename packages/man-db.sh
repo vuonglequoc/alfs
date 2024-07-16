@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SRC_FILE=man-db-2.12.0.tar.xz
-SRC_FOLDER=man-db-2.12.0
+KPKG_SRC_FILE=man-db-2.12.0.tar.xz
+KPKG_SRC_FOLDER=man-db-2.12.0
 
 k_configure() {
   ./configure --prefix=/usr                         \

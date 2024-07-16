@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SRC_FILE=meson-1.3.2.tar.gz
-SRC_FOLDER=meson-1.3.2
+KPKG_SRC_FILE=meson-1.3.2.tar.gz
+KPKG_SRC_FOLDER=meson-1.3.2
 
 k_configure() {
   :
@@ -22,8 +22,8 @@ k_install() {
 }
 
 k_pre_record() {
-  mkdir -p $KPKG_DEST_DIR/usr/share/bash-completion/completions/
-  mkdir -p $KPKG_DEST_DIR/usr/share/zsh/site-functions/
-  install -vDm644 data/shell-completions/bash/meson $KPKG_DEST_DIR/usr/share/bash-completion/completions/meson
-  install -vDm644 data/shell-completions/zsh/_meson $KPKG_DEST_DIR/usr/share/zsh/site-functions/_meson
+  mkdir -p $KPKG_TMP_DIR/usr/share/bash-completion/completions/
+  mkdir -p $KPKG_TMP_DIR/usr/share/zsh/site-functions/
+  install -vDm644 data/shell-completions/bash/meson $KPKG_TMP_DIR/usr/share/bash-completion/completions/meson
+  install -vDm644 data/shell-completions/zsh/_meson $KPKG_TMP_DIR/usr/share/zsh/site-functions/_meson
 }

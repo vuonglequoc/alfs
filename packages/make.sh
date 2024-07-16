@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SRC_FILE=make-4.4.1.tar.gz
-SRC_FOLDER=make-4.4.1
+KPKG_SRC_FILE=make-4.4.1.tar.gz
+KPKG_SRC_FOLDER=make-4.4.1
 
 k_configure() {
   ./configure --prefix=/usr

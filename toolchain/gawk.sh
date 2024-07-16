@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SRC_FILE=gawk-5.3.0.tar.xz
-SRC_FOLDER=gawk-5.3.0
+KPKG_SRC_FILE=gawk-5.3.0.tar.xz
+KPKG_SRC_FOLDER=gawk-5.3.0
 
 k_pre_configure() {
   sed -i 's/extras//' Makefile.in

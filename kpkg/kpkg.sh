@@ -15,22 +15,22 @@ kpkg_install_proc()
   echo "$(timestamp) $3 start"
   echo "$(timestamp) $3 start" >> $1/logs/build.log
 
-  export KROOT
+  export KPKG_ROOT
 
   source $1/kpkg/kpkg_template.sh
   source $1/$2/$3.sh
 
-  if [[ "$K_RECORD" -eq 1 ]]; then
-    if [ ! -d "$KPKG_DEST_DIR" ]; then
-      mkdir -p $KPKG_DEST_DIR
+  if [[ "$KPKG_RECORD" -eq 1 ]]; then
+    if [ ! -d "$KPKG_TMP_DIR" ]; then
+      mkdir -p $KPKG_TMP_DIR
     fi
   fi
 
-  export K_RECORD
+  export KPKG_RECORD
   export KPKG_DIR
-  export KPKG_DEST_DIR
-  export SRC_FILE
-  export SRC_FOLDER
+  export KPKG_TMP_DIR
+  export KPKG_SRC_FILE
+  export KPKG_SRC_FOLDER
   export -f k_pre_configure
   export -f k_configure
   export -f k_build
@@ -42,12 +42,12 @@ kpkg_install_proc()
 
   $1/kpkg/kpkg_install_template.sh 1> $1/logs/$2/$3.log 2> $1/logs/$2/$3.err.log
 
-  unset KROOT
-  unset K_RECORD
+  unset KPKG_ROOT
+  unset KPKG_RECORD
   unset KPKG_DIR
-  unset KPKG_DEST_DIR
-  unset SRC_FILE
-  unset SRC_FOLDER
+  unset KPKG_TMP_DIR
+  unset KPKG_SRC_FILE
+  unset KPKG_SRC_FOLDER
   unset k_pre_configure
   unset k_configure
   unset k_build
@@ -70,8 +70,8 @@ kpkg_installtool()
     exit 255
   fi
 
-  KROOT=$LFS
-  K_RECORD=0
+  KPKG_ROOT=$LFS
+  KPKG_RECORD=0
   kpkg_install_proc $1 $2 $3
 }
 
@@ -84,7 +84,7 @@ kpkg_install()
     exit
   fi
 
-  KROOT=
-  K_RECORD=1
+  KPKG_ROOT=
+  KPKG_RECORD=1
   kpkg_install_proc $1 $2 $3
 }

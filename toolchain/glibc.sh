@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SRC_FILE=glibc-2.39.tar.xz
-SRC_FOLDER=glibc-2.39
+KPKG_SRC_FILE=glibc-2.39.tar.xz
+KPKG_SRC_FOLDER=glibc-2.39
 
 k_pre_configure() {
   case $(uname -m) in
