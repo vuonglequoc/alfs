@@ -21,11 +21,11 @@ k_check() {
 k_install() {
   make modules_install
 
-  cp -iv arch/x86_64/boot/bzImage /boot/vmlinuz-6.7.4-lfs-12.1
+  cp -v arch/x86_64/boot/bzImage /boot/vmlinuz-6.7.4-lfs-12.1
 
-  cp -iv System.map /boot/System.map-6.7.4
+  cp -v System.map /boot/System.map-6.7.4
 
-  cp -iv .config /boot/config-6.7.4
+  cp -v .config /boot/config-6.7.4
 
   cp -r Documentation -T /usr/share/doc/linux-6.7.4
 }
