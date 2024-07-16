@@ -1,26 +1,26 @@
 #!/bin/bash
 
-source /alfs/scripts/kbuild.sh
+source /alfs/scripts/kpkg.sh
 
 # Chapter 7. Entering Chroot and Building Additional Temporary Tools
 
 # 7.7. Gettext-0.22.4
-kbuild /alfs toolchain gettext
+kpkg_install /alfs toolchain gettext
 
 # 7.8. Bison-3.8.2
-kbuild /alfs toolchain bison
+kpkg_install /alfs toolchain bison
 
 # 7.9. Perl-5.38.2
-kbuild /alfs toolchain perl
+kpkg_install /alfs toolchain perl
 
 # 7.10. Python-3.12.2
-kbuild /alfs toolchain python
+kpkg_install /alfs toolchain python
 
 # 7.11. Texinfo-7.1
-kbuild /alfs toolchain texinfo
+kpkg_install /alfs toolchain texinfo
 
 # 7.12. Util-linux-2.39.3
-kbuild /alfs toolchain util-linux
+kpkg_install /alfs toolchain util-linux
 
 # 7.13. Cleaning up and Saving the Temporary System
 rm -rf /usr/share/{info,man,doc}/*

@@ -24,60 +24,60 @@ else
   exit
 fi
 
-source $ALFS/scripts/kbuild.sh
+source $ALFS/scripts/kpkg.sh
 
 # Chapter 6. Cross Compiling Temporary Tools
 
 # 6.2. M4-1.4.19
-kbuildtool $ALFS toolchain m4
+kpkg_installtool $ALFS toolchain m4
 
 # 6.3. Ncurses-6.4-20230520
-kbuildtool $ALFS toolchain ncurses
+kpkg_installtool $ALFS toolchain ncurses
 
 # 6.4. Bash-5.2.21
-kbuildtool $ALFS toolchain bash
+kpkg_installtool $ALFS toolchain bash
 
 # 6.5. Coreutils-9.4
-kbuildtool $ALFS toolchain coreutils
+kpkg_installtool $ALFS toolchain coreutils
 
 # 6.6. Diffutils-3.10
-kbuildtool $ALFS toolchain diffutils
+kpkg_installtool $ALFS toolchain diffutils
 
 # 6.7. File-5.45
-kbuildtool $ALFS toolchain file
+kpkg_installtool $ALFS toolchain file
 
 # 6.8. Findutils-4.9.0
-kbuildtool $ALFS toolchain findutils
+kpkg_installtool $ALFS toolchain findutils
 
 # 6.9. Gawk-5.3.0
-kbuildtool $ALFS toolchain gawk
+kpkg_installtool $ALFS toolchain gawk
 
 # 6.10. Grep-3.11
-kbuildtool $ALFS toolchain grep
+kpkg_installtool $ALFS toolchain grep
 
 # 6.11. Gzip-1.13
-kbuildtool $ALFS toolchain gzip
+kpkg_installtool $ALFS toolchain gzip
 
 # 6.12. Make-4.4.1
-kbuildtool $ALFS toolchain make
+kpkg_installtool $ALFS toolchain make
 
 # 6.13. Patch-2.7.6
-kbuildtool $ALFS toolchain patch
+kpkg_installtool $ALFS toolchain patch
 
 # 6.14. Sed-4.9
-kbuildtool $ALFS toolchain sed
+kpkg_installtool $ALFS toolchain sed
 
 # 6.15. Tar-1.35
-kbuildtool $ALFS toolchain tar
+kpkg_installtool $ALFS toolchain tar
 
 # 6.16. Xz-5.4.6
-kbuildtool $ALFS toolchain xz
+kpkg_installtool $ALFS toolchain xz
 
 # 6.17. Binutils-2.42 - Pass 2
-kbuildtool $ALFS toolchain binutils-pass-2
+kpkg_installtool $ALFS toolchain binutils-pass-2
 
 # 6.18. GCC-13.2.0 - Pass 2
-kbuildtool $ALFS toolchain gcc-pass-2
+kpkg_installtool $ALFS toolchain gcc-pass-2
 
 echo
 echo "Temp Toolchain completed."

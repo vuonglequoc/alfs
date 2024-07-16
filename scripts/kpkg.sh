@@ -1,13 +1,13 @@
 #!/bin/bash
 
-# Make kbuild function
+# Make kpkg functions
 timestamp() {
   date +%d-%m-%Y_%H:%M:%S
 }
 
-kpkg_build()
+kpkg_install_proc()
 {
-  # sample: kpkg_build $ALFS toolchain gcc
+  # sample: kpkg_install_proc $ALFS toolchain gcc
   if [ ! -d "$1/logs/$2" ]; then
     mkdir -p $1/logs/$2
   fi
@@ -40,7 +40,7 @@ kpkg_build()
   export -f k_pre_record
   export -f k_record
 
-  $1/scripts/kbuild_template.sh 1> $1/logs/$2/$3.log 2> $1/logs/$2/$3.err.log
+  $1/scripts/kpkg_install_template.sh 1> $1/logs/$2/$3.log 2> $1/logs/$2/$3.err.log
 
   unset KROOT
   unset K_RECORD
@@ -61,9 +61,9 @@ kpkg_build()
   echo "$(timestamp) $3 end" >> $1/logs/build.log
 }
 
-kbuildtool()
+kpkg_installtool()
 {
-  # sample: kbuildtool $ALFS toolchain gcc
+  # sample: kpkg_installtool $ALFS toolchain gcc
   if [ "$(whoami)" != "lfs" ]; then
     echo "Script must be run as user: lfs"
     echo "sudo su lfs"
@@ -72,12 +72,12 @@ kbuildtool()
 
   KROOT=$LFS
   K_RECORD=0
-  kpkg_build $1 $2 $3
+  kpkg_install_proc $1 $2 $3
 }
 
-kbuild()
+kpkg_install()
 {
-  # sample: kbuild /alfs packages gcc
+  # sample: kpkg_install /alfs packages gcc
   if [ "$EUID" -ne 0 ]; then
     echo "Please run as root"
     echo "sudo su"
@@ -86,5 +86,5 @@ kbuild()
 
   KROOT=
   K_RECORD=1
-  kpkg_build $1 $2 $3
+  kpkg_install_proc $1 $2 $3
 }
