@@ -24,7 +24,7 @@ else
   exit
 fi
 
-source $ALFS/scripts/kpkg.sh
+source $ALFS/kpkg/kpkg.sh
 
 # Chapter 5. Compiling a Cross-Toolchain
 

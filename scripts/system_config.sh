@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source /alfs/scripts/kpkg.sh
+source /alfs/kpkg/kpkg.sh
 
 # 9.2.1. Installation of LFS-Bootscripts
 kpkg_install /alfs packages lfs-bootscripts

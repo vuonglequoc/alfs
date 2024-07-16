@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source /alfs/scripts/kpkg.sh
+source /alfs/kpkg/kpkg.sh
 
 # Chapter 7. Entering Chroot and Building Additional Temporary Tools
 

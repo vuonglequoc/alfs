@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source /alfs/scripts/kpkg.sh
+source /alfs/kpkg/kpkg.sh
 
 # 10.2. Creating the /etc/fstab File
 cat > /etc/fstab << "EOF"

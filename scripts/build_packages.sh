@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source /alfs/scripts/kpkg.sh
+source /alfs/kpkg/kpkg.sh
 
 # 8.3. Man-pages-6.06
 kpkg_install /alfs packages man-pages

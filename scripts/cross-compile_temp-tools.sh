@@ -24,7 +24,7 @@ else
   exit
 fi
 
-source $ALFS/scripts/kpkg.sh
+source $ALFS/kpkg/kpkg.sh
 
 # Chapter 6. Cross Compiling Temporary Tools
 

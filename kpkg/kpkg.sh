@@ -17,7 +17,7 @@ kpkg_install_proc()
 
   export KROOT
 
-  source $1/scripts/kpkg_template.sh
+  source $1/kpkg/kpkg_template.sh
   source $1/$2/$3.sh
 
   if [[ "$K_RECORD" -eq 1 ]]; then
@@ -40,7 +40,7 @@ kpkg_install_proc()
   export -f k_pre_record
   export -f k_record
 
-  $1/scripts/kpkg_install_template.sh 1> $1/logs/$2/$3.log 2> $1/logs/$2/$3.err.log
+  $1/kpkg/kpkg_install_template.sh 1> $1/logs/$2/$3.log 2> $1/logs/$2/$3.err.log
 
   unset KROOT
   unset K_RECORD
