@@ -187,6 +187,54 @@ sudo umount $LFS/boot
 sudo umount $LFS
 ```
 
+At this step, we have a basic LFS system that can boot and play around with bash shell.
+
+## BLFS
+
+### Remote environment
+
+Prepare remote environment witth OpenSSH to use LFS system efficiently to install other packages instead of chroot environment.
+
+Mount LFS partitions
+
+```bash
+sudo mount -vt ext4 /dev/sdb3 $LFS
+sudo mount -vt ext4 /dev/sdb2 $LFS/boot
+sudo mount -vt vfat /dev/sdb1 -o codepage=437,iocharset=iso8859-1 $LFS/boot/efi
+```
+
+Enter chroot environment and build software for remote environment
+
+```bash
+sudo -E $ALFS/scripts/chroot_build_remote_software
+```
+
+From now on, we can use LFS system remotely for other installation with user **user** and pass **user**.
+
+### Post LFS Configuration and Extra Software
+
+TODO: Firmware, Security, File Systems
+
+### General Libraries and Utilities
+
+TODO: CMake, LLVM, Rustc
+
+### Networking
+
+TODO: DHCP, NTP, Wireless
+
+### Multimedia
+
+TODO: Libs and Drivers, Audio Utilities, Video Utilities
+
+### Graphical Components: X + Window Managers
+
+TODO: Xfce Desktop
+
+### X Software
+
+TODO: Office, Web Browser
+
 ## Extra Scripts
 
 Confirm that LFS and ALFS environment variables are both set and LFS partition is mounted.

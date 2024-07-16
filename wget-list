@@ -100,3 +100,7 @@ https://www.linuxfromscratch.org/patches/lfs/12.1/kbd-2.6.4-backspace-1.patch
 https://www.linuxfromscratch.org/patches/lfs/12.1/readline-8.2-upstream_fixes-3.patch
 https://www.linuxfromscratch.org/patches/lfs/12.1/sysvinit-3.08-consolidated-1.patch
 https://www.linuxfromscratch.org/patches/lfs/12.1/systemd-255-upstream_fixes-1.patch
+https://anduin.linuxfromscratch.org/BLFS/blfs-bootscripts/blfs-bootscripts-20240416.tar.xz
+https://github.com/sudo-project/sudo/releases/download/SUDO_1_9_15p5/sudo-1.9.15p5.tar.gz
+https://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-9.8p1.tar.gz
+https://ftp.gnu.org/gnu/wget/wget-1.24.5.tar.gz
