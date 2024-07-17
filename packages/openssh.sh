@@ -54,6 +54,7 @@ k_post_install() {
 k_pre_record() {
   cp -v /var/lib/sshd $KPKG_TMP_DIR/var/lib/sshd
 
+  cd $KPKG_ROOT/sources/$KPKG_SRC_FOLDER
   make DESTDIR=$KPKG_TMP_DIR install
 
   install -v -m755    contrib/ssh-copy-id $KPKG_TMP_DIR/usr/bin
