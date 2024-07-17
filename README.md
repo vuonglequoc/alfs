@@ -307,3 +307,27 @@ root=/dev/sdb3
 
 **How a toolchain is constructed**: https://crosstool-ng.github.io/docs/toolchain-construction/
 
+**Linux Booting Process**:
+- https://en.wikipedia.org/wiki/Booting_process_of_Linux
+- https://www.freecodecamp.org/news/the-linux-booting-process-6-steps-described-in-detail/
+- https://learn.adafruit.com/running-programs-automatically-on-your-tiny-computer/sysv-init-runlevels
+
+1. System startup (BIOS): search, load, execute boot loader program
+2. Bootloader stage (GRUB): load kernel image
+3. Kernel: execute /sbin/init with configuration in /etc/inittab
+4. Init (SysV): execute init scripts in /etc/rc.d/rcS.d/ then /etc/rc.d/rc[run level].d/ (symlink -> /etc/rc.d/init.d/*).
+  - Run level 0: /etc/rc.d/rc0.d/ : Power off
+  - Run level 1: /etc/rc.d/rc1.d/ : Rescue (single-user)
+  - Run level 3: /etc/rc.d/rc3.d/ : Multi-user with networking (default)
+  - Run level 5: /etc/rc.d/rc5.d/ : level 3 + Graphical
+  - Run level 6: /etc/rc.d/rc6.d/ : Reboot
+
+    For Run level from 1 to 6, final step is execute /sbin/agetty to opens a tty port, prompts for a login name and invokes the /bin/login command.
+
+    After a successful login, an interactive login shell is started.
+
+    Interactive login shell was defined in /etc/passwd. (root:x:0:0:root:/root:**/bin/bash**)
+
+    The /etc/shadow file stores user passwords in Linux.
+
+  From now on, we can interact with linux system by interactive login shell.
