@@ -313,7 +313,10 @@ root=/dev/sdb3
 - https://learn.adafruit.com/running-programs-automatically-on-your-tiny-computer/sysv-init-runlevels
 
 1. System startup (BIOS): search, load, execute boot loader program
-2. Bootloader stage (GRUB): load kernel image
+  - default: EFI/BOOT/BOOTX64.EFI
+  - GRUB: EFI/grub/grubx64.efi
+  - custom: EFI/LFS/grubx64.efi (same as GRUB)
+2. Bootloader stage (GRUB): load kernel image /boot/vmlinuz-*
 3. Kernel: execute /sbin/init with configuration in /etc/inittab
 4. Init (SysV): execute init scripts in /etc/rc.d/rcS.d/ then /etc/rc.d/rc[run level].d/ (symlink -> /etc/rc.d/init.d/*).
   - Run level 0: /etc/rc.d/rc0.d/ : Power off
