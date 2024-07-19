@@ -70,19 +70,7 @@ k_pre_record() {
   cd $KPKG_ROOT/sources
   tar -xf blfs-bootscripts-20240416.tar.xz
   cd blfs-bootscripts-20240416
-
-  install -d -m 755 $KPKG_TMP_DIR/etc/rc.d/rc{0,1,2,3,4,5,6,S}.d
-  install -d -m 755 $KPKG_TMP_DIR/etc/rc.d/init.d
-  install -d -m 755 $KPKG_TMP_DIR/etc/sysconfig
-  install -m 754 blfs/init.d/sshd       $KPKG_TMP_DIR/etc/rc.d/init.d/
-  ln -sf  ../init.d/sshd $KPKG_TMP_DIR/etc/rc.d/rc0.d/K30sshd
-  ln -sf  ../init.d/sshd $KPKG_TMP_DIR/etc/rc.d/rc1.d/K30sshd
-  ln -sf  ../init.d/sshd $KPKG_TMP_DIR/etc/rc.d/rc2.d/S30sshd
-  ln -sf  ../init.d/sshd $KPKG_TMP_DIR/etc/rc.d/rc3.d/S30sshd
-  ln -sf  ../init.d/sshd $KPKG_TMP_DIR/etc/rc.d/rc4.d/S30sshd
-  ln -sf  ../init.d/sshd $KPKG_TMP_DIR/etc/rc.d/rc5.d/S30sshd
-  ln -sf  ../init.d/sshd $KPKG_TMP_DIR/etc/rc.d/rc6.d/K30sshd
-
+  make DESTDIR=$KPKG_TMP_DIR install-sshd
   cd $KPKG_ROOT/sources
   rm -r blfs-bootscripts-20240416
 }
