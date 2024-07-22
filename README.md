@@ -225,7 +225,9 @@ sudo /alfs/scripts/build_general_utilities.sh
 
 ### Networking
 
-TODO: DHCP, NTP, Wireless
+```bash
+sudo /alfs/scripts/build_networking.sh
+```
 
 ### Multimedia
 

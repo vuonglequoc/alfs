@@ -183,3 +183,9 @@ a6af98f948a1f07cfeac57e91a0f2abe  git-2.45.2.tar.xz
 07b20ea6b210dc8209d0259cac725684  git-htmldocs-2.45.2.tar.xz
 1a00ff85d5fdb48ddbe534dcf1f6183f  rustc-1.79.0-src.tar.xz
 bc385cb47de177355c131a2eeac7afb9  rustc-1.76.0-testsuite_fix-1.patch
+1b22c764e5a094c6261e37a4b1f148ce  Net-SSLeay-1.94.tar.gz
+3e95ca11fdfd5db9cfc0d318ecb6836f  IO-Socket-SSL-2.088.tar.gz
+b5333f021f880fe76490d8a799cd79f4  libevent-2.1.12-stable.tar.gz
+ee17ec07c27cd28f515c76f36f044ff9  libedit-20240517-3.1.tar.gz
+516bdabd94ab7c824e9771390761a46c  ntp-4.2.8p18.tar.gz
+8b813685a48ab017bcfb5e720a9f0181  dhcpcd-10.0.8.tar.xz
