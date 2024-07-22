@@ -219,7 +219,9 @@ sudo /alfs/scripts/build_post_lfs.sh
 
 ### General Libraries and Utilities
 
-TODO: CMake, LLVM, Rustc
+```bash
+sudo /alfs/scripts/build_general_utilities.sh
+```
 
 ### Networking
 

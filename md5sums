@@ -170,3 +170,16 @@ d61b89c14d82eb3ab4137b0fc291cf82  ImageMagick-7.1.1-35.tar.xz
 3306eb095a223f6e52b4ec4882f80765  gnupg-2.5.0.tar.bz2
 49c8e457327dc61efab5b115a27b087a  dosfstools-4.2.tar.gz
 178d31a6ff5256c093227ab45a3f52aa  smartmontools-7.4.tar.gz
+54e694dea8ba19db4a07d14507008e0b  llvm-18.1.8.src.tar.xz
+bf2ad617d47ce40fe77c0e5c26b1fe43  llvm-cmake-18.src.tar.xz
+5ebac19868c66cdac8b87077faefd38c  llvm-third-party-18.src.tar.xz
+7ff63a04fe4f34a93fc5ef7e2ec44930  clang-18.1.8.src.tar.xz
+81e61bba36d0b732ed529ba36a2c5d92  clang-17-enable_default_ssp-1.patch
+63bdea64f3af91ff38b3ee1b6f416d0b  compiler-rt-18.1.8.src.tar.xz
+a01d543fd891ca48fe47726540d50b17  libssh2-1.11.0.tar.gz
+4928cd3e72e15429a72a4a5ecd1e381e  libssh2-1.11.0-security_fixes-1.patch
+a6af98f948a1f07cfeac57e91a0f2abe  git-2.45.2.tar.xz
+2e92b4cf84f1d640df64a9a3aa4c789e  git-manpages-2.45.2.tar.xz
+07b20ea6b210dc8209d0259cac725684  git-htmldocs-2.45.2.tar.xz
+1a00ff85d5fdb48ddbe534dcf1f6183f  rustc-1.79.0-src.tar.xz
+bc385cb47de177355c131a2eeac7afb9  rustc-1.76.0-testsuite_fix-1.patch
