@@ -32,9 +32,9 @@ export ALFS=/mnt/lfs/alfs
 
 - Create a new empty GPT partition table (option g)
 - Create a new vfat parition **/dev/sdb1** (option n, 150MB) for EFI
-- Create a new ext4 parition **/dev/sdb2** (option n, 500MB) for boot
+- Create a new ext4 parition **/dev/sdb2** (option n, 1GB) for boot
 - Create a new ext4 parition **/dev/sdb3** (option n) for root
-- Create a new swap parition **/dev/sdb4** (option n) for swap
+- Create a new swap parition **/dev/sdb4** (option n, 4GB) for swap
 
 ```bash
 sudo fdisk /dev/sdb
@@ -193,7 +193,7 @@ At this step, we have a basic LFS system that can boot and play around with bash
 
 ### Remote environment
 
-Prepare remote environment witth OpenSSH to use LFS system efficiently to install other packages instead of chroot environment.
+Prepare remote environment with OpenSSH to use LFS system efficiently to install other packages instead of chroot environment.
 
 Mount LFS partitions
 
@@ -206,14 +206,16 @@ sudo mount -vt vfat /dev/sdb1 -o codepage=437,iocharset=iso8859-1 $LFS/boot/efi
 Enter chroot environment and build software for remote environment
 
 ```bash
-sudo -E $ALFS/scripts/chroot_build_remote_software
+sudo -E $ALFS/scripts/chroot_build_remote_software.sh
 ```
 
 From now on, we can use LFS system remotely for other installation with user **user** and pass **user**.
 
 ### Post LFS Configuration and Extra Software
 
-TODO: Firmware, Security, File Systems
+```bash
+sudo /alfs/scripts/build_post_lfs.sh
+```
 
 ### General Libraries and Utilities
 
