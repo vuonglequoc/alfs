@@ -231,7 +231,23 @@ sudo /alfs/scripts/build_networking.sh
 
 ### Multimedia
 
-TODO: Libs and Drivers, Audio Utilities, Video Utilities
+```bash
+sudo /alfs/scripts/build_multimedia.sh
+```
+
+Using sample:
+
+```bash
+ffplay music.mp3
+nvlc music.mp3
+mpv music.mp3
+
+# Play video without sound
+ffmpeg -re -i video.mp4 -filter:v scale=1024:-1 -c:v rawvideo -pix_fmt bgra -f fbdev /dev/fb0
+
+# Play video with sound
+# TODO
+```
 
 ### Graphical Components: X + Window Managers
 
