@@ -238,15 +238,24 @@ sudo /alfs/scripts/build_multimedia.sh
 Using sample:
 
 ```bash
+# Play audio
 ffplay music.mp3
 nvlc music.mp3
 mpv music.mp3
 
 # Play video without sound
-ffmpeg -re -i video.mp4 -filter:v scale=1024:-1 -c:v rawvideo -pix_fmt bgra -f fbdev /dev/fb0
+sudo ffmpeg -re -i ${VIDEO} -filter:v scale=1024:-1 -c:v rawvideo -pix_fmt bgra -f fbdev /dev/fb0
 
 # Play video with sound
-# TODO
+sudo ffmpeg -re -i ${VIDEO} -filter:v scale=1024:-1 -c:v rawvideo -pix_fmt bgra -f fbdev /dev/fb0 > ${VIDEO}_video.log 2>&1 < /dev/null &
+ffplay ${VIDEO} -autoexit > ${VIDEO}_sound.log 2>&1 < /dev/null &
+
+# Play Youtube video + sound with yt-dlp
+# Need to install yt-dlp
+./yt-dlp ${VIDEO_URL} -o - 2>/dev/null | tee >(sudo ffmpeg -re -i - -filter:v scale=1024:-1 -c:v rawvideo -pix_fmt bgra -loglevel quiet -f fbdev /dev/fb0) >(ffplay -autoexit -loglevel quiet -) >/dev/null
+
+# Adjust audio Volume
+sudo alsamixer
 ```
 
 ### Graphical Components: X + Window Managers
