@@ -70,11 +70,11 @@ lspci
 echo "search online to check which module it uses, which firmware, and where to obtain the firmware — not all of it is in linux-firmware."
 
 cd /sources/initrd/
-mkinitramfs $(uname -r)
-mv initrd.img-$(uname -r) /boot/initrd.img-$(uname -r)
+mkinitramfs $(uname -r)-lfs-12.1
+mv initrd.img-$(uname -r)-lfs-12.1 /boot/
 
-echo "Please add a new entry to /boot/grub/grub.cfg"
-echo "  initrd /initrd.img-$(uname -r)"
+# add a new entry to /boot/grub/grub.cfg
+grub-mkconfig -o /boot/grub/grub.cfg
 
 # reboot
 # dmesg | grep -e 'microcode' -e 'Linux version' -e 'Command line'
