@@ -143,9 +143,9 @@ cd /sources/linux-6.7.4
 cp /alfs/defaults/config-6.7.4.base.uefi.iptables .config
 make
 make modules_install
-cp -v arch/x86_64/boot/bzImage /boot/vmlinuz-6.7.4-lfs-12.1
-cp -v System.map /boot/System.map-6.7.4
-cp -v .config /boot/config-6.7.4
+cp -v arch/x86_64/boot/bzImage /boot/vmlinuz-$(uname -r)-lfs-12.1
+cp -v System.map /boot/System.map-$(uname -r)-lfs-12.1
+cp -v .config /boot/config-$(uname -r)-lfs-12.1
 
 kpkg_install /alfs packages stunnel
 # /etc/stunnel/stunnel.conf
