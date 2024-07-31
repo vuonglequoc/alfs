@@ -175,6 +175,29 @@ mkdir /boot/grub/images/
 cp /alfs/defaults/splash.png /boot/grub/images/splash.png
 ```
 
+Add menu entry for Windows and helpful Reboot, Shutdown
+
+```bash
+vi /etc/grub.d/40_custom
+```
+
+```
+menuentry 'Windows Boot Manager (on /dev/sdb1)' {
+	insmod part_gpt
+	insmod fat
+	set root='hd1,gpt1'
+	chainloader /EFI/Microsoft/Boot/bootmgfw.efi
+}
+
+menuentry "Reboot" {
+  reboot
+}
+
+menuentry "Shut Down" {
+  halt
+}
+```
+
 Make `grub.cfg` with grub-mkconfig instead of typing manually.
 
 ```bash
