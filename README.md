@@ -136,66 +136,23 @@ sudo -E $ALFS/extras/chroot.sh /dev/sdb3
 mountpoint /sys/firmware/efi/efivars || mount -v -t efivarfs efivarfs /sys/firmware/efi/efivars
 ```
 
-Updating grub defaults 
-
-```bash
-vi /etc/default/grub
-```
-
-Prepare for boot menu with background
-
-```bash
-# Run grub-mkconfig -o /boot/grub/grub.cfg
-
-GRUB_DEFAULT=0
-#GRUB_TIMEOUT_STYLE=hidden
-GRUB_TIMEOUT=5
-GRUB_CMDLINE_LINUX_DEFAULT="net.ifnames=0 biosdevname=0"
-
-# Enable os-prober
-#GRUB_DISABLE_OS_PROBER=false
-
-# Disable graphical terminal
-#GRUB_TERMINAL=console
-
-# The resolution used on graphical terminal
-#GRUB_GFXMODE=640x480
-
-# Get a beep at grub start
-#GRUB_INIT_TUNE="480 440 1"
-
-GRUB_FONT=/boot/grub/fonts/unicode.pf2
-GRUB_BACKGROUND=/boot/grub/images/splash.png
-```
-
 Prepare background
 
-```
+```bash
 mkdir /boot/grub/images/
 cp /alfs/defaults/splash.png /boot/grub/images/splash.png
+```
+
+Updating grub defaults for boot menu with background
+
+```bash
+cp /alfs/defaults/grub /etc/default/grub
 ```
 
 Add menu entry for Windows and helpful Reboot, Shutdown
 
 ```bash
-vi /etc/grub.d/40_custom
-```
-
-```
-menuentry 'Windows Boot Manager (on /dev/sdb1)' {
-	insmod part_gpt
-	insmod fat
-	set root='hd1,gpt1'
-	chainloader /EFI/Microsoft/Boot/bootmgfw.efi
-}
-
-menuentry "Reboot" {
-  reboot
-}
-
-menuentry "Shut Down" {
-  halt
-}
+cp /alfs/defaults/40_custom /etc/grub.d/40_custom
 ```
 
 Make `grub.cfg` with grub-mkconfig instead of typing manually.

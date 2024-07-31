@@ -3,6 +3,8 @@
 source /alfs/kpkg/kpkg.sh
 
 # 10.2. Creating the /etc/fstab File
+# We can check the UUID of each partition by blkid command
+# then update fstab with UUID instead of device name for better mounting
 cat > /etc/fstab << "EOF"
 # Begin /etc/fstab
 
@@ -10,9 +12,13 @@ cat > /etc/fstab << "EOF"
 #                                                              order
 
 /dev/sdb3   /                           ext4        defaults                            1   1
+#UUID=<XXX> /                           ext4        defaults                            1   1
 /dev/sdb2   /boot                       ext4        defaults                            1   1
+#UUID=<XXX> /boot                       ext4        defaults                            1   1
 /dev/sdb1   /boot/efi                   vfat        codepage=437,iocharset=iso8859-1    0   1
+#UUID=<XXX> /boot/efi                   vfat        codepage=437,iocharset=iso8859-1    0   1
 /dev/sdb4   swap                        swap        pri=1                               0   0
+#UUID=<XXX> swap                        swap        pri=1                               0   0
 
 proc        /proc                       proc        nosuid,noexec,nodev                 0   0
 sysfs       /sys                        sysfs       nosuid,noexec,nodev                 0   0

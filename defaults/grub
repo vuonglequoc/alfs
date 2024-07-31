@@ -1,0 +1,21 @@
+# Run grub-mkconfig -o /boot/grub/grub.cfg
+
+GRUB_DEFAULT=0
+#GRUB_TIMEOUT_STYLE=hidden
+GRUB_TIMEOUT=5
+GRUB_CMDLINE_LINUX_DEFAULT="net.ifnames=0 biosdevname=0"
+
+# Enable os-prober
+#GRUB_DISABLE_OS_PROBER=false
+
+# Disable graphical terminal
+#GRUB_TERMINAL=console
+
+# The resolution used on graphical terminal
+#GRUB_GFXMODE=640x480
+
+# Get a beep at grub start
+#GRUB_INIT_TUNE="480 440 1"
+
+GRUB_FONT=/boot/grub/fonts/unicode.pf2
+GRUB_BACKGROUND=/boot/grub/images/splash.png
