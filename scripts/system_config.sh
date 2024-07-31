@@ -24,7 +24,7 @@ udevadm test /sys/block/hdd
 
 
 # 9.5.1. Creating Network Interface Configuration Files
-# Need to check the interface name: eth0, enp0s3, ...
+# Need to check the interface name: eth0, eno1, enp0s3, ...
 cd /etc/sysconfig/
 cat > ifconfig.eth0 << "EOF"
 ONBOOT=yes
@@ -34,16 +34,6 @@ IP=192.168.1.2
 GATEWAY=192.168.1.1
 PREFIX=24
 BROADCAST=192.168.1.255
-EOF
-
-cat > ifconfig.enp0s3 << "EOF"
-ONBOOT=yes
-IFACE=enp0s3
-SERVICE=ipv4-static
-IP=10.0.2.15
-GATEWAY=10.0.2.2
-PREFIX=24
-BROADCAST=10.0.2.255
 EOF
 
 # 9.5.2. Creating the /etc/resolv.conf File

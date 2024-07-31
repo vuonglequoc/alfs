@@ -32,15 +32,6 @@ DHCP_START="-b -q -h $HOSTNAME"
 DHCP_STOP="-k"
 EOF
 
-cat > /etc/sysconfig/ifconfig.enp0s3 << "EOF"
-ONBOOT="yes"
-IFACE="enp0s3"
-SERVICE="dhcpcd"
-DHCP_START="-b -q -h $HOSTNAME"
-DHCP_STOP="-k"
-EOF
-}
-
 k_pre_record() {
   cd $KPKG_ROOT/sources/$KPKG_SRC_FOLDER
   make DESTDIR=$KPKG_TMP_DIR install
