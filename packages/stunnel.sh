@@ -22,7 +22,7 @@ k_install() {
 
 k_post_install() {
 # generate A signed SSL Certificate and a Private Key
-make cert
+echo -e "US\nIllinois\nChicago\nStunnel Developers\nProvisional CA\nlocalhost\n" | make cert
 # Country Name (2 letter code) [PL]:
 # State or Province Name (full name) [Mazovia Province]:
 # Locality Name (eg, city) [Warsaw]:
