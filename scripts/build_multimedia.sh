@@ -38,7 +38,7 @@
 #       alsa-lib-1.2.12
 #       PulseAudio-17.0
 #     SDL2-2.30.5
-#   FFmpeg-7.0.1
+#   FFmpeg-7.0.2
 #     libsndfile-1.2.2
 #   PulseAudio-17.0
 # alsa-plugins-1.2.12
@@ -51,7 +51,7 @@
 # alsa-firmware-1.2.4
 
 #   alsa-lib-1.2.12
-#   FFmpeg-7.0.1
+#   FFmpeg-7.0.2
 #   liba52-0.8.0
 #   libgcrypt-1.11.0
 #   Lua-5.2.4
@@ -70,9 +70,9 @@
 # VLC-3.0.21
 
 #   alsa-lib-1.2.12
-#   FFmpeg-7.0.1
+#   FFmpeg-7.0.2
 #   libass-0.17.3
-#     FFmpeg-7.0.1
+#     FFmpeg-7.0.2
 #     Glad-2.0.6
 #       Vulkan-Headers-1.3.290
 #     Vulkan-Loader-1.3.290           ???

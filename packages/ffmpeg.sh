@@ -1,10 +1,10 @@
 #!/bin/bash
 
-KPKG_SRC_FILE=ffmpeg-7.0.1.tar.xz
-KPKG_SRC_FOLDER=ffmpeg-7.0.1
+KPKG_SRC_FILE=ffmpeg-7.0.2.tar.xz
+KPKG_SRC_FOLDER=ffmpeg-7.0.2
 
 k_pre_configure() {
-  patch -Np1 -i ../ffmpeg-7.0.1-chromium_method-1.patch
+  patch -Np1 -i ../ffmpeg-7.0.2-chromium_method-1.patch
 }
 
 k_configure() {
@@ -27,7 +27,7 @@ k_configure() {
               --enable-libx265     \
               --enable-openssl     \
               --ignore-tests=enhanced-flv-av1 \
-              --docdir=/usr/share/doc/ffmpeg-7.0.1
+              --docdir=/usr/share/doc/ffmpeg-7.0.2
 }
 
 k_build() {
@@ -43,14 +43,14 @@ k_install() {
   make install
 
   install -v -m755    tools/qt-faststart /usr/bin
-  install -v -m755 -d           /usr/share/doc/ffmpeg-7.0.1
-  install -v -m644    doc/*.txt /usr/share/doc/ffmpeg-7.0.1
+  install -v -m755 -d           /usr/share/doc/ffmpeg-7.0.2
+  install -v -m644    doc/*.txt /usr/share/doc/ffmpeg-7.0.2
 }
 
 k_pre_record() {
   make DESTDIR=$KPKG_TMP_DIR install
 
   install -v -m755    tools/qt-faststart $KPKG_TMP_DIR/usr/bin
-  install -v -m755 -d           $KPKG_TMP_DIR/usr/share/doc/ffmpeg-7.0.1
-  install -v -m644    doc/*.txt $KPKG_TMP_DIR/usr/share/doc/ffmpeg-7.0.1
+  install -v -m755 -d           $KPKG_TMP_DIR/usr/share/doc/ffmpeg-7.0.2
+  install -v -m644    doc/*.txt $KPKG_TMP_DIR/usr/share/doc/ffmpeg-7.0.2
 }
