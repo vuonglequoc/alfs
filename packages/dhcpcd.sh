@@ -31,6 +31,7 @@ SERVICE="dhcpcd"
 DHCP_START="-b -q -h $HOSTNAME"
 DHCP_STOP="-k"
 EOF
+}
 
 k_pre_record() {
   cd $KPKG_ROOT/sources/$KPKG_SRC_FOLDER
