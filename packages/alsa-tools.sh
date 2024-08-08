@@ -8,7 +8,7 @@ k_configure() {
 }
 
 k_build() {
-  bash -e
+  # bash -e
 
   rm -rf qlo10k1 Makefile gitcompile
 
@@ -41,7 +41,7 @@ k_build() {
   done
   unset tool tool_dir
 
-  exit
+  # exit
 }
 
 k_check() {
