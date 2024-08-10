@@ -31,6 +31,14 @@ echo "about firewalls in Chapter 4 of the BLFS book."
 echo "https://www.linuxfromscratch.org/blfs"
 echo
 
+LOIF=lo
+WANIF=eth0
+#WANIF=enp0s3
+SSHPORT=22
+HTTPPORT=80
+HTTPSPORT=443
+NSPORT=53
+
 # Insert iptables modules (not needed if built into the kernel).
 
 modprobe nf_conntrack
@@ -82,53 +90,16 @@ iptables -Z
 
 iptables -t nat -F
 
-# log and drop invalid packets
-iptables -I INPUT 0 -p tcp -m conntrack --ctstate INVALID \
-  -j LOG --log-prefix "FIREWALL:INVALID "
-iptables -I INPUT 1 -p tcp -m conntrack --ctstate INVALID -j DROP
-
-# Anything coming from the outside should not have a private address, this is a common attack called IP-spoofing
-iptables -A INPUT -i enp0s3 -s 10.0.0.0/8     -j DROP
-iptables -A INPUT -i enp0s3 -s 172.16.0.0/12  -j DROP
-iptables -A INPUT -i enp0s3 -s 192.168.0.0/16 -j DROP
-
-
-iptables -A INPUT -i enp0s3 -s 0.0.0.0/8      -j DROP
-iptables -A INPUT -i enp0s3 -s 127.0.0.0/8    -j DROP
-# multicast and experimental
-iptables -A INPUT -i enp0s3 -s 224.0.0.0/3    -j DROP
-# Link Local Networks
-iptables -A INPUT -i enp0s3 -s 169.254.0.0/16 -j DROP
-# IANA defined test network
-iptables -A INPUT -i enp0s3 -s 192.0.2.0/24   -j DROP
-
 # Allow local connections
-iptables -A INPUT  -i lo -j ACCEPT
-iptables -A OUTPUT -o lo -j ACCEPT
+iptables -A INPUT  -i $LOIF -j ACCEPT
+iptables -A OUTPUT -o $LOIF -j ACCEPT
 
 # Allow forwarding if the initiated on the intranet
 iptables -A FORWARD -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
-iptables -A FORWARD ! -i enp0s3 -m conntrack --ctstate NEW       -j ACCEPT
+iptables -A FORWARD ! -i $WANIF -m conntrack --ctstate NEW     -j ACCEPT
 
 # Do masquerading
-# (not needed if intranet is not using private ip-addresses)
-iptables -t nat -A POSTROUTING -o enp0s3 -j MASQUERADE
-
-# Web
-iptables -A OUTPUT -p tcp --dport 80 -j ACCEPT
-iptables -A INPUT  -p tcp --sport 80 -m conntrack --ctstate ESTABLISHED -j ACCEPT
-
-# name server
-iptables -A OUTPUT -p udp --dport 53 -j ACCEPT
-
-# ping
-iptables -A INPUT  -p icmp -m icmp --icmp-type echo-request -j ACCEPT
-iptables -A OUTPUT -p icmp -m icmp --icmp-type echo-reply   -j ACCEPT
-
-# ssh
-iptables -A OUTPUT -p tcp --dport 22 -j ACCEPT
-iptables -A INPUT  -p tcp --sport 22 -m conntrack --ctstate ESTABLISHED \
-  -j ACCEPT
+iptables -t nat -A POSTROUTING -o $WANIF -j MASQUERADE
 
 # Log everything for debugging
 # (last of all rules, but before policy rules)
@@ -138,6 +109,50 @@ iptables -A OUTPUT  -j LOG --log-prefix "FIREWALL:OUTPUT "
 
 # Enable IP Forwarding
 echo 1 > /proc/sys/net/ipv4/ip_forward
+
+# Custom rules
+
+# log and drop invalid packets
+#iptables -I INPUT 0 -p tcp -m conntrack --ctstate INVALID \
+#  -j LOG --log-prefix "FIREWALL:INVALID "
+#iptables -I INPUT 1 -p tcp -m conntrack --ctstate INVALID -j DROP
+
+# Anything coming from the outside should not have a private address, this is a common attack called IP-spoofing
+#iptables -A INPUT -i $WANIF -s 10.0.0.0/8     -j DROP
+#iptables -A INPUT -i $WANIF -s 172.16.0.0/12  -j DROP
+#iptables -A INPUT -i $WANIF -s 192.168.0.0/16 -j DROP
+
+
+#iptables -A INPUT -i $WANIF -s 0.0.0.0/8      -j DROP
+#iptables -A INPUT -i $WANIF -s 127.0.0.0/8    -j DROP
+# multicast and experimental
+#iptables -A INPUT -i $WANIF -s 224.0.0.0/3    -j DROP
+# Link Local Networks
+#iptables -A INPUT -i $WANIF -s 169.254.0.0/16 -j DROP
+# IANA defined test network
+#iptables -A INPUT -i $WANIF -s 192.0.2.0/24   -j DROP
+
+# SSH
+iptables -A INPUT -p tcp -m tcp --dport $SSHPORT -j ACCEPT
+iptables -A OUTPUT -p tcp --sport $SSHPORT -m state --state ESTABLISHED -j ACCEPT
+
+# name server
+iptables -A INPUT  -p udp --sport $NSPORT -j ACCEPT
+iptables -A OUTPUT -p udp --dport $NSPORT -j ACCEPT
+
+# ping us
+iptables -A INPUT  -p icmp -m icmp --icmp-type echo-request -j ACCEPT
+iptables -A OUTPUT -p icmp -m icmp --icmp-type echo-reply   -j ACCEPT
+
+# ping outside
+iptables -A OUTPUT -p icmp -m icmp --icmp-type echo-request -j ACCEPT
+iptables -A INPUT  -p icmp -m icmp --icmp-type echo-reply   -j ACCEPT
+
+# HTTP/HTTPS
+iptables -A OUTPUT -p tcp -m tcp --dport $HTTPPORT -j ACCEPT
+iptables -A INPUT  -p tcp --sport $HTTPPORT -m conntrack --ctstate ESTABLISHED -j ACCEPT
+iptables -A OUTPUT -p tcp -m tcp --dport $HTTPSPORT -j ACCEPT
+iptables -A INPUT  -p tcp --sport $HTTPSPORT -m conntrack --ctstate ESTABLISHED -j ACCEPT
 EOF
 chmod 700 /etc/rc.d/rc.iptables
 
