@@ -93,7 +93,7 @@ source /alfs/kpkg/kpkg.sh
 kpkg_install /alfs packages alsa-lib
 # Update Linux Kernel for Sound
 cd /sources/linux-6.7.4
-cp /alfs/defaults/config-6.7.4.base.uefi.iptables.ntfs.sound .config
+cp /alfs/defaults/boot/config-6.7.4.base.uefi.iptables.ntfs.sound .config
 make
 make modules_install
 cp -v arch/x86_64/boot/bzImage /boot/vmlinuz-$(uname -r)-lfs-12.1
@@ -124,7 +124,7 @@ kpkg_install /alfs packages sdl2
 kpkg_install /alfs packages ffmpeg
 # Update Linux Kernel for Framebuffer /dev/fb0
 cd /sources/linux-6.7.4
-cp /alfs/defaults/config-6.7.4.base.uefi.iptables.ntfs.sound.framebuffer .config
+cp /alfs/defaults/boot/config-6.7.4.base.uefi.iptables.ntfs.sound.framebuffer .config
 make
 make modules_install
 cp -v arch/x86_64/boot/bzImage /boot/vmlinuz-$(uname -r)-lfs-12.1

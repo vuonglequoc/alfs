@@ -10,7 +10,7 @@ k_pre_configure() {
 k_configure() {
   # generate config close to current running system
   # make defconfig
-  cp /alfs/defaults/config-6.7.4.base.uefi .config
+  cp /alfs/defaults/boot/config-6.7.4.base.uefi .config
   # make menuconfig
 }
 

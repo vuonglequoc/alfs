@@ -11,7 +11,7 @@ kpkg_install /alfs packages dosfstools
 
 # Update Linux Kernel for exFAT, NTFS support
 cd /sources/linux-6.7.4
-cp /alfs/defaults/config-6.7.4.base.uefi.iptables.ntfs .config
+cp /alfs/defaults/boot/config-6.7.4.base.uefi.iptables.ntfs .config
 make
 make modules_install
 cp -v arch/x86_64/boot/bzImage /boot/vmlinuz-$(uname -r)-lfs-12.1

@@ -140,19 +140,19 @@ Prepare background
 
 ```bash
 mkdir /boot/grub/images/
-cp /alfs/defaults/splash.png /boot/grub/images/splash.png
+cp /alfs/defaults/boot/grub/images/splash.png /boot/grub/images/splash.png
 ```
 
 Updating grub defaults for boot menu with background
 
 ```bash
-cp /alfs/defaults/grub /etc/default/grub
+cp /alfs/defaults/etc/default/grub /etc/default/grub
 ```
 
 Add menu entry for Windows and helpful Reboot, Shutdown
 
 ```bash
-cp /alfs/defaults/40_custom /etc/grub.d/40_custom
+cp /alfs/defaults/etc/grub.d/40_custom /etc/grub.d/40_custom
 ```
 
 Make `grub.cfg` with grub-mkconfig instead of typing manually.
