@@ -130,6 +130,8 @@ kpkg_install /alfs packages libcap_pam
 kpkg_install /alfs packages shadow_pam
 kpkg_install /alfs packages unzip
 kpkg_install /alfs packages sqlite
+# rebuild python with sqlite for building firefox later
+kpkg_install /alfs packages python
 kpkg_install /alfs packages cyrus-sasl
 kpkg_install /alfs packages openldap
 kpkg_install /alfs packages sudo_pam
