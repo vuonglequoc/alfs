@@ -94,28 +94,6 @@
 #   SQLite-3.45.1
 # GnuPG-2.4.4
 
-# For Desktop environment
-#     libxslt-1.1.39
-#     pcre2-10.42
-#     dbus-1.14.10
-#     docbook-xml-4.5
-#     docbook-xsl-nons-1.79.2
-#     packaging-23.2
-#     docutils-0.20.1
-#   GLib-2.78.4
-#   duktape-2.7.0
-#     GLib-2.78.4
-#   gobject-introspection-1.78.1
-#   libxslt-1.1.39
-#   Linux-PAM-1.6.0
-#     dbus-1.14.10
-#     Linux-PAM-1.6.0
-#     docbook-xml-4.5
-#     docbook-xsl-nons-1.79.2
-#     libxslt-1.1.39
-#   elogind-252.9
-# Polkit-124
-
 source /alfs/kpkg/kpkg.sh
 
 kpkg_install /alfs packages krb5
@@ -123,7 +101,7 @@ kpkg_install /alfs packages libtirpc
 kpkg_install /alfs packages linux-pam
 
 kpkg_install /alfs packages cracklib
-kpkg_install /alfs packages libpwquality
+kpkg_install /alfs packages python/libpwquality
 
 # rebuild libcap, shadow, sudo
 kpkg_install /alfs packages libcap_pam
@@ -189,7 +167,7 @@ kpkg_install /alfs packages libarchive
 kpkg_install /alfs packages libuv
 kpkg_install /alfs packages cmake
 kpkg_install /alfs packages nasm
-kpkg_install /alfs packages cython
+kpkg_install /alfs packages python/Cython
 kpkg_install /alfs packages yasm
 kpkg_install /alfs packages libjpeg-turbo
 kpkg_install /alfs packages libpng

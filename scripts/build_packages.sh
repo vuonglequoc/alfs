@@ -52,11 +52,11 @@ kpkg_install /alfs packages kmod
 kpkg_install /alfs packages libelf
 kpkg_install /alfs packages libffi
 kpkg_install /alfs packages python
-kpkg_install /alfs packages flit_core
-kpkg_install /alfs packages wheel
-kpkg_install /alfs packages setuptools
+kpkg_install /alfs packages python/flit_core
+kpkg_install /alfs packages python/wheel
+kpkg_install /alfs packages python/setuptools
 kpkg_install /alfs packages ninja
-kpkg_install /alfs packages meson
+kpkg_install /alfs packages python/meson
 kpkg_install /alfs packages coreutils
 kpkg_install /alfs packages check
 kpkg_install /alfs packages diffutils
@@ -78,8 +78,8 @@ kpkg_install /alfs packages patch
 kpkg_install /alfs packages tar
 kpkg_install /alfs packages texinfo
 kpkg_install /alfs packages vim
-kpkg_install /alfs packages markupsafe
-kpkg_install /alfs packages jinja2
+kpkg_install /alfs packages python/Markupsafe
+kpkg_install /alfs packages python/Jinja2
 kpkg_install /alfs packages udev
 kpkg_install /alfs packages man-db
 kpkg_install /alfs packages procps-ng

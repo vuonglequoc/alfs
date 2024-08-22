@@ -104,8 +104,8 @@ kpkg_install /alfs packages libaom
 kpkg_install /alfs packages fribidi
 kpkg_install /alfs packages fontconfig
 kpkg_install /alfs packages pcre2
-kpkg_install /alfs packages packaging
-kpkg_install /alfs packages docutils
+kpkg_install /alfs packages python/packaging
+kpkg_install /alfs packages python/docutils
 kpkg_install /alfs packages glib
 kpkg_install /alfs packages graphite2
 kpkg_install /alfs packages harfbuzz
@@ -140,7 +140,7 @@ kpkg_install /alfs packages alsa-firmware
 kpkg_install /alfs packages liba52
 kpkg_install /alfs packages lua
 kpkg_install /alfs packages vlc
-kpkg_install /alfs packages glad
+kpkg_install /alfs packages python/glad2
 kpkg_install /alfs packages vulkan-headers
 kpkg_install /alfs packages libplacebo
 kpkg_install /alfs packages libcdio
