@@ -188,6 +188,8 @@ sudo umount $LFS
 
 At this step, we have a basic LFS system that can boot and play around with bash shell.
 
+![GRUB menu](docs/images/grub_menu.png)
+
 ## BLFS
 
 ### Remote environment
