@@ -31,6 +31,7 @@ kpkg_install_proc()
   export KPKG_TMP_DIR
   export KPKG_SRC_FILE
   export KPKG_SRC_FOLDER
+  export -f k_prepare_source
   export -f k_pre_configure
   export -f k_configure
   export -f k_build
@@ -39,6 +40,7 @@ kpkg_install_proc()
   export -f k_post_install
   export -f k_pre_record
   export -f k_record
+  export -f k_build_clean
 
   $1/kpkg/kpkg_install_template.sh 1> $1/logs/$2/$3.log 2> $1/logs/$2/$3.err.log
 
@@ -48,6 +50,7 @@ kpkg_install_proc()
   unset KPKG_TMP_DIR
   unset KPKG_SRC_FILE
   unset KPKG_SRC_FOLDER
+  unset k_prepare_source
   unset k_pre_configure
   unset k_configure
   unset k_build
@@ -56,6 +59,7 @@ kpkg_install_proc()
   unset k_post_install
   unset k_pre_record
   unset k_record
+  unset k_build_clean
 
   echo "$(timestamp) $3 end"
   echo "$(timestamp) $3 end" >> $1/logs/build.log

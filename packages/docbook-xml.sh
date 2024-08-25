@@ -3,7 +3,8 @@
 KPKG_SRC_FILE=docbook-v5.1-os.zip
 KPKG_SRC_FOLDER=docbook-v5.1-os
 
-k_pre_configure() {
+k_prepare_source() {
+  cd $KPKG_ROOT/sources
   mkdir $KPKG_SRC_FOLDER
   cd $KPKG_SRC_FOLDER
   unzip ../$KPKG_SRC_FILE

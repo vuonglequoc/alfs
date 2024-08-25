@@ -5,6 +5,12 @@ KPKG_TMP_DIR=$KPKG_DIR/tmp
 KPKG_SRC_FILE=
 KPKG_SRC_FOLDER=
 
+k_prepare_source() {
+  cd $KPKG_ROOT/sources
+  tar xvf $KPKG_SRC_FILE
+  cd $KPKG_SRC_FOLDER
+}
+
 k_pre_configure() {
   :
 }
@@ -39,4 +45,10 @@ k_record() {
     sed -i "s/.\//\//" $KPKG_DIR/$KPKG_SRC_FOLDER.dest
     rm -rf ./*
   popd
+}
+
+k_build_clean() {
+  cd $KPKG_ROOT/sources
+  rm -rf $KPKG_SRC_FOLDER
+  echo Deleting $KPKG_SRC_FOLDER
 }

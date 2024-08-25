@@ -1,9 +1,6 @@
 #!/bin/bash
 
-cd $KPKG_ROOT/sources
-tar xvf $KPKG_SRC_FILE
-cd $KPKG_SRC_FOLDER
-
+k_prepare_source
 k_pre_configure
 k_configure
 k_build
@@ -14,8 +11,6 @@ if [[ "$KPKG_RECORD" -eq 1 ]]; then
   k_pre_record
   k_record
 fi
+k_build_clean
 
-cd $KPKG_ROOT/sources
-rm -rf $KPKG_SRC_FOLDER
-echo Deleting $KPKG_SRC_FOLDER
 echo Done with $KPKG_SRC_FILE
