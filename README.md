@@ -259,13 +259,25 @@ ffplay ${VIDEO} -autoexit > ${VIDEO}_sound.log 2>&1 < /dev/null &
 sudo alsamixer
 ```
 
-### Graphical Components: X + Window Managers
+### Graphical Components: Wayland + Sway (tiling Wayland compositor)
 
-TODO: Xfce Desktop
+I decided to use modern Wayland instead of traditional X system.
 
-### X Software
+```bash
+# build         3 hours 40 minutes
+#   librsvg     10 minutes
+#   SPIRV-Tools 15 minutes
+#   libclc      20 minutes
+#   GTK+        10 minutes
+#   gtkmm       10 minutes
+#   Waybar      10 minutes
+#   mesa        46 minutes
+sudo /alfs/scripts/build_graphic.sh
+```
 
-TODO: Office, Web Browser
+### Graphical Softwares: Web Browser, File Manager
+
+TODO
 
 ## Extra Scripts
 

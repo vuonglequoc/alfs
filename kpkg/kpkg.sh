@@ -8,8 +8,14 @@ timestamp() {
 kpkg_install_proc()
 {
   # sample: kpkg_install_proc $ALFS toolchain gcc
-  if [ ! -d "$1/logs/$2" ]; then
-    mkdir -p $1/logs/$2
+  if [[ $3 == *"/"* ]]; then
+    sub_dir=$(dirname "$3")
+  else
+    sub_dir=""
+  fi
+
+  if [ ! -d "$1/logs/$2/$sub_dir" ]; then
+    mkdir -p $1/logs/$2/$sub_dir
   fi
 
   echo "$(timestamp) $3 start"

@@ -1,0 +1,17 @@
+max-history=20
+font=Ubuntu 10
+background-color=#00000033
+text-color=#eceff4
+width=400
+height=300
+padding=10
+margin=10
+border-size=0
+border-color=#eceff4
+
+default-timeout=4000
+
+[urgency=high]
+ignore-timeout=1
+background-color=#bf616a33
+border-color=#d08770

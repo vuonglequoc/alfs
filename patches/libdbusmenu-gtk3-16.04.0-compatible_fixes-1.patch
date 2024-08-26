@@ -1,0 +1,138 @@
+diff --git a/libdbusmenu-glib/client-menuitem.c b/libdbusmenu-glib/client-menuitem.c
+index 483470a..38c466c 100644
+--- a/libdbusmenu-glib/client-menuitem.c
++++ b/libdbusmenu-glib/client-menuitem.c
+@@ -40,7 +40,7 @@ struct _DbusmenuClientMenuitemPrivate
+ };
+ 
+ #define DBUSMENU_CLIENT_MENUITEM_GET_PRIVATE(o) \
+-(G_TYPE_INSTANCE_GET_PRIVATE ((o), DBUSMENU_TYPE_CLIENT_MENUITEM, DbusmenuClientMenuitemPrivate))
++(g_type_instance_get_private ((GTypeInstance *)o, DBUSMENU_TYPE_CLIENT_MENUITEM))
+ 
+ static void dbusmenu_client_menuitem_class_init (DbusmenuClientMenuitemClass *klass);
+ static void dbusmenu_client_menuitem_init       (DbusmenuClientMenuitem *self);
+diff --git a/libdbusmenu-glib/client.c b/libdbusmenu-glib/client.c
+index 7bd0573..597c093 100644
+--- a/libdbusmenu-glib/client.c
++++ b/libdbusmenu-glib/client.c
+@@ -357,7 +357,7 @@ dbusmenu_client_class_init (DbusmenuClientClass *klass)
+ static void
+ dbusmenu_client_init (DbusmenuClient *self)
+ {
+-	self->priv = G_TYPE_INSTANCE_GET_PRIVATE ((self), DBUSMENU_TYPE_CLIENT, DbusmenuClientPrivate);
++	self->priv = g_type_instance_get_private ((GTypeInstance *)(self), DBUSMENU_TYPE_CLIENT);
+ 
+ 	DbusmenuClientPrivate * priv = DBUSMENU_CLIENT_GET_PRIVATE(self);
+ 
+diff --git a/libdbusmenu-glib/defaults.c b/libdbusmenu-glib/defaults.c
+index a0a78a5..e2a5773 100644
+--- a/libdbusmenu-glib/defaults.c
++++ b/libdbusmenu-glib/defaults.c
+@@ -46,9 +46,6 @@ struct _DefaultEntry {
+ 	GVariant * value;
+ };
+ 
+-#define DBUSMENU_DEFAULTS_GET_PRIVATE(o) \
+-(G_TYPE_INSTANCE_GET_PRIVATE ((o), DBUSMENU_TYPE_DEFAULTS, DbusmenuDefaultsPrivate))
+-
+ static void dbusmenu_defaults_class_init (DbusmenuDefaultsClass *klass);
+ static void dbusmenu_defaults_init       (DbusmenuDefaults *self);
+ static void dbusmenu_defaults_dispose    (GObject *object);
+@@ -74,7 +71,7 @@ dbusmenu_defaults_class_init (DbusmenuDefaultsClass *klass)
+ static void
+ dbusmenu_defaults_init (DbusmenuDefaults *self)
+ {
+-	self->priv = DBUSMENU_DEFAULTS_GET_PRIVATE(self); 
++	self->priv = g_type_instance_get_private ((GTypeInstance *)(self), DBUSMENU_TYPE_DEFAULTS);
+ 
+ 	self->priv->types = g_hash_table_new_full(g_str_hash, g_str_equal, g_free, (GDestroyNotify)g_hash_table_destroy);
+ 
+diff --git a/libdbusmenu-glib/menuitem-proxy.c b/libdbusmenu-glib/menuitem-proxy.c
+index fdbd892..a3da9b1 100644
+--- a/libdbusmenu-glib/menuitem-proxy.c
++++ b/libdbusmenu-glib/menuitem-proxy.c
+@@ -90,7 +90,7 @@ dbusmenu_menuitem_proxy_class_init (DbusmenuMenuitemProxyClass *klass)
+ static void
+ dbusmenu_menuitem_proxy_init (DbusmenuMenuitemProxy *self)
+ {
+-	self->priv = G_TYPE_INSTANCE_GET_PRIVATE ((self), DBUSMENU_TYPE_MENUITEM_PROXY, DbusmenuMenuitemProxyPrivate);
++	self->priv = g_type_instance_get_private ((GTypeInstance *)(self), DBUSMENU_TYPE_MENUITEM_PROXY);
+ 
+ 	DbusmenuMenuitemProxyPrivate * priv = DBUSMENU_MENUITEM_PROXY_GET_PRIVATE(self);
+ 
+diff --git a/libdbusmenu-glib/menuitem.c b/libdbusmenu-glib/menuitem.c
+index 0b85193..130eb1e 100644
+--- a/libdbusmenu-glib/menuitem.c
++++ b/libdbusmenu-glib/menuitem.c
+@@ -323,7 +323,7 @@ _g_variant_unref (gpointer data)
+ static void
+ dbusmenu_menuitem_init (DbusmenuMenuitem *self)
+ {
+-	self->priv = G_TYPE_INSTANCE_GET_PRIVATE ((self), DBUSMENU_TYPE_MENUITEM, DbusmenuMenuitemPrivate);
++	self->priv = g_type_instance_get_private ((GTypeInstance *)(self), DBUSMENU_TYPE_MENUITEM);
+ 
+ 	DbusmenuMenuitemPrivate * priv = DBUSMENU_MENUITEM_GET_PRIVATE(self);
+ 
+diff --git a/libdbusmenu-glib/server.c b/libdbusmenu-glib/server.c
+index e07af27..4994576 100644
+--- a/libdbusmenu-glib/server.c
++++ b/libdbusmenu-glib/server.c
+@@ -381,7 +381,7 @@ dbusmenu_server_class_init (DbusmenuServerClass *class)
+ static void
+ dbusmenu_server_init (DbusmenuServer *self)
+ {
+-	self->priv = G_TYPE_INSTANCE_GET_PRIVATE ((self), DBUSMENU_TYPE_SERVER, DbusmenuServerPrivate);
++	self->priv = g_type_instance_get_private ((GTypeInstance *)(self), DBUSMENU_TYPE_SERVER);
+ 
+ 	DbusmenuServerPrivate * priv = DBUSMENU_SERVER_GET_PRIVATE(self);
+ 
+diff --git a/libdbusmenu-gtk/client.c b/libdbusmenu-gtk/client.c
+index 28953ab..f900c8f 100644
+--- a/libdbusmenu-gtk/client.c
++++ b/libdbusmenu-gtk/client.c
+@@ -93,7 +93,7 @@ dbusmenu_gtkclient_class_init (DbusmenuGtkClientClass *klass)
+ static void
+ dbusmenu_gtkclient_init (DbusmenuGtkClient *self)
+ {
+-	self->priv = G_TYPE_INSTANCE_GET_PRIVATE ((self), DBUSMENU_GTKCLIENT_TYPE, DbusmenuGtkClientPrivate);
++	self->priv = g_type_instance_get_private ((GTypeInstance *)(self), DBUSMENU_GTKCLIENT_TYPE);
+ 
+ 	DbusmenuGtkClientPrivate * priv = DBUSMENU_GTKCLIENT_GET_PRIVATE(self);
+ 
+diff --git a/libdbusmenu-gtk/genericmenuitem.c b/libdbusmenu-gtk/genericmenuitem.c
+index 3a362d1..fc3796d 100644
+--- a/libdbusmenu-gtk/genericmenuitem.c
++++ b/libdbusmenu-gtk/genericmenuitem.c
+@@ -46,10 +46,6 @@ struct _GenericmenuitemPrivate {
+ 	gchar * label_text;
+ };
+ 
+-/* Private macro */
+-#define GENERICMENUITEM_GET_PRIVATE(o) \
+-(G_TYPE_INSTANCE_GET_PRIVATE ((o), GENERICMENUITEM_TYPE, GenericmenuitemPrivate))
+-
+ /* Prototypes */
+ static void genericmenuitem_class_init (GenericmenuitemClass *klass);
+ static void genericmenuitem_init       (Genericmenuitem *self);
+@@ -108,7 +104,7 @@ genericmenuitem_class_init (GenericmenuitemClass *klass)
+ static void
+ genericmenuitem_init (Genericmenuitem *self)
+ {
+-	self->priv = GENERICMENUITEM_GET_PRIVATE(self);
++	self->priv = g_type_instance_get_private ((GTypeInstance *)(self), GENERICMENUITEM_TYPE);
+ 
+ 	self->priv->check_type = GENERICMENUITEM_CHECK_TYPE_NONE;
+ 	self->priv->state = GENERICMENUITEM_STATE_UNCHECKED;
+diff --git a/libdbusmenu-gtk/menu.c b/libdbusmenu-gtk/menu.c
+index 3ec419a..ca84c57 100644
+--- a/libdbusmenu-gtk/menu.c
++++ b/libdbusmenu-gtk/menu.c
+@@ -111,7 +111,7 @@ menu_focus_cb(DbusmenuGtkMenu * menu, gpointer userdata)
+ static void
+ dbusmenu_gtkmenu_init (DbusmenuGtkMenu *self)
+ {
+-	self->priv = G_TYPE_INSTANCE_GET_PRIVATE ((self), DBUSMENU_GTKMENU_TYPE, DbusmenuGtkMenuPrivate);
++	self->priv = g_type_instance_get_private ((GTypeInstance *)(self), DBUSMENU_GTKMENU_TYPE);
+ 
+ 	DbusmenuGtkMenuPrivate * priv = DBUSMENU_GTKMENU_GET_PRIVATE(self);
+ 

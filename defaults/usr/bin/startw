@@ -1,0 +1,19 @@
+#!/bin/sh
+# Start the D-Bus session daemon
+# eval `dbus-launch`
+# export DBUS_SESSION_BUS_ADDRESS
+
+export XDG_RUNTIME_DIR=/tmp/swaywm/$(id -u)
+mkdir -p $XDG_RUNTIME_DIR
+chmod 0700 $XDG_RUNTIME_DIR
+
+# VLC
+export QT_QPA_PLATFORM=wayland
+# Firefox
+export MOZ_ENABLE_WAYLAND=1
+# Sway with D-Bus session daemon
+export XDG_SESSION_TYPE=wayland
+export XDG_CURRENT_DESKTOP=sway
+export XDG_SESSION_DESKTOP=sway
+dbus-launch sway -c ~/.config/sway/config
+export DBUS_SESSION_BUS_ADDRESS
