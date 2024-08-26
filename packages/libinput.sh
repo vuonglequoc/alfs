@@ -11,7 +11,10 @@ k_pre_configure() {
 k_configure() {
   meson setup ..            \
         --prefix=/usr       \
-        --buildtype=release
+        --buildtype=release \
+        -D debug-gui=false  \
+        -D tests=false      \
+        -D udev-dir=/usr/lib/udev
 }
 
 k_build() {
