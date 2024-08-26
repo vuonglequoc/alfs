@@ -203,10 +203,10 @@ kpkg_install /alfs packages wayland/wayland-protocols
 kpkg_install /alfs packages xorg-lib/libpciaccess
 kpkg_install /alfs packages libdrm
 kpkg_install /alfs packages mtdev
-kpkg_install /alfs packages libevdev
+kpkg_install /alfs packages xorg-input-drivers/libevdev
 kpkg_install /alfs packages libgudev
 kpkg_install /alfs packages libwacom
-kpkg_install /alfs packages libinput
+kpkg_install /alfs packages xorg-input-drivers/libinput
 kpkg_install /alfs packages pixman
 kpkg_install /alfs packages xorg-data/xkeyboard-config
 kpkg_install /alfs packages xorg-util/util-macros
