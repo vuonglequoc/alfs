@@ -275,6 +275,26 @@ I decided to use modern Wayland instead of traditional X system.
 sudo /alfs/scripts/build_graphic.sh
 ```
 
+Let's change to Run level 5 and re-login to see the Desktop:
+
+```bash
+sudo telinit 5
+exit
+```
+
+![Desktop](docs/images/Desktop.png)
+
+Some key bindings for beginner:
+
+- MOD key (Windows/Command)
+- MOD + Return: Start terminal (foot)
+- MOD + Space: Start launcher (Wofi)
+- MOD + Shift + Q: Kill focused window
+- MOD + Shift + T: Switch the current focus window between tiling and floating mode
+- MOD + Shift + Return: Lock the screen (type password and press Return for Unlock)
+- MOD + Shift + C: Reload Sway configuration file
+- MOD + Shift + E: Exit Sway (logout of Wayland session)
+
 ### Graphical Softwares: Web Browser, File Manager
 
 TODO
