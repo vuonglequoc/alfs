@@ -9,4 +9,4 @@ set ruler
 
 " End .vimrc
 EOF
-cp /etc/skel/.vimrc ~/.vimrc
+cp /etc/skel/.vimrc /home/user/.vimrc

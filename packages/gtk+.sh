@@ -29,8 +29,8 @@ k_install() {
 }
 
 k_post_install() {
-  mkdir -p ~/.config/gtk-3.0/
-  cp -r /alfs/defaults/.config/gtk-3.0/* ~/.config/gtk-3.0/
+  mkdir -p /home/user/.config/gtk-3.0/
+  cp -r /alfs/defaults/.config/gtk-3.0/* /home/user/.config/gtk-3.0/
 }
 
 k_pre_record() {

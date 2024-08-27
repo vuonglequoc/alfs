@@ -150,7 +150,7 @@ kpkg_install /alfs packages p11-kit
 kpkg_install /alfs packages make-ca
 
 # Enable Certificate Check for Wget
-sed -i "s/check_certificate = off/check_certificate = on/g" ~/.wgetrc
+sed -i "s/check_certificate = off/check_certificate = on/g" /home/user/.wgetrc
 
 kpkg_install /alfs packages nettle
 kpkg_install /alfs packages libunistring

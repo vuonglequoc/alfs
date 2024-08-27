@@ -32,8 +32,8 @@ k_install() {
 }
 
 k_post_install() {
-  mkdir -p ~/.config/foot/
-  cp -r /alfs/defaults/.config/foot/* ~/.config/foot/
+  mkdir -p /home/user/.config/foot/
+  cp -r /alfs/defaults/.config/foot/* /home/user/.config/foot/
 }
 
 k_pre_record() {

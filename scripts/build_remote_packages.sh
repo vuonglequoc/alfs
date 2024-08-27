@@ -14,6 +14,6 @@ kpkg_install /alfs packages openssh
 kpkg_install /alfs packages wget
 
 # Ignore Certificate Check because we have not yet install make-ca
-echo "check_certificate = off" >> ~/.wgetrc
+echo "check_certificate = off" >> /home/user/.wgetrc
 
 exit

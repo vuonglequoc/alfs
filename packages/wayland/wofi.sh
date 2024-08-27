@@ -27,8 +27,8 @@ k_install() {
 }
 
 k_post_install() {
-  mkdir -p ~/.config/wofi/
-  cp -r /alfs/defaults/.config/wofi/* ~/.config/wofi/
+  mkdir -p /home/user/.config/wofi/
+  cp -r /alfs/defaults/.config/wofi/* /home/user/.config/wofi/
 }
 
 k_pre_record() {

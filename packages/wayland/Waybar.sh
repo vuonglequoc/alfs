@@ -25,8 +25,8 @@ k_install() {
 }
 
 k_post_install() {
-  mkdir -p ~/.config/waybar/
-  cp -r /alfs/defaults/.config/waybar/* ~/.config/waybar/
+  mkdir -p /home/user/.config/waybar/
+  cp -r /alfs/defaults/.config/waybar/* /home/user/.config/waybar/
 }
 
 k_pre_record() {

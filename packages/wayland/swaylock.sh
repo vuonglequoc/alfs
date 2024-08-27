@@ -27,8 +27,8 @@ k_install() {
 }
 
 k_post_install() {
-  mkdir -p ~/.config/swaylock/
-  cp -r /alfs/defaults/.config/swaylock/* ~/.config/swaylock/
+  mkdir -p /home/user/.config/swaylock/
+  cp -r /alfs/defaults/.config/swaylock/* /home/user/.config/swaylock/
 }
 
 k_pre_record() {

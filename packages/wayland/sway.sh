@@ -28,12 +28,12 @@ k_install() {
 }
 
 k_post_install() {
-  mkdir -p ~/.config/sway/
-  cp -r /alfs/defaults/.config/sway/* ~/.config/sway/
+  mkdir -p /home/user/.config/sway/
+  cp -r /alfs/defaults/.config/sway/* /home/user/.config/sway/
   cp /alfs/defaults/usr/bin/startw /usr/bin/startw
-  cp /alfs/defaults/bash_profile ~/.bash_profile
+  cp /alfs/defaults/bash_profile /home/user/.bash_profile
 
-  echo "export LD_LIBRARY_PATH=/usr/lib:/usr/local/lib" >> ~/.bashrc
+  echo "export LD_LIBRARY_PATH=/usr/lib:/usr/local/lib" >> /home/user/.bashrc
 
   usermod -aG input user
   usermod -aG audio user

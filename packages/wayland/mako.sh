@@ -26,8 +26,8 @@ k_install() {
 }
 
 k_post_install() {
-  mkdir -p ~/.config/mako/
-  cp -r /alfs/defaults/.config/mako/* ~/.config/mako/
+  mkdir -p /home/user/.config/mako/
+  cp -r /alfs/defaults/.config/mako/* /home/user/.config/mako/
 }
 
 k_pre_record() {
