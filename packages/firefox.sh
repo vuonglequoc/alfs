@@ -5,6 +5,10 @@
 KPKG_SRC_FILE=firefox-125.0.3.source.tar.xz
 KPKG_SRC_FOLDER=firefox-125.0.3
 
+k_pre_configure() {
+  source /etc/profile
+}
+
 k_configure() {
 cat > mozconfig << "EOF"
 # If you have a multicore machine, all cores will be used by default.
