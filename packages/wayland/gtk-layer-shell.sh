@@ -1,7 +1,7 @@
 #!/bin/bash
 
-KPKG_SRC_FILE=cava-0.10.2.tar.gz
-KPKG_SRC_FOLDER=cava-0.10.2
+KPKG_SRC_FILE=gtk-layer-shell-0.8.2.tar.gz
+KPKG_SRC_FOLDER=gtk-layer-shell-0.8.2
 
 k_pre_configure() {
   mkdir build

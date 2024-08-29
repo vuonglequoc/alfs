@@ -1,7 +1,7 @@
 #!/bin/bash
 
-KPKG_SRC_FILE=cava-0.10.2.tar.gz
-KPKG_SRC_FOLDER=cava-0.10.2
+KPKG_SRC_FILE=jsoncpp-1.9.5.tar.gz
+KPKG_SRC_FOLDER=jsoncpp-1.9.5
 
 k_pre_configure() {
   mkdir build

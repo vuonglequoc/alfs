@@ -228,7 +228,7 @@ cde72f38943c685a1a39acc82da2339f  vlc-3.0.21.tar.xz
 7de9cd951fbc9c58259ebe282f6b49f0  vlc-3.0.21-taglib-1.patch
 90efe010b4fbe9dea40ea58ec41a303e  vlc-3.0.21-fedora_ffmpeg7-1.patch
 350c34126e47988f378285adf4cf2efc  glad-2.0.6.tar.gz
-80774beab5667da772b1819ba5a4e7a6  Vulkan-Headers-1.3.290.tar.gz
+09b649cd4936e8aa7b4e61fd437dc96b  Vulkan-Headers-1.3.290.tar.gz
 8dd72edf2ec5f1918770a317ef8107a5  libplacebo-7.349.0.tar.gz
 aa7629e8f73662a762f64c444b901055  libcdio-2.1.0.tar.bz2
 02af739e2f0c33cb4fd9480bab690548  libcdio-paranoia-10.2+2.0.2.tar.bz2
@@ -331,10 +331,12 @@ c9f9133cc1e5997fa44d2aa192050a60  libmpdclient-2.22.tar.gz
 2399845217a9c6e4510f66033fcd7cf6  upower-v1.90.4.tar.bz2
 8ccbf6a5ea78a16dbc3e1306e234cc5c  fftw-3.3.10.tar.gz
 402ca3059f3dd1f9acd664d9c9b6aa27  iniparser-4.2.1.tar.gz
-5d2b051d7c9ad9bdb950e3e4dd5ebc9e  cava-0.10.2.tar.gz
+25c7c28e0e658d40a1f6d9b10ab5ae28  cava-0.10.2.tar.gz
 dc09168c94f90ea890257995f2c497a5  fmt-10.2.1.tar.gz
 f0cd2b73baf5e965a2d2430871f2c2cf  Catch2-3.7.0.tar.gz
 f2c3f15c20e67b261836ff7bfda302cf  spdlog-1.14.1.tar.gz
+454ea23f83213d5692ce808487ab1187  gtk-layer-shell-0.8.2.tar.gz
+d6c8c609f2162eff373db62b90a051c7  jsoncpp-1.9.5.tar.gz
 e81bcf69ff6c346b7e529cbbb59b9393  Waybar-0.10.4.tar.gz
 6829461ddc1dd0a9b7d115ccc0c186ac  adwaita-icon-theme-46.2.tar.xz
 ef14f3af03bcde9ed134aad626bdbaad  hicolor-icon-theme-0.18.tar.xz

@@ -179,6 +179,8 @@
 #     fmt
 #     Catch2
 #   spdlog
+#   gtk-layer-shell
+#   jsoncpp
 # waybar
 
 #   tllist-1.1.0
@@ -337,7 +339,6 @@ kpkg_install /alfs packages pangomm
 
 kpkg_install /alfs packages gtkmm
 
-# gtk-layer-shell
 # libgtk-3-dev
 # gobject-introspection
 # libgirepository1.0-dev
@@ -396,6 +397,12 @@ kpkg_install /alfs packages cava
 kpkg_install /alfs packages fmt
 kpkg_install /alfs packages Catch2
 kpkg_install /alfs packages spdlog
+
+## gtk-layer-shell ##
+kpkg_install /alfs packages wayland/gtk-layer-shell
+
+## jsoncpp ##
+kpkg_install /alfs packages jsoncpp
 
 kpkg_install /alfs packages wayland/Waybar
 

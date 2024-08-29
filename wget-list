@@ -331,10 +331,12 @@ https://sndio.org/sndio-1.10.0.tar.gz
 https://gitlab.freedesktop.org/upower/upower/-/archive/v1.90.4/upower-v1.90.4.tar.bz2
 https://www.fftw.org/fftw-3.3.10.tar.gz
 https://github.com/ndevilla/iniparser/archive/refs/tags/v4.2.1.tar.gz iniparser-4.2.1.tar.gz
-https://github.com/karlstav/cava/archive/refs/tags/0.10.2.tar.gz cava-0.10.2.tar.gz
+https://github.com/LukashonakV/cava/archive/0.10.2.tar.gz cava-0.10.2.tar.gz
 https://github.com/fmtlib/fmt/archive/10.2.1/fmt-10.2.1.tar.gz
 https://github.com/catchorg/Catch2/archive/refs/tags/v3.7.0.tar.gz Catch2-3.7.0.tar.gz
 https://github.com/gabime/spdlog/archive/refs/tags/v1.14.1.tar.gz spdlog-1.14.1.tar.gz
+https://github.com/wmww/gtk-layer-shell/archive/v0.8.2/gtk-layer-shell-0.8.2.tar.gz
+https://github.com/open-source-parsers/jsoncpp/archive/1.9.5.tar.gz jsoncpp-1.9.5.tar.gz
 https://github.com/Alexays/Waybar/archive/refs/tags/0.10.4.tar.gz Waybar-0.10.4.tar.gz
 https://download.gnome.org/sources/adwaita-icon-theme/46/adwaita-icon-theme-46.2.tar.xz
 https://icon-theme.freedesktop.org/releases/hicolor-icon-theme-0.18.tar.xz
