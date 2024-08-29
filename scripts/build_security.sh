@@ -94,6 +94,11 @@
 #   SQLite-3.45.1
 # GnuPG-2.4.4
 
+if [ -z "$NONROOT_USER" ]
+  then echo "Please check environment variable NONROOT_USER"
+  exit
+fi
+
 source /alfs/kpkg/kpkg.sh
 
 kpkg_install /alfs packages krb5
@@ -150,7 +155,7 @@ kpkg_install /alfs packages p11-kit
 kpkg_install /alfs packages make-ca
 
 # Enable Certificate Check for Wget
-sed -i "s/check_certificate = off/check_certificate = on/g" /home/user/.wgetrc
+sed -i "s/check_certificate = off/check_certificate = on/g" /home/$NONROOT_USER/.wgetrc
 
 kpkg_install /alfs packages nettle
 kpkg_install /alfs packages libunistring

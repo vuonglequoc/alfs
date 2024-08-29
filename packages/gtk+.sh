@@ -29,13 +29,13 @@ k_install() {
 }
 
 k_post_install() {
-  mkdir -p /home/user/.config/gtk-3.0/
-  cp -r /alfs/defaults/.config/gtk-3.0/* /home/user/.config/gtk-3.0/
+  mkdir -p /home/$NONROOT_USER/.config/gtk-3.0/
+  cp -r /alfs/defaults/.config/gtk-3.0/* /home/$NONROOT_USER/.config/gtk-3.0/
 }
 
 k_pre_record() {
   DESTDIR=$KPKG_TMP_DIR ninja install
 
-  mkdir -p $KPKG_TMP_DIR/home/user/.config/gtk-3.0/
-  cp -r /alfs/defaults/.config/gtk-3.0/* $KPKG_TMP_DIR/home/user/.config/gtk-3.0/
+  mkdir -p $KPKG_TMP_DIR/home/$NONROOT_USER/.config/gtk-3.0/
+  cp -r /alfs/defaults/.config/gtk-3.0/* $KPKG_TMP_DIR/home/$NONROOT_USER/.config/gtk-3.0/
 }

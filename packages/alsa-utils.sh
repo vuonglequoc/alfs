@@ -30,7 +30,7 @@ defaults.ctl.card 0
 EOF
 
 # add us to audio group to access audio cards
-gpasswd -a user audio
+gpasswd -a $NONROOT_USER audio
 }
 
 k_pre_record() {

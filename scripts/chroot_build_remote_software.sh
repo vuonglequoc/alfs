@@ -23,6 +23,11 @@ else
   exit
 fi
 
+if [ -z "$NONROOT_USER" ]
+  then echo "Please check environment variable NONROOT_USER"
+  exit
+fi
+
 mount -v --bind /dev $LFS/dev
 
 mount -vt devpts devpts -o gid=5,mode=0620 $LFS/dev/pts
@@ -45,6 +50,7 @@ chroot "$LFS" /usr/bin/env -i   \
     PATH=/usr/bin:/usr/sbin     \
     MAKEFLAGS="-j$(nproc)"      \
     TESTSUITEFLAGS="-j$(nproc)" \
+    NONROOT_USER=$NONROOT_USER \
     /bin/bash --login +h -c /alfs/scripts/build_remote_packages.sh
 
 mountpoint -q $LFS/dev/shm && umount $LFS/dev/shm

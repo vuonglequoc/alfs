@@ -23,6 +23,7 @@ Set these Enviornment Variables
 ```bash
 export LFS=/mnt/lfs
 export ALFS=/mnt/lfs/alfs
+export NONROOT_USER=user
 ```
 
 ## LFS Partition
@@ -89,7 +90,7 @@ sudo -E $ALFS/scripts/setup_lfs_env.sh
 
 ## Build Toolchain
 
-These scripts are required to run as the new lfs user
+These scripts are required to run as the new LFS user
 
 ```bash
 sudo su lfs
@@ -210,12 +211,12 @@ Enter chroot environment and build software for remote environment
 sudo -E $ALFS/scripts/chroot_build_remote_software.sh
 ```
 
-From now on, we can use LFS system remotely for other installation with user **user** and pass **user**.
+From now on, we can use LFS system remotely for other installation with **$NONROOT_USER** user  and pass **$NONROOT_USER**.
 
 ### Post LFS Configuration and Extra Software
 
 ```bash
-sudo /alfs/scripts/build_post_lfs.sh
+sudo -E /alfs/scripts/build_post_lfs.sh
 ```
 
 ### General Libraries and Utilities
@@ -233,7 +234,7 @@ sudo /alfs/scripts/build_networking.sh
 ### Multimedia
 
 ```bash
-sudo /alfs/scripts/build_multimedia.sh
+sudo -E /alfs/scripts/build_multimedia.sh
 ```
 
 Using sample:
@@ -272,7 +273,7 @@ I decided to use modern Wayland instead of traditional X system.
 #   gtkmm       10 minutes
 #   Waybar      10 minutes
 #   mesa        46 minutes
-sudo /alfs/scripts/build_graphic.sh
+sudo -E /alfs/scripts/build_graphic.sh
 ```
 
 Let's change to Run level 5 and re-login to see the Desktop:

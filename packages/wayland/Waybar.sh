@@ -25,10 +25,13 @@ k_install() {
 }
 
 k_post_install() {
-  mkdir -p /home/user/.config/waybar/
-  cp -r /alfs/defaults/.config/waybar/* /home/user/.config/waybar/
+  mkdir -p /home/$NONROOT_USER/.config/waybar/
+  cp -r /alfs/defaults/.config/waybar/* /home/$NONROOT_USER/.config/waybar/
 }
 
 k_pre_record() {
   DESTDIR=$KPKG_TMP_DIR ninja install
+
+  mkdir -p $KPKG_TMP_DIR/home/$NONROOT_USER/.config/waybar/
+  cp -r /alfs/defaults/.config/waybar/* $KPKG_TMP_DIR/home/$NONROOT_USER/.config/waybar/
 }

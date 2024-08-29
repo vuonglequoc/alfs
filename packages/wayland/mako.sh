@@ -26,10 +26,13 @@ k_install() {
 }
 
 k_post_install() {
-  mkdir -p /home/user/.config/mako/
-  cp -r /alfs/defaults/.config/mako/* /home/user/.config/mako/
+  mkdir -p /home/$NONROOT_USER/.config/mako/
+  cp -r /alfs/defaults/.config/mako/* /home/$NONROOT_USER/.config/mako/
 }
 
 k_pre_record() {
   DESTDIR=$KPKG_TMP_DIR ninja install
+
+  mkdir -p $KPKG_TMP_DIR/home/$NONROOT_USER/.config/mako/
+  cp -r /alfs/defaults/.config/mako/* $KPKG_TMP_DIR/home/$NONROOT_USER/.config/mako/
 }

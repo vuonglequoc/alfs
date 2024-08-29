@@ -27,10 +27,13 @@ k_install() {
 }
 
 k_post_install() {
-  mkdir -p /home/user/.config/wofi/
-  cp -r /alfs/defaults/.config/wofi/* /home/user/.config/wofi/
+  mkdir -p /home/$NONROOT_USER/.config/wofi/
+  cp -r /alfs/defaults/.config/wofi/* /home/$NONROOT_USER/.config/wofi/
 }
 
 k_pre_record() {
   DESTDIR=$KPKG_TMP_DIR ninja install
+
+  mkdir -p $KPKG_TMP_DIR/home/$NONROOT_USER/.config/wofi/
+  cp -r /alfs/defaults/.config/wofi/* $KPKG_TMP_DIR/home/$NONROOT_USER/.config/wofi/
 }

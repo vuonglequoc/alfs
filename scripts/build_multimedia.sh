@@ -88,6 +88,11 @@
 #   libdvdnav-6.1.1
 # mpv-0.38.0
 
+if [ -z "$NONROOT_USER" ]
+  then echo "Please check environment variable NONROOT_USER"
+  exit
+fi
+
 source /alfs/kpkg/kpkg.sh
 
 kpkg_install /alfs packages alsa-lib

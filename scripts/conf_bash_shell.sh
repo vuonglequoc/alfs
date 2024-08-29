@@ -259,9 +259,9 @@ fi
 
 # End ~/.bash_profile
 EOF
-cp /etc/skel/.bash_profile /home/user/.bash_profile
+cp /etc/skel/.bash_profile /home/$NONROOT_USER/.bash_profile
 
-cat > /home/user/.profile << "EOF"
+cat > /home/$NONROOT_USER/.profile << "EOF"
 # Begin ~/.profile
 # Personal environment variables and startup programs.
 
@@ -275,7 +275,7 @@ fi
 # End ~/.profile
 EOF
 
-cat > /home/user/.bashrc << "EOF"
+cat > /home/$NONROOT_USER/.bashrc << "EOF"
 # Begin ~/.bashrc
 # Written for Beyond Linux From Scratch
 # by James Robertson <jameswrobertson@earthlink.net>
@@ -297,7 +297,7 @@ fi
 # End ~/.bashrc
 EOF
 
-cat > /home/user/.bash_logout << "EOF"
+cat > /home/$NONROOT_USER/.bash_logout << "EOF"
 # Begin ~/.bash_logout
 # Written for Beyond Linux From Scratch
 # by James Robertson <jameswrobertson@earthlink.net>

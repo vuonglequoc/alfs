@@ -48,7 +48,7 @@ EOF
 
   /etc/init.d/dbus start
 
-cat >> /home/user/.bash_logout << "EOF"
+cat >> /home/$NONROOT_USER/.bash_logout << "EOF"
 # Kill the D-Bus session daemon
 kill $DBUS_SESSION_BUS_PID
 EOF

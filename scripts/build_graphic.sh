@@ -206,6 +206,11 @@
 # Fonts
 # Config
 
+if [ -z "$NONROOT_USER" ]
+  then echo "Please check environment variable NONROOT_USER"
+  exit
+fi
+
 source /alfs/kpkg/kpkg.sh
 
 export XORG_PREFIX=/usr
