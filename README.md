@@ -298,7 +298,11 @@ Some key bindings for beginner:
 
 ### Graphical Softwares: Web Browser, File Manager
 
-TODO
+```bash
+sudo /alfs/scripts/build_graphic_software.sh
+```
+
+TODO: Office
 
 ## Extra Scripts
 
