@@ -12,8 +12,9 @@ k_configure() {
   meson setup ..             \
         --prefix=/usr        \
         --buildtype=release  \
-        -D gtk_doc=false    \
-        -D man=false
+        -D man=false         \
+        -D gtk_doc=false     \
+        -D docbook_docs=disabled
 }
 
 k_build() {
