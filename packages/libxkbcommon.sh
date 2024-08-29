@@ -2,9 +2,6 @@
 
 KPKG_SRC_FILE=libxkbcommon-1.7.0.tar.xz
 KPKG_SRC_FOLDER=libxkbcommon-1.7.0
-XORG_PREFIX=/usr
-XORG_CONFIG="--prefix=$XORG_PREFIX --sysconfdir=/etc \
-    --localstatedir=/var --disable-static"
 
 k_pre_configure() {
   mkdir build

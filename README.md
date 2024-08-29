@@ -302,6 +302,10 @@ Some key bindings for beginner:
 sudo /alfs/scripts/build_graphic_software.sh
 ```
 
+![Browser Firefox](docs/images/Browser_Firefox.png)
+
+![FileManager PCManFM](docs/images/FileManager_PCManFM.png)
+
 TODO: Office
 
 ## Extra Scripts
