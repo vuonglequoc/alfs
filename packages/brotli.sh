@@ -28,3 +28,8 @@ k_post_install() {
 
   pip3 install --no-index --find-links=dist --no-cache-dir --no-user Brotli
 }
+
+k_pre_record() {
+  cd $KPKG_ROOT/sources/$KPKG_SRC_FOLDER/build
+  make DESTDIR=$KPKG_TMP_DIR install
+}

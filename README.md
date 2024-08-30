@@ -374,6 +374,12 @@ root=/dev/sdb3
 
 *Windy's ALFS*: https://github.com/mattwind/alfs
 
+*Armstrong's Sway* : https://www.dwarmstrong.org/sway
+
+*Sway Add ons*: https://github.com/swaywm/sway/wiki/Useful-add-ons-for-sway
+
+*Waybar config*: https://man.archlinux.org/man/extra/waybar/waybar-clock.5.en
+
 ### Knowledge
 
 **GNU toolchain**: https://en.wikipedia.org/wiki/GNU_toolchain
@@ -407,3 +413,7 @@ root=/dev/sdb3
     The /etc/shadow file stores user passwords in Linux.
 
   From now on, we can interact with linux system by interactive login shell.
+
+**Wayland**: https://wayland.freedesktop.org/docs/html/ch03.html
+
+**Sway**: https://wiki.archlinux.org/title/Sway

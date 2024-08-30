@@ -14,3 +14,7 @@ k_configure() {
 k_check() {
   :
 }
+
+k_post_install() {
+  /sbin/ldconfig
+}

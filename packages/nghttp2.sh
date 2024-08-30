@@ -9,3 +9,7 @@ k_configure() {
               --enable-lib-only \
               --docdir=/usr/share/doc/nghttp2-1.62.1
 }
+
+k_post_install() {
+  /sbin/ldconfig
+}

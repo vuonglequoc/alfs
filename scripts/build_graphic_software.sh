@@ -26,6 +26,7 @@ source /alfs/kpkg/kpkg.sh
 export XORG_PREFIX=/usr
 export XORG_CONFIG="--prefix=$XORG_PREFIX --sysconfdir=/etc \
     --localstatedir=/var --disable-static"
+export PKG_CONFIG_PATH="/usr/lib/pkgconfig:/usr/local/lib/pkgconfig:/usr/local/share/pkgconfig"
 
 # firefox #
 kpkg_install /alfs packages brotli

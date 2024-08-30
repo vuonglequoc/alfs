@@ -108,6 +108,10 @@ for i in {43..47}; do
    sed -i '/ZWJ/s/}/,CLASS_CHARACTER&/' intl/lwbrk/LineBreaker.cpp 
 done
 
+# The Google API Key below is specific to LFS.
+# If using these instructions for another distro, or if you intend to distribute binary copies of the software using these instructions,
+# please obtain your own key following the instructions located at
+# https://www.chromium.org/developers/how-tos/api-keys.
 echo "AIzaSyDxKL42zsPjbke5O8_rPVpVrLrJ8aeE9rQ" > google-key
 }
 
