@@ -35,7 +35,7 @@ EOF
 # Copy bashrc to root
 cp /alfs/defaults/bashrc /root/.bashrc
 
-# 10.3. Linux-6.7.4
+# 10.3. Linux-6.10.7
 kpkg_install /alfs packages linux
 
 # 10.4. Using GRUB to Set Up the Boot Process

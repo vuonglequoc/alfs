@@ -34,7 +34,7 @@ kpkg_installtool $ALFS toolchain binutils-pass-1
 # 5.3. GCC-13.2.0 - Pass 1
 kpkg_installtool $ALFS toolchain gcc-pass-1
 
-# 5.4. Linux-6.7.4 API Headers
+# 5.4. Linux-6.10.7 API Headers
 kpkg_installtool $ALFS toolchain linux-api-headers
 
 # 5.5. Glibc-2.39

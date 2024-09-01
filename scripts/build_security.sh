@@ -124,8 +124,8 @@ kpkg_install /alfs packages iptables
 # Modify iptables for other rules
 # /etc/rc.d/rc.iptables
 # Update Linux Kernel for iptables
-cd /sources/linux-6.7.4
-cp /alfs/defaults/boot/config-6.7.4.base.uefi.iptables .config
+cd /sources/linux-6.10.7
+cp /alfs/defaults/boot/config-6.10.7.base.uefi.iptables .config
 make
 make modules_install
 cp -v arch/x86_64/boot/bzImage /boot/vmlinuz-$(uname -r)-lfs-12.1

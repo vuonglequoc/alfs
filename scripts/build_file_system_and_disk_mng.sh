@@ -10,8 +10,8 @@ kpkg_install /alfs packages dosfstools
 # No need update Linux Kernel for FAT because already config for GRUB UEFI
 
 # Update Linux Kernel for exFAT, NTFS support
-cd /sources/linux-6.7.4
-cp /alfs/defaults/boot/config-6.7.4.base.uefi.iptables.ntfs .config
+cd /sources/linux-6.10.7
+cp /alfs/defaults/boot/config-6.10.7.base.uefi.iptables.ntfs .config
 make
 make modules_install
 cp -v arch/x86_64/boot/bzImage /boot/vmlinuz-$(uname -r)-lfs-12.1
