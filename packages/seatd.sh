@@ -29,7 +29,7 @@ k_install() {
 
 k_post_install() {
   groupadd -r -g 200 seat
-  usermod -aG seat user
+  usermod -aG seat $NONROOT_USER
 
   install -m 754 $KPKG_ROOT/alfs/defaults/init.d/seatd      /etc/rc.d/init.d/
   ln -sf  ../init.d/seatd /etc/rc.d/rc5.d/S40seatd
