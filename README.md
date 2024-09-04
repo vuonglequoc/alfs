@@ -73,18 +73,21 @@ cd $ALFS
 Verify required programs
 
 ```bash
+# Chapter 2
 sudo $ALFS/scripts/version_check.sh
 ```
 
 Download toolchain source code from wget-list
 
 ```bash
+# Chapter 3
 sudo -E $ALFS/scripts/get_packages.sh
 ```
 
 Setup the LFS user environment
 
 ```bash
+# Chapter 4
 sudo -E $ALFS/scripts/setup_lfs_env.sh
 ```
 
@@ -94,10 +97,15 @@ These scripts are required to run as the new LFS user
 
 ```bash
 sudo su lfs
+
+# Chapter 5
 # build 30 minutes
 $ALFS/scripts/compile_cross-toolchain.sh
+
+# Chapter 6
 # build 35 minutes
 $ALFS/scripts/cross-compile_temp-tools.sh
+
 exit
 ```
 
@@ -106,15 +114,22 @@ exit
 Run as root with environment variables set earlier
 
 ```bash
+# Chapter 7
 # build 11 minutes
 sudo -E $ALFS/scripts/chroot_build_addtemp-toolchain.sh
 # backup 32 minutes
 sudo -E $ALFS/scripts/backup_temp-toolchain.sh
+
+# Chapter 8
 # build 6 hours 8 minutes
 #   gcc 3 hours
 sudo -E $ALFS/scripts/chroot_build_basic_system_software.sh
+
+# Chapter 9
 # build <1 minutes
 sudo -E $ALFS/scripts/chroot_system_configuration.sh
+
+# Chapter 10
 # build 15 minutes
 sudo -E $ALFS/scripts/chroot_make_system_bootable.sh
 ```
