@@ -81,14 +81,14 @@ Download toolchain source code from wget-list
 
 ```bash
 # Chapter 3
-sudo -E $ALFS/scripts/get_packages.sh
+sudo -E $ALFS/scripts/host_get_packages.sh
 ```
 
 Setup the LFS user environment
 
 ```bash
 # Chapter 4
-sudo -E $ALFS/scripts/setup_lfs_env.sh
+sudo -E $ALFS/scripts/host_setup_lfs_env.sh
 ```
 
 ## Build Toolchain
@@ -100,11 +100,11 @@ sudo su lfs
 
 # Chapter 5
 # build 30 minutes
-$ALFS/scripts/compile_cross-toolchain.sh
+$ALFS/scripts/host_compile_cross-toolchain.sh
 
 # Chapter 6
 # build 35 minutes
-$ALFS/scripts/cross-compile_temp-tools.sh
+$ALFS/scripts/host_cross-compile_temp-tools.sh
 
 exit
 ```
@@ -118,7 +118,7 @@ Run as root with environment variables set earlier
 # build 11 minutes
 sudo -E $ALFS/scripts/chroot_build_addtemp-toolchain.sh
 # backup 32 minutes
-sudo -E $ALFS/scripts/backup_temp-toolchain.sh
+sudo -E $ALFS/scripts/host_backup_temp-toolchain.sh
 
 # Chapter 8
 # build 6 hours 8 minutes
@@ -190,7 +190,7 @@ Backup final OS
 
 ```bash
 # backup 35 minutes
-sudo -E $ALFS/scripts/backup_os.sh
+sudo -E $ALFS/scripts/host_backup_lfs_os.sh
 ```
 
 Un-mount LFS partitions

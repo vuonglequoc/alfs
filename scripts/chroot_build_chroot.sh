@@ -78,6 +78,6 @@ echo
 
 # 7.7 - 7.13
 
-/alfs/scripts/build_addtemp-toolchain.sh
+/alfs/scripts/chroot_build_addtemp-tools.sh
 
 exit

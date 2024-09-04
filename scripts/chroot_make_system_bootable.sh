@@ -47,7 +47,7 @@ chroot "$LFS" /usr/bin/env -i   \
     PATH=/usr/bin:/usr/sbin     \
     MAKEFLAGS="-j$(nproc)"      \
     TESTSUITEFLAGS="-j$(nproc)" \
-    /bin/bash --login -c /alfs/scripts/make_system_bootable.sh
+    /bin/bash --login -c /alfs/scripts/chroot_make_bootable.sh
 
 mountpoint -q $LFS/dev/shm && umount $LFS/dev/shm
 umount $LFS/dev/pts

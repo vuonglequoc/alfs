@@ -51,7 +51,7 @@ chroot "$LFS" /usr/bin/env -i   \
     MAKEFLAGS="-j$(nproc)"      \
     TESTSUITEFLAGS="-j$(nproc)" \
     NONROOT_USER=$NONROOT_USER \
-    /bin/bash --login +h -c /alfs/scripts/build_remote_packages.sh
+    /bin/bash --login +h -c /alfs/scripts/chroot_build_remote_packages.sh
 
 mountpoint -q $LFS/dev/shm && umount $LFS/dev/shm
 umount $LFS/dev/pts

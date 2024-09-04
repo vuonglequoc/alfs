@@ -89,7 +89,7 @@ kpkg_install sysklogd
 kpkg_install sysvinit
 
 # 8.83. Stripping
-/alfs/scripts/strip.sh
+/alfs/scripts/chroot_strip.sh
 
 # 8.84. Cleaning Up
 echo "Cleaning Up ..."
