@@ -2,12 +2,12 @@
 
 source /alfs/kpkg/kpkg.sh
 
-kpkg_install /alfs packages fcron
+kpkg_install fcron
 
 /alfs/scripts/build_initramfs.sh
 
-kpkg_install /alfs packages cpio
-kpkg_install /alfs packages pciutils
+kpkg_install cpio
+kpkg_install pciutils
 
 # Firmware
 /alfs/scripts/build_firmware.sh

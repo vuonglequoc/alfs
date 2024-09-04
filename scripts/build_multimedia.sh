@@ -95,7 +95,7 @@ fi
 
 source /alfs/kpkg/kpkg.sh
 
-kpkg_install /alfs packages alsa-lib
+kpkg_install alsa-lib
 # Update Linux Kernel for Sound
 cd /sources/linux-6.10.7
 cp /alfs/defaults/boot/config-6.10.7.base.uefi.iptables.ntfs.exfat.sound .config
@@ -105,28 +105,28 @@ cp -v arch/x86_64/boot/bzImage /boot/vmlinuz-$(uname -r)-lfs-12.1
 cp -v System.map /boot/System.map-$(uname -r)-lfs-12.1
 cp -v .config /boot/config-$(uname -r)-lfs-12.1
 
-kpkg_install /alfs packages libaom
-kpkg_install /alfs packages fribidi
-kpkg_install /alfs packages fontconfig
-kpkg_install /alfs packages pcre2
-kpkg_install /alfs packages python/packaging
-kpkg_install /alfs packages python/docutils
-kpkg_install /alfs packages glib
-kpkg_install /alfs packages graphite2
-kpkg_install /alfs packages harfbuzz
-kpkg_install /alfs packages freetype # reinstall
-kpkg_install /alfs packages libass
-kpkg_install /alfs packages fdk-aac
-kpkg_install /alfs packages lame
-kpkg_install /alfs packages libogg
-kpkg_install /alfs packages libvorbis
-kpkg_install /alfs packages which
-kpkg_install /alfs packages libvpx
-kpkg_install /alfs packages opus
-kpkg_install /alfs packages x264
-kpkg_install /alfs packages x265
-kpkg_install /alfs packages sdl2
-kpkg_install /alfs packages ffmpeg
+kpkg_install libaom
+kpkg_install fribidi
+kpkg_install fontconfig
+kpkg_install pcre2
+kpkg_install python/packaging
+kpkg_install python/docutils
+kpkg_install glib
+kpkg_install graphite2
+kpkg_install harfbuzz
+kpkg_install freetype # reinstall
+kpkg_install libass
+kpkg_install fdk-aac
+kpkg_install lame
+kpkg_install libogg
+kpkg_install libvorbis
+kpkg_install which
+kpkg_install libvpx
+kpkg_install opus
+kpkg_install x264
+kpkg_install x265
+kpkg_install sdl2
+kpkg_install ffmpeg
 # Update Linux Kernel for Framebuffer /dev/fb0
 cd /sources/linux-6.10.7
 cp /alfs/defaults/boot/config-6.10.7.base.uefi.iptables.ntfs.exfat.sound.framebuffer .config
@@ -136,19 +136,19 @@ cp -v arch/x86_64/boot/bzImage /boot/vmlinuz-$(uname -r)-lfs-12.1
 cp -v System.map /boot/System.map-$(uname -r)-lfs-12.1
 cp -v .config /boot/config-$(uname -r)-lfs-12.1
 
-kpkg_install /alfs packages libsndfile
-kpkg_install /alfs packages pulseaudio
-kpkg_install /alfs packages alsa-plugins
-kpkg_install /alfs packages alsa-utils
-kpkg_install /alfs packages alsa-tools
-kpkg_install /alfs packages alsa-firmware
-kpkg_install /alfs packages liba52
-kpkg_install /alfs packages lua
-kpkg_install /alfs packages vlc
-kpkg_install /alfs packages python/glad2
-kpkg_install /alfs packages vulkan-headers
-kpkg_install /alfs packages libplacebo
-kpkg_install /alfs packages libcdio
-kpkg_install /alfs packages libdvdread
-kpkg_install /alfs packages libdvdnav
-kpkg_install /alfs packages mpv
+kpkg_install libsndfile
+kpkg_install pulseaudio
+kpkg_install alsa-plugins
+kpkg_install alsa-utils
+kpkg_install alsa-tools
+kpkg_install alsa-firmware
+kpkg_install liba52
+kpkg_install lua
+kpkg_install vlc
+kpkg_install python/glad2
+kpkg_install vulkan-headers
+kpkg_install libplacebo
+kpkg_install libcdio
+kpkg_install libdvdread
+kpkg_install libdvdnav
+kpkg_install mpv

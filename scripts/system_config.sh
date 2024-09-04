@@ -3,7 +3,7 @@
 source /alfs/kpkg/kpkg.sh
 
 # 9.2.1. Installation of LFS-Bootscripts
-kpkg_install /alfs packages lfs-bootscripts
+kpkg_install lfs-bootscripts
 
 # 9.4.1.2. Creating Custom Udev Rules
 bash /usr/lib/udev/init-net-rules.sh

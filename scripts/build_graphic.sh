@@ -224,120 +224,120 @@ export PKG_CONFIG_PATH="/usr/lib/pkgconfig:/usr/local/lib/pkgconfig:/usr/local/s
 export LD_LIBRARY_PATH=/usr/lib:/usr/local/lib
 
 # wayland #
-kpkg_install /alfs packages wayland/wayland
-kpkg_install /alfs packages wayland/wayland-protocols
+kpkg_install wayland/wayland
+kpkg_install wayland/wayland-protocols
 
 # mesa #
-kpkg_install /alfs packages SPIRV-Headers
-kpkg_install /alfs packages SPIRV-Tools
-kpkg_install /alfs packages glslang
+kpkg_install SPIRV-Headers
+kpkg_install SPIRV-Tools
+kpkg_install glslang
 
-kpkg_install /alfs packages SPIRV-LLVM-Translator
-kpkg_install /alfs packages libclc
+kpkg_install SPIRV-LLVM-Translator
+kpkg_install libclc
 
-kpkg_install /alfs packages xorg-lib/libpciaccess
-kpkg_install /alfs packages libdrm
+kpkg_install xorg-lib/libpciaccess
+kpkg_install libdrm
 
-kpkg_install /alfs packages python/Mako
+kpkg_install python/Mako
 
-kpkg_install /alfs packages python/ply
+kpkg_install python/ply
 
-kpkg_install /alfs packages cbindgen
+kpkg_install cbindgen
 
-kpkg_install /alfs packages rust-bindgen
+kpkg_install rust-bindgen
 
-kpkg_install /alfs packages xorg-lib/libXxf86vm
+kpkg_install xorg-lib/libXxf86vm
 
-kpkg_install /alfs packages xorg-lib/libxshmfence
+kpkg_install xorg-lib/libxshmfence
 
-kpkg_install /alfs packages mesa
+kpkg_install mesa
 
 # sway #
 ## wlroots ##
-kpkg_install /alfs packages mtdev
-kpkg_install /alfs packages xorg-input-drivers/libevdev
-kpkg_install /alfs packages libgudev
-kpkg_install /alfs packages libwacom
-kpkg_install /alfs packages xorg-input-drivers/libinput
+kpkg_install mtdev
+kpkg_install xorg-input-drivers/libevdev
+kpkg_install libgudev
+kpkg_install libwacom
+kpkg_install xorg-input-drivers/libinput
 
-kpkg_install /alfs packages pixman
+kpkg_install pixman
 
-kpkg_install /alfs packages xorg-data/xkeyboard-config
-kpkg_install /alfs packages xorg-util/util-macros
-kpkg_install /alfs packages xorg/xorgproto
-kpkg_install /alfs packages xorg-lib/libXau
-kpkg_install /alfs packages xorg/xcb-proto
-kpkg_install /alfs packages xorg/libxcb
-kpkg_install /alfs packages xorg-lib/libxcvt
-kpkg_install /alfs packages xorg-font/font-util
-kpkg_install /alfs packages libxkbcommon
+kpkg_install xorg-data/xkeyboard-config
+kpkg_install xorg-util/util-macros
+kpkg_install xorg/xorgproto
+kpkg_install xorg-lib/libXau
+kpkg_install xorg/xcb-proto
+kpkg_install xorg/libxcb
+kpkg_install xorg-lib/libxcvt
+kpkg_install xorg-font/font-util
+kpkg_install libxkbcommon
 
-kpkg_install /alfs packages seatd
-kpkg_install /alfs packages hwdata
-kpkg_install /alfs packages libdisplay-info
-kpkg_install /alfs packages libliftoff
-kpkg_install /alfs packages wayland/wlroots
+kpkg_install seatd
+kpkg_install hwdata
+kpkg_install libdisplay-info
+kpkg_install libliftoff
+kpkg_install wayland/wlroots
 
 ## json-c ##
-kpkg_install /alfs packages json-c
+kpkg_install json-c
 
 ## cairo ##
-kpkg_install /alfs packages xorg-lib/xtrans
-kpkg_install /alfs packages xorg-lib/libX11
-kpkg_install /alfs packages xorg-lib/libXext
-kpkg_install /alfs packages xorg-lib/libXrender
-kpkg_install /alfs packages cairo
+kpkg_install xorg-lib/xtrans
+kpkg_install xorg-lib/libX11
+kpkg_install xorg-lib/libXext
+kpkg_install xorg-lib/libXrender
+kpkg_install cairo
 
 ## pango ##
-kpkg_install /alfs packages pango
+kpkg_install pango
 
-kpkg_install /alfs packages libtiff
-kpkg_install /alfs packages shared-mime-info
-kpkg_install /alfs packages gdk-pixbuf
+kpkg_install libtiff
+kpkg_install shared-mime-info
+kpkg_install gdk-pixbuf
 # depend on cairo, pango, harfbuzz, vala, gdk-pixbuf
-kpkg_install /alfs packages dbus
-kpkg_install /alfs packages vala
-kpkg_install /alfs packages librsvg
+kpkg_install dbus
+kpkg_install vala
+kpkg_install librsvg
 # rebuild cairo
-kpkg_install /alfs packages cairo
+kpkg_install cairo
 # rebuild harfbuzz
-kpkg_install /alfs packages harfbuzz
+kpkg_install harfbuzz
 
 # https://git.sr.ht/~sircmpwn/scdoc/archive/1.11.3.tar.gz
 # make PREFIX=/usr
 # sudo make PREFIX=/usr install
-# kpkg_install /alfs packages scdoc
+# kpkg_install scdoc
 
 ## swaybg ##
-kpkg_install /alfs packages wayland/swaybg
+kpkg_install wayland/swaybg
 
-kpkg_install /alfs packages wayland/sway
+kpkg_install wayland/sway
 # sway #
 
 # 4.0 Graphic toolkit GTK+3
-kpkg_install /alfs packages xorg-lib/libXfixes
-kpkg_install /alfs packages xorg-lib/libXi
-kpkg_install /alfs packages xorg-lib/libXtst
-kpkg_install /alfs packages at-spi2-core
+kpkg_install xorg-lib/libXfixes
+kpkg_install xorg-lib/libXi
+kpkg_install xorg-lib/libXtst
+kpkg_install at-spi2-core
 
-kpkg_install /alfs packages libepoxy
+kpkg_install libepoxy
 
-kpkg_install /alfs packages xorg-lib/libXrandr
+kpkg_install xorg-lib/libXrandr
 
-kpkg_install /alfs packages gtk+
+kpkg_install gtk+
 
 # 4.1 Status bar: waybar
 ## gtkmm ##
-kpkg_install /alfs packages mm-common
-kpkg_install /alfs packages libsigc++
-kpkg_install /alfs packages libcairomm-1.0
+kpkg_install mm-common
+kpkg_install libsigc++
+kpkg_install libcairomm-1.0
 
-kpkg_install /alfs packages glibmm
-kpkg_install /alfs packages atkmm
+kpkg_install glibmm
+kpkg_install atkmm
 
-kpkg_install /alfs packages pangomm
+kpkg_install pangomm
 
-kpkg_install /alfs packages gtkmm
+kpkg_install gtkmm
 
 # libgtk-3-dev
 # gobject-introspection
@@ -348,37 +348,37 @@ kpkg_install /alfs packages gtkmm
 
 # Network module
 ## libnl ##
-kpkg_install /alfs packages libnl
+kpkg_install libnl
 
 # Tray module
 # libappindicator-gtk3
 ## libdbusmenu-gtk3 ##
-kpkg_install /alfs packages gnome-common
-kpkg_install /alfs packages python-dep/editables
-kpkg_install /alfs packages python-dep/pathspec
-kpkg_install /alfs packages python-dep/setuptools_scm
-kpkg_install /alfs packages python-dep/pluggy
-kpkg_install /alfs packages python-dep/trove-classifiers
-kpkg_install /alfs packages python-dep/hatchling
-kpkg_install /alfs packages python/Pygments
-kpkg_install /alfs packages itstool
-kpkg_install /alfs packages gtk-doc-tools
-kpkg_install /alfs packages libdbusmenu-gtk3
+kpkg_install gnome-common
+kpkg_install python-dep/editables
+kpkg_install python-dep/pathspec
+kpkg_install python-dep/setuptools_scm
+kpkg_install python-dep/pluggy
+kpkg_install python-dep/trove-classifiers
+kpkg_install python-dep/hatchling
+kpkg_install python/Pygments
+kpkg_install itstool
+kpkg_install gtk-doc-tools
+kpkg_install libdbusmenu-gtk3
 
 # MPD module
 ## libmpdclient ##
-kpkg_install /alfs packages libmpdclient
+kpkg_install libmpdclient
 
 # sndio module
 ## libsndio ##
-kpkg_install /alfs packages libsndio
+kpkg_install libsndio
 
 # KeyboardState module
 # libevdev installed
 
 # UPower battery module
 ## upower ##
-kpkg_install /alfs packages upower
+kpkg_install upower
 
 # libinotify
 # epoll-shim
@@ -389,39 +389,39 @@ kpkg_install /alfs packages upower
 # clang-tidy
 
 ## cava ##
-kpkg_install /alfs packages fftw
-kpkg_install /alfs packages iniparser
-kpkg_install /alfs packages cava
+kpkg_install fftw
+kpkg_install iniparser
+kpkg_install cava
 
 ## spdlog ##
-kpkg_install /alfs packages fmt
-kpkg_install /alfs packages Catch2
-kpkg_install /alfs packages spdlog
+kpkg_install fmt
+kpkg_install Catch2
+kpkg_install spdlog
 
 ## gtk-layer-shell ##
-kpkg_install /alfs packages wayland/gtk-layer-shell
+kpkg_install wayland/gtk-layer-shell
 
 ## jsoncpp ##
-kpkg_install /alfs packages jsoncpp
+kpkg_install jsoncpp
 
-kpkg_install /alfs packages wayland/Waybar
+kpkg_install wayland/Waybar
 
 # 4.2 Terminal: foot
-kpkg_install /alfs packages wayland/tllist
-kpkg_install /alfs packages wayland/fcft
-kpkg_install /alfs packages wayland/foot
+kpkg_install wayland/tllist
+kpkg_install wayland/fcft
+kpkg_install wayland/foot
 
 # 4.3 Application launcher: wofi
-kpkg_install /alfs packages wayland/wofi
+kpkg_install wayland/wofi
 
 # 4.4 System idle: swayidle + swaylock
-kpkg_install /alfs packages wayland/swayidle
-kpkg_install /alfs packages wayland/swaylock
+kpkg_install wayland/swayidle
+kpkg_install wayland/swaylock
 
 # 4.5 Sound: pipewire + alsamixer
-kpkg_install /alfs packages json-glib
-kpkg_install /alfs packages libcanberra
-kpkg_install /alfs packages pavucontrol
+kpkg_install json-glib
+kpkg_install libcanberra
+kpkg_install pavucontrol
 
 # 4.6 Screenshots: wayshot (grimshot)
 
@@ -431,19 +431,19 @@ kpkg_install /alfs packages pavucontrol
 # cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local ..
 
 # 4.8 Notifications: mako
-kpkg_install /alfs packages wayland/basu
-kpkg_install /alfs packages wayland/mako
+kpkg_install wayland/basu
+kpkg_install wayland/mako
 
 # Themes
 # /usr/share/themes
-kpkg_install /alfs packages themes/Nordic-darker
+kpkg_install themes/Nordic-darker
 
 # Icons
 # /usr/share/icons/
 #   GTK+-3.24.43
 #   librsvg-2.58.3
-kpkg_install /alfs packages icons/adwaita-icon-theme
-kpkg_install /alfs packages icons/hicolor-icon-theme
+kpkg_install icons/adwaita-icon-theme
+kpkg_install icons/hicolor-icon-theme
 wget -qO- https://git.io/papirus-icon-theme-install | sh
 # wget -qO- https://git.io/papirus-icon-theme-uninstall | sh
 
@@ -451,7 +451,7 @@ wget -qO- https://git.io/papirus-icon-theme-install | sh
 # /usr/share/fonts
 sudo mkdir -p /usr/share/fonts/opentype
 sudo mkdir -p /usr/share/fonts/truetype
-kpkg_install /alfs packages fonts/FontAwesome
-kpkg_install /alfs packages fonts/Ubuntu
-kpkg_install /alfs packages fonts/FiraCode
-kpkg_install /alfs packages fonts/NotoSansJP
+kpkg_install fonts/FontAwesome
+kpkg_install fonts/Ubuntu
+kpkg_install fonts/FiraCode
+kpkg_install fonts/NotoSansJP

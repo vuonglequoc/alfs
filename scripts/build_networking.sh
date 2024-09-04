@@ -12,11 +12,11 @@
 
 source /alfs/kpkg/kpkg.sh
 
-kpkg_install /alfs packages net-ssleay
-kpkg_install /alfs packages io-socket-ssl
-kpkg_install /alfs packages libevent
-kpkg_install /alfs packages libedit
-kpkg_install /alfs packages ntp
-kpkg_install /alfs packages dhcpcd
+kpkg_install net-ssleay
+kpkg_install io-socket-ssl
+kpkg_install libevent
+kpkg_install libedit
+kpkg_install ntp
+kpkg_install dhcpcd
 
 # Wireless: TODO

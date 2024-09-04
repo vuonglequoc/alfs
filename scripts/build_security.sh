@@ -101,26 +101,26 @@ fi
 
 source /alfs/kpkg/kpkg.sh
 
-kpkg_install /alfs packages krb5
-kpkg_install /alfs packages libtirpc
-kpkg_install /alfs packages linux-pam
+kpkg_install krb5
+kpkg_install libtirpc
+kpkg_install linux-pam
 
-kpkg_install /alfs packages cracklib
-kpkg_install /alfs packages python/libpwquality
+kpkg_install cracklib
+kpkg_install python/libpwquality
 
 # rebuild libcap, shadow, sudo
-kpkg_install /alfs packages libcap_pam
-kpkg_install /alfs packages shadow_pam
-kpkg_install /alfs packages unzip
-kpkg_install /alfs packages sqlite
+kpkg_install libcap_pam
+kpkg_install shadow_pam
+kpkg_install unzip
+kpkg_install sqlite
 # rebuild python with sqlite for building firefox later
-kpkg_install /alfs packages python
-kpkg_install /alfs packages cyrus-sasl
-kpkg_install /alfs packages openldap
-kpkg_install /alfs packages sudo_pam
+kpkg_install python
+kpkg_install cyrus-sasl
+kpkg_install openldap
+kpkg_install sudo_pam
 
 # Setting Up a Network Firewall
-kpkg_install /alfs packages iptables
+kpkg_install iptables
 # Modify iptables for other rules
 # /etc/rc.d/rc.iptables
 # Update Linux Kernel for iptables
@@ -132,51 +132,51 @@ cp -v arch/x86_64/boot/bzImage /boot/vmlinuz-$(uname -r)-lfs-12.1
 cp -v System.map /boot/System.map-$(uname -r)-lfs-12.1
 cp -v .config /boot/config-$(uname -r)-lfs-12.1
 
-kpkg_install /alfs packages stunnel
+kpkg_install stunnel
 # /etc/stunnel/stunnel.conf
 # add the service(s) you wish to encrypt to the configuration file. The format is as follows:
 # [<service>]
 # accept  = <hostname:portnumber>
 # connect = <hostname:portnumber>
 
-kpkg_install /alfs packages nspr
-kpkg_install /alfs packages nss
-kpkg_install /alfs packages libgpg-error
-kpkg_install /alfs packages libgcrypt
-kpkg_install /alfs packages icu
-kpkg_install /alfs packages libxml2
-kpkg_install /alfs packages sgml-common
-kpkg_install /alfs packages docbook-xml
-kpkg_install /alfs packages zip
-kpkg_install /alfs packages docbook-xsl-nons
-kpkg_install /alfs packages libxslt
-kpkg_install /alfs packages libtasn1
-kpkg_install /alfs packages p11-kit
-kpkg_install /alfs packages make-ca
+kpkg_install nspr
+kpkg_install nss
+kpkg_install libgpg-error
+kpkg_install libgcrypt
+kpkg_install icu
+kpkg_install libxml2
+kpkg_install sgml-common
+kpkg_install docbook-xml
+kpkg_install zip
+kpkg_install docbook-xsl-nons
+kpkg_install libxslt
+kpkg_install libtasn1
+kpkg_install p11-kit
+kpkg_install make-ca
 
 # Enable Certificate Check for Wget
 sed -i "s/check_certificate = off/check_certificate = on/g" /home/$NONROOT_USER/.wgetrc
 
-kpkg_install /alfs packages nettle
-kpkg_install /alfs packages libunistring
-kpkg_install /alfs packages unbound
-kpkg_install /alfs packages gnutls
-kpkg_install /alfs packages libassuan
-kpkg_install /alfs packages libksba
-kpkg_install /alfs packages npth
-kpkg_install /alfs packages pinentry
-kpkg_install /alfs packages libidn2
-kpkg_install /alfs packages libpsl
-kpkg_install /alfs packages curl
-kpkg_install /alfs packages libarchive
-kpkg_install /alfs packages libuv
-kpkg_install /alfs packages cmake
-kpkg_install /alfs packages nasm
-kpkg_install /alfs packages python/Cython
-kpkg_install /alfs packages yasm
-kpkg_install /alfs packages libjpeg-turbo
-kpkg_install /alfs packages libpng
-kpkg_install /alfs packages imagemagick
-kpkg_install /alfs packages libusb
+kpkg_install nettle
+kpkg_install libunistring
+kpkg_install unbound
+kpkg_install gnutls
+kpkg_install libassuan
+kpkg_install libksba
+kpkg_install npth
+kpkg_install pinentry
+kpkg_install libidn2
+kpkg_install libpsl
+kpkg_install curl
+kpkg_install libarchive
+kpkg_install libuv
+kpkg_install cmake
+kpkg_install nasm
+kpkg_install python/Cython
+kpkg_install yasm
+kpkg_install libjpeg-turbo
+kpkg_install libpng
+kpkg_install imagemagick
+kpkg_install libusb
 # No need update Linux Kernel for usb because it's existed by default
-kpkg_install /alfs packages gnupg
+kpkg_install gnupg

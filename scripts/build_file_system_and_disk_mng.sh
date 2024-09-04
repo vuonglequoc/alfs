@@ -6,7 +6,7 @@
 
 source /alfs/kpkg/kpkg.sh
 
-kpkg_install /alfs packages dosfstools
+kpkg_install dosfstools
 # No need update Linux Kernel for FAT because already config for GRUB UEFI
 
 # Update Linux Kernel for exFAT, NTFS support
@@ -25,4 +25,4 @@ exec mount -t ntfs3 "$@"
 EOF
 chmod -v 755 /usr/sbin/mount.ntfs
 
-kpkg_install /alfs packages smartmontools
+kpkg_install smartmontools

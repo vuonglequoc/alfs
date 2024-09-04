@@ -29,21 +29,21 @@ export XORG_CONFIG="--prefix=$XORG_PREFIX --sysconfdir=/etc \
 export PKG_CONFIG_PATH="/usr/lib/pkgconfig:/usr/local/lib/pkgconfig:/usr/local/share/pkgconfig"
 
 # firefox #
-kpkg_install /alfs packages brotli
-kpkg_install /alfs packages c-ares
-kpkg_install /alfs packages nghttp2
-kpkg_install /alfs packages nodejs
-kpkg_install /alfs packages libwebp
-kpkg_install /alfs packages xorg-lib/libXcomposite
-kpkg_install /alfs packages xorg-lib/libXcursor
-kpkg_install /alfs packages xorg-lib/libXdamage
-kpkg_install /alfs packages xorg-lib/libICE
-kpkg_install /alfs packages xorg-lib/libSM
-kpkg_install /alfs packages libnotify
-kpkg_install /alfs packages firefox
+kpkg_install brotli
+kpkg_install c-ares
+kpkg_install nghttp2
+kpkg_install nodejs
+kpkg_install libwebp
+kpkg_install xorg-lib/libXcomposite
+kpkg_install xorg-lib/libXcursor
+kpkg_install xorg-lib/libXdamage
+kpkg_install xorg-lib/libICE
+kpkg_install xorg-lib/libSM
+kpkg_install libnotify
+kpkg_install firefox
 
 # pcmanfm-gtk3 #
-kpkg_install /alfs packages libfm-extra
-kpkg_install /alfs packages menu-cache
-kpkg_install /alfs packages libfm-gtk3
-kpkg_install /alfs packages pcmanfm-gtk3
+kpkg_install libfm-extra
+kpkg_install menu-cache
+kpkg_install libfm-gtk3
+kpkg_install pcmanfm-gtk3

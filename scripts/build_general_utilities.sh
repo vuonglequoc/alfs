@@ -6,7 +6,7 @@
 
 source /alfs/kpkg/kpkg.sh
 
-kpkg_install /alfs packages llvm
-kpkg_install /alfs packages libssh2
-kpkg_install /alfs packages git
-kpkg_install /alfs packages rustc
+kpkg_install llvm
+kpkg_install libssh2
+kpkg_install git
+kpkg_install rustc

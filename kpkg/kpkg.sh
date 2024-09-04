@@ -7,24 +7,24 @@ timestamp() {
 
 kpkg_install_proc()
 {
-  # sample: kpkg_install_proc $ALFS toolchain gcc
-  if [[ $3 == *"/"* ]]; then
-    sub_dir=$(dirname "$3")
+  # sample: kpkg_install_proc $ALFS gcc
+  if [[ $2 == *"/"* ]]; then
+    sub_dir=$(dirname "$2")
   else
     sub_dir=""
   fi
 
-  if [ ! -d "$1/logs/$2/$sub_dir" ]; then
-    mkdir -p $1/logs/$2/$sub_dir
+  if [ ! -d "$1/logs/packages/$sub_dir" ]; then
+    mkdir -p $1/logs/packages/$sub_dir
   fi
 
-  echo "$(timestamp) $3 start"
-  echo "$(timestamp) $3 start" >> $1/logs/build.log
+  echo "$(timestamp) $2 start"
+  echo "$(timestamp) $2 start" >> $1/logs/build.log
 
   export KPKG_ROOT
 
   source $1/kpkg/kpkg_template.sh
-  source $1/$2/$3.sh
+  source $1/packages/$2.sh
 
   if [[ "$KPKG_RECORD" -eq 1 ]]; then
     if [ ! -d "$KPKG_TMP_DIR" ]; then
@@ -48,7 +48,7 @@ kpkg_install_proc()
   export -f k_record
   export -f k_build_clean
 
-  $1/kpkg/kpkg_install_template.sh 1> $1/logs/$2/$3.log 2> $1/logs/$2/$3.err.log
+  $1/kpkg/kpkg_install_template.sh 1> $1/logs/packages/$2.log 2> $1/logs/packages/$2.err.log
 
   unset KPKG_ROOT
   unset KPKG_RECORD
@@ -67,13 +67,13 @@ kpkg_install_proc()
   unset k_record
   unset k_build_clean
 
-  echo "$(timestamp) $3 end"
-  echo "$(timestamp) $3 end" >> $1/logs/build.log
+  echo "$(timestamp) $2 end"
+  echo "$(timestamp) $2 end" >> $1/logs/build.log
 }
 
 kpkg_installtool()
 {
-  # sample: kpkg_installtool $ALFS toolchain gcc
+  # sample: kpkg_installtool gcc
   if [ "$(whoami)" != "lfs" ]; then
     echo "Script must be run as user: lfs"
     echo "sudo su lfs"
@@ -82,12 +82,12 @@ kpkg_installtool()
 
   KPKG_ROOT=$LFS
   KPKG_RECORD=0
-  kpkg_install_proc $1 $2 $3
+  kpkg_install_proc $ALFS $1
 }
 
 kpkg_install()
 {
-  # sample: kpkg_install /alfs packages gcc
+  # sample: kpkg_install gcc
   if [ "$EUID" -ne 0 ]; then
     echo "Please run as root"
     echo "sudo su"
@@ -96,5 +96,5 @@ kpkg_install()
 
   KPKG_ROOT=
   KPKG_RECORD=1
-  kpkg_install_proc $1 $2 $3
+  kpkg_install_proc /alfs $1
 }
