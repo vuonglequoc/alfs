@@ -15,10 +15,6 @@ k_check() {
   :
 }
 
-k_install() {
-  make prefix=/usr MANDIR=/usr/share/man/man1 -f unix/Makefile install
-}
-
-k_pre_record() {
+k_pre_install() {
   make DESTDIR=$KPKG_TMP_DIR prefix=/usr MANDIR=/usr/share/man/man1 -f unix/Makefile install
 }

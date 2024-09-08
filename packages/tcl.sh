@@ -38,17 +38,20 @@ k_check() {
   make test
 }
 
-k_post_install() {
-  chmod -v u+w /usr/lib/libtcl8.6.so
+k_pre_install() {
+  make DESTDIR=$KPKG_TMP_DIR install
 
-  make install-private-headers
+  chmod -v u+w $KPKG_TMP_DIR/usr/lib/libtcl8.6.so
 
-  ln -sfv tclsh8.6 /usr/bin/tclsh
+  make DESTDIR=$KPKG_TMP_DIR install-private-headers
 
-  mv /usr/share/man/man3/{Thread,Tcl_Thread}.3
+  ln -sfv tclsh8.6 $KPKG_TMP_DIR/usr/bin/tclsh
 
+  mv $KPKG_TMP_DIR/usr/share/man/man3/{Thread,Tcl_Thread}.3
+
+  # Doc
   cd ..
   tar -xf ../tcl8.6.13-html.tar.gz --strip-components=1
-  mkdir -v -p /usr/share/doc/tcl-8.6.13
-  cp -v -r  ./html/* /usr/share/doc/tcl-8.6.13
+  mkdir -v -p $KPKG_TMP_DIR/usr/share/doc/tcl-8.6.13
+  cp -v -r  ./html/* $KPKG_TMP_DIR/usr/share/doc/tcl-8.6.13
 }

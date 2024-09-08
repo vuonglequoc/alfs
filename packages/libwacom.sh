@@ -23,11 +23,7 @@ k_check() {
   ninja test
 }
 
-k_install() {
+k_pre_install() {
   rm -rf /usr/share/libwacom
-  ninja install
-}
-
-k_pre_record() {
   DESTDIR=$KPKG_TMP_DIR ninja install
 }

@@ -35,6 +35,14 @@ k_check() {
   ../contrib/test_summary
 }
 
+k_pre_install() {
+  make DESTDIR=$KPKG_TMP_DIR install
+
+  # move misplaced file
+  mkdir -pv $KPKG_TMP_DIR/usr/share/gdb/auto-load/usr/lib
+  mv -v $KPKG_TMP_DIR/usr/lib/*gdb.py $KPKG_TMP_DIR/usr/share/gdb/auto-load/usr/lib
+}
+
 k_post_install() {
   chown -Rv root:root \
       /usr/lib/gcc/$(gcc -dumpmachine)/13.2.0/include{,-fixed}
@@ -81,8 +89,4 @@ k_post_install() {
   # found ld-linux-x86-64.so.2 at /usr/lib/ld-linux-x86-64.so.2
 
   rm -v dummy.c a.out dummy.log
-
-  # move misplaced file
-  mkdir -pv /usr/share/gdb/auto-load/usr/lib
-  mv -v /usr/lib/*gdb.py /usr/share/gdb/auto-load/usr/lib
 }

@@ -33,19 +33,10 @@ k_check() {
   LC_ALL=C ninja test
 }
 
-k_install() {
-  ninja install
-  ln -sfv /usr/libexec/p11-kit/trust-extract-compat \
-          /usr/bin/update-ca-certificates
-}
-
-k_post_install() {
-  ln -sfv ./pkcs11/p11-kit-trust.so /usr/lib/libnssckbi.so
-}
-
-k_pre_record() {
+k_pre_install() {
   DESTDIR=$KPKG_TMP_DIR ninja install
-  ln -sfv $KPKG_TMP_DIR/usr/libexec/p11-kit/trust-extract-compat \
+
+  ln -sfv /usr/libexec/p11-kit/trust-extract-compat \
           $KPKG_TMP_DIR/usr/bin/update-ca-certificates
   ln -sfv ./pkcs11/p11-kit-trust.so $KPKG_TMP_DIR/usr/lib/libnssckbi.so
 }

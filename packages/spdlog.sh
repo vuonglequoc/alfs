@@ -25,11 +25,8 @@ k_check() {
   :
 }
 
-k_post_install() {
-  sudo install -Dm644 ../LICENSE -t /usr/share/licenses/spdlog/
-}
-
-k_pre_record() {
+k_pre_install() {
   make DESTDIR=$KPKG_TMP_DIR install
-  sudo install -Dm644 ../LICENSE -t $KPKG_TMP_DIR/usr/share/licenses/spdlog/
+
+  install -Dm644 ../LICENSE -t $KPKG_TMP_DIR/usr/share/licenses/spdlog/
 }

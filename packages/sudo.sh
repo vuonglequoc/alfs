@@ -16,15 +16,12 @@ k_check() {
   env LC_ALL=C make check |& tee make-check.log
 }
 
-k_post_install() {
+k_pre_install() {
+make DESTDIR=$KPKG_TMP_DIR install
+
+mkdir $KPKG_TMP_DIR/etc/sudoers.d
 cat > /etc/sudoers.d/00-sudo << "EOF"
 Defaults secure_path="/usr/sbin:/usr/bin"
 %wheel ALL=(ALL) ALL
 EOF
-}
-
-k_pre_record() {
-  make DESTDIR=$KPKG_TMP_DIR install
-
-  cp -v /etc/sudoers.d/00-sudo $KPKG_TMP_DIR/etc/sudoers.d/00-sudo
 }

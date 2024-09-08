@@ -19,27 +19,15 @@ k_check() {
   :
 }
 
-k_install() {
+k_pre_install() {
   make DESTDIR=$PWD/dest install
-  install -vm755 dest/usr/lib/libncursesw.so.6.4 /usr/lib
+
+  mkdir -p $KPKG_TMP_DIR/usr/lib
+  install -vm755 dest/usr/lib/libncursesw.so.6.4 $KPKG_TMP_DIR/usr/lib
   rm -v  dest/usr/lib/libncursesw.so.6.4
+
   sed -e 's/^#if.*XOPEN.*$/#if 1/' \
       -i dest/usr/include/curses.h
-  cp -av dest/* /
-}
-
-k_post_install() {
-  for lib in ncurses form panel menu ; do
-      ln -sfv lib${lib}w.so /usr/lib/lib${lib}.so
-      ln -sfv ${lib}w.pc    /usr/lib/pkgconfig/${lib}.pc
-  done
-
-  ln -sfv libncursesw.so /usr/lib/libcurses.so
-
-  cp -v -R doc -T /usr/share/doc/ncurses-6.4-20230520
-}
-
-k_pre_record() {
   cp -av dest/* $KPKG_TMP_DIR
 
   for lib in ncurses form panel menu ; do

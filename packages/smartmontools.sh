@@ -15,17 +15,7 @@ k_check() {
   :
 }
 
-k_post_install() {
-  cd $KPKG_ROOT/sources
-  tar -xf blfs-bootscripts-20240416.tar.xz
-  cd blfs-bootscripts-20240416
-  make install-smartd
-  cd $KPKG_ROOT/sources
-  rm -r blfs-bootscripts-20240416
-}
-
-k_pre_record() {
-  cd $KPKG_ROOT/sources/$KPKG_SRC_FOLDER
+k_pre_install() {
   make DESTDIR=$KPKG_TMP_DIR install
 
   cd $KPKG_ROOT/sources

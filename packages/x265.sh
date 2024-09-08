@@ -18,12 +18,8 @@ k_check() {
   :
 }
 
-k_install() {
-  make install
-  rm -vf /usr/lib/libx265.a
-}
-
-k_pre_record() {
+k_pre_install() {
   make DESTDIR=$KPKG_TMP_DIR install
+
   rm -vf $KPKG_TMP_DIR/usr/lib/libx265.a
 }

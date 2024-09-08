@@ -24,12 +24,8 @@ k_check() {
   ninja runtests
 }
 
-k_install() {
-  ninja install
-  rm -v /usr/lib/libaom.a
-}
-
-k_pre_record() {
+k_pre_install() {
   DESTDIR=$KPKG_TMP_DIR ninja install
+
   rm -v $KPKG_TMP_DIR/usr/lib/libaom.a
 }

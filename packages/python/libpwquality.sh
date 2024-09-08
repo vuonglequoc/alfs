@@ -19,14 +19,13 @@ k_check() {
   :
 }
 
-k_install() {
-  make install
-  pip3 install --no-index --find-links=dist --no-cache-dir --no-user pwquality
-}
+k_pre_install() {
+make DESTDIR=$KPKG_TMP_DIR install
 
-k_post_install() {
-mv /etc/pam.d/system-password{,.orig}
-cat > /etc/pam.d/system-password << "EOF"
+pip3 install --no-index --find-links=dist --no-cache-dir --no-user pwquality
+
+mv $KPKG_TMP_DIR/etc/pam.d/system-password{,.orig}
+cat > $KPKG_TMP_DIR/etc/pam.d/system-password << "EOF"
 # Begin /etc/pam.d/system-password
 
 # check new passwords for strength (man pam_pwquality)
@@ -46,11 +45,4 @@ password  required    pam_unix.so        yescrypt shadow try_first_pass
 
 # End /etc/pam.d/system-password
 EOF
-}
-
-k_pre_record() {
-  make DESTDIR=$KPKG_TMP_DIR install
-
-  mkdir -p /etc/pam.d
-  cp /etc/pam.d/system-password $KPKG_TMP_DIR/etc/pam.d/system-password
 }

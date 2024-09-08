@@ -16,12 +16,10 @@ k_check() {
   :
 }
 
-k_install() {
-  make BINDIR=/sbin install
-}
+k_pre_install() {
+make DESTDIR=$KPKG_TMP_DIR BINDIR=/sbin install
 
-k_post_install() {
-cat > /etc/syslog.conf << "EOF"
+cat > $KPKG_TMP_DIR/etc/syslog.conf << "EOF"
 # Begin /etc/syslog.conf
 
 auth,authpriv.* -/var/log/auth.log
@@ -34,10 +32,4 @@ user.* -/var/log/user.log
 
 # End /etc/syslog.conf
 EOF
-}
-
-k_pre_record() {
-  make DESTDIR=$KPKG_TMP_DIR BINDIR=/sbin install
-
-  cp -v /etc/syslog.conf $KPKG_TMP_DIR/etc/syslog.conf
 }

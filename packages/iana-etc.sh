@@ -15,11 +15,7 @@ k_check() {
   :
 }
 
-k_install() {
-  cp services protocols /etc
-}
-
-k_pre_record() {
+k_pre_install() {
   mkdir -p $KPKG_TMP_DIR/etc
   cp services protocols $KPKG_TMP_DIR/etc
 }

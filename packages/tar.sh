@@ -8,6 +8,8 @@ k_configure() {
   ./configure --prefix=/usr
 }
 
-k_post_install() {
-  make -C doc install-html docdir=/usr/share/doc/tar-1.35
+k_pre_install() {
+  make DESTDIR=$KPKG_TMP_DIR install
+
+  make DESTDIR=$KPKG_TMP_DIR -C doc install-html docdir=/usr/share/doc/tar-1.35
 }

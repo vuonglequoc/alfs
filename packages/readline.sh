@@ -25,15 +25,7 @@ k_check() {
   :
 }
 
-k_install() {
-  make SHLIB_LIBS="-lncursesw" install
-}
-
-k_post_install() {
-  install -v -m644 doc/*.{ps,pdf,html,dvi} /usr/share/doc/readline-8.2
-}
-
-k_pre_record() {
+k_pre_install() {
   make DESTDIR=$KPKG_TMP_DIR SHLIB_LIBS="-lncursesw" install
 
   install -v -m644 doc/*.{ps,pdf,html,dvi} $KPKG_TMP_DIR/usr/share/doc/readline-8.2

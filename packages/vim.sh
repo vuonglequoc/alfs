@@ -17,15 +17,17 @@ k_check() {
     &> vim-test.log
 }
 
-k_post_install() {
-ln -sv vim /usr/bin/vi
-for L in  /usr/share/man/{,*/}man1/vim.1; do
+k_pre_install() {
+make DESTDIR=$KPKG_TMP_DIR install
+
+ln -sv vim $KPKG_TMP_DIR/usr/bin/vi
+for L in  $KPKG_TMP_DIR/usr/share/man/{,*/}man1/vim.1; do
     ln -sv vim.1 $(dirname $L)/vi.1
 done
 
-ln -sv ../vim/vim91/doc /usr/share/doc/vim-9.1.0041
+ln -sv ../vim/vim91/doc $KPKG_TMP_DIR/usr/share/doc/vim-9.1.0041
 
-cat > /etc/vimrc << "EOF"
+cat > $KPKG_TMP_DIR/etc/vimrc << "EOF"
 " Begin /etc/vimrc
 
 " Ensure defaults are set before customizing settings, not after

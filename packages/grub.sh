@@ -28,6 +28,8 @@ k_check() {
   :
 }
 
-k_post_install() {
-  mv -v /etc/bash_completion.d/grub /usr/share/bash-completion/completions
+k_pre_install() {
+  make DESTDIR=$KPKG_TMP_DIR install
+
+  mv -v $KPKG_TMP_DIR/etc/bash_completion.d/grub $KPKG_TMP_DIR/usr/share/bash-completion/completions
 }

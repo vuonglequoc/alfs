@@ -12,12 +12,7 @@ k_check() {
   :
 }
 
-k_install() {
-  install -vm755 mandoc   /usr/bin
-  install -vm644 mandoc.1 /usr/share/man/man1
-}
-
-k_pre_record() {
+k_pre_install() {
   mkdir -p $KPKG_TMP_DIR/usr/bin
   mkdir -p $KPKG_TMP_DIR/usr/share/man/man1
   install -vm755 mandoc   $KPKG_TMP_DIR/usr/bin

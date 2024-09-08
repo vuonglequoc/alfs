@@ -7,11 +7,7 @@ k_configure() {
   ./configure --prefix=/usr --disable-static
 }
 
-k_post_install() {
-  make -C doc/reference install-data-local
-}
-
-k_pre_record() {
+k_pre_install() {
   make DESTDIR=$KPKG_TMP_DIR install
   make DESTDIR=$KPKG_TMP_DIR -C doc/reference install-data-local
 }

@@ -13,12 +13,7 @@ k_install() {
   make -C libelf install
 }
 
-k_post_install() {
-  install -vm644 config/libelf.pc /usr/lib/pkgconfig
-  rm /usr/lib/libelf.a
-}
-
-k_pre_record() {
+k_pre_install() {
   make DESTDIR=$KPKG_TMP_DIR -C libelf install
 
   mkdir -p $KPKG_TMP_DIR/usr/lib/pkgconfig

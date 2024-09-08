@@ -7,6 +7,8 @@ k_configure() {
   ./configure --prefix=/usr
 }
 
-k_post_install() {
-  rm -fv /usr/lib/libz.a
+k_pre_install() {
+  make DESTDIR=$KPKG_TMP_DIR install
+
+  rm -fv $KPKG_TMP_DIR/usr/lib/libz.a
 }

@@ -11,6 +11,10 @@ k_check() {
   :
 }
 
+k_pre_install() {
+  :
+}
+
 k_install() {
   cp -v gettext-tools/src/{msgfmt,msgmerge,xgettext} /usr/bin
 }

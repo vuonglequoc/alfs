@@ -16,13 +16,17 @@ k_check() {
   env LC_ALL=C make check |& tee make-check.log
 }
 
-k_post_install() {
+k_pre_install() {
+make DESTDIR=$KPKG_TMP_DIR install
+
+mkdir $KPKG_TMP_DIR/etc/sudoers.d
 cat > /etc/sudoers.d/00-sudo << "EOF"
 Defaults secure_path="/usr/sbin:/usr/bin"
 %wheel ALL=(ALL) ALL
 EOF
 
-cat > /etc/pam.d/sudo << "EOF"
+mkdir $KPKG_TMP_DIR/etc/pam.d
+cat > $KPKG_TMP_DIR/etc/pam.d/sudo << "EOF"
 # Begin /etc/pam.d/sudo
 
 # include the default auth settings
@@ -39,13 +43,5 @@ session   include     system-session
 
 # End /etc/pam.d/sudo
 EOF
-chmod 644 /etc/pam.d/sudo
-}
-
-k_pre_record() {
-  make DESTDIR=$KPKG_TMP_DIR install
-
-  cp -v /etc/sudoers.d/00-sudo $KPKG_TMP_DIR/etc/sudoers.d/00-sudo
-  mkdir $KPKG_TMP_DIR/etc/pam.d
-  cp -v /etc/pam.d/sudo $KPKG_TMP_DIR/etc/pam.d/sudo
+chmod 644 $KPKG_TMP_DIR/etc/pam.d/sudo
 }

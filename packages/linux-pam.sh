@@ -35,15 +35,13 @@ make check
 rm -fv /etc/pam.d/other
 }
 
-k_install() {
-  make install
-  chmod -v 4755 /usr/sbin/unix_chkpwd
-}
+k_pre_install() {
+make DESTDIR=$KPKG_TMP_DIR install
+chmod -v 4755 $KPKG_TMP_DIR/usr/sbin/unix_chkpwd
 
-k_post_install() {
-install -vdm755 /etc/pam.d
+install -vdm755 $KPKG_TMP_DIR/etc/pam.d
 
-cat > /etc/pam.d/system-account << "EOF"
+cat > $KPKG_TMP_DIR/etc/pam.d/system-account << "EOF"
 # Begin /etc/pam.d/system-account
 
 account   required    pam_unix.so
@@ -51,7 +49,7 @@ account   required    pam_unix.so
 # End /etc/pam.d/system-account
 EOF
 
-cat > /etc/pam.d/system-auth << "EOF"
+cat > $KPKG_TMP_DIR/etc/pam.d/system-auth << "EOF"
 # Begin /etc/pam.d/system-auth
 
 auth      required    pam_unix.so
@@ -59,7 +57,7 @@ auth      required    pam_unix.so
 # End /etc/pam.d/system-auth
 EOF
 
-cat > /etc/pam.d/system-session << "EOF"
+cat > $KPKG_TMP_DIR/etc/pam.d/system-session << "EOF"
 # Begin /etc/pam.d/system-session
 
 session   required    pam_unix.so
@@ -67,7 +65,7 @@ session   required    pam_unix.so
 # End /etc/pam.d/system-session
 EOF
 
-cat > /etc/pam.d/system-password << "EOF"
+cat > $KPKG_TMP_DIR/etc/pam.d/system-password << "EOF"
 # Begin /etc/pam.d/system-password
 
 # use yescrypt hash for encryption, use shadow, and try to use any
@@ -78,7 +76,7 @@ password  required    pam_unix.so       yescrypt shadow try_first_pass
 # End /etc/pam.d/system-password
 EOF
 
-cat > /etc/pam.d/other << "EOF"
+cat > $KPKG_TMP_DIR/etc/pam.d/other << "EOF"
 # Begin /etc/pam.d/other
 
 auth        required        pam_warn.so
@@ -92,11 +90,4 @@ session     required        pam_deny.so
 
 # End /etc/pam.d/other
 EOF
-}
-
-k_pre_record() {
-  make DESTDIR=$KPKG_TMP_DIR install
-
-  install -vdm755 $KPKG_TMP_DIR/etc/pam.d
-  cp /etc/pam.d/* $KPKG_TMP_DIR/etc/pam.d/
 }

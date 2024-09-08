@@ -15,14 +15,10 @@ k_check() {
   :
 }
 
+k_pre_install() {
+  :
+}
+
 k_install() {
   pip3 install --no-index --no-user --find-links dist flit_core
-}
-
-k_pre_record() {
-  :
-}
-
-k_record() {
-  :
 }

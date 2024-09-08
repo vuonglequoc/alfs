@@ -22,11 +22,18 @@ kpkg_install_proc()
   echo "$(timestamp) $2 start" >> $1/logs/build.log
 
   export KPKG_ROOT
+  export KPKG_RECORD
 
   source $1/kpkg/kpkg_template.sh
   source $1/packages/$2.sh
 
   if [[ "$KPKG_RECORD" -eq 1 ]]; then
+    if [ ! -d "$KPKG_LOG_DIR" ]; then
+      mkdir -p $KPKG_LOG_DIR
+    fi
+    if [ ! -d "$KPKG_DIST_DIR" ]; then
+      mkdir -p $KPKG_DIST_DIR
+    fi
     if [ ! -d "$KPKG_TMP_DIR" ]; then
       mkdir -p $KPKG_TMP_DIR
     fi
@@ -34,7 +41,10 @@ kpkg_install_proc()
 
   export KPKG_RECORD
   export KPKG_DIR
+  export KPKG_LOG_DIR
+  export KPKG_DIST_DIR
   export KPKG_TMP_DIR
+  export KPKG_LIST_FILE
   export KPKG_SRC_FILE
   export KPKG_SRC_FOLDER
   export -f k_prepare_source
@@ -42,18 +52,21 @@ kpkg_install_proc()
   export -f k_configure
   export -f k_build
   export -f k_check
+  export -f k_pre_install
   export -f k_install
   export -f k_post_install
-  export -f k_pre_record
-  export -f k_record
   export -f k_build_clean
+  export -f timestamp
 
   $1/kpkg/kpkg_install_template.sh 1> $1/logs/packages/$2.log 2> $1/logs/packages/$2.err.log
 
   unset KPKG_ROOT
   unset KPKG_RECORD
   unset KPKG_DIR
+  unset KPKG_LOG_DIR
+  unset KPKG_DIST_DIR
   unset KPKG_TMP_DIR
+  unset KPKG_LIST_FILE
   unset KPKG_SRC_FILE
   unset KPKG_SRC_FOLDER
   unset k_prepare_source
@@ -61,10 +74,9 @@ kpkg_install_proc()
   unset k_configure
   unset k_build
   unset k_check
+  unset k_pre_install
   unset k_install
   unset k_post_install
-  unset k_pre_record
-  unset k_record
   unset k_build_clean
 
   echo "$(timestamp) $2 end"

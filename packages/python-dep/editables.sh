@@ -15,14 +15,10 @@ k_check() {
   :
 }
 
+k_pre_install() {
+  :
+}
+
 k_install() {
   pip3 install --no-index --find-links=dist --no-cache-dir --no-user editables
-}
-
-k_pre_record() {
-  :
-}
-
-k_record() {
-  :
 }

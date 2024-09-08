@@ -15,8 +15,8 @@ k_check() {
   make test
 }
 
-k_install() {
-  make install
+k_pre_install() {
+  make DESTDIR=$KPKG_TMP_DIR install
 
   rm -rf docs/examples/.deps
 
@@ -25,15 +25,10 @@ k_install() {
                -name \*.3       -o  \
                -name CMakeLists.txt \) -delete
 
-  cp -v -R docs -T /usr/share/doc/curl-8.8.0
+  cp -v -R docs -T $KPKG_TMP_DIR/usr/share/doc/curl-8.8.0
 }
 
 k_post_install() {
   curl --trace-ascii debugdump.txt https://www.example.com/
   curl --trace-ascii d.txt --trace-time https://example.com/
-}
-
-k_pre_record() {
-  make DESTDIR=$KPKG_TMP_DIR install
-  cp -v -R docs -T $KPKG_TMP_DIR/usr/share/doc/curl-8.8.0
 }

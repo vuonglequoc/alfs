@@ -20,15 +20,8 @@ k_check() {
   :
 }
 
-k_install() {
-  ninja install
-}
-
-k_post_install() {
-  sudo cp ../src/catch2/internal/catch_config_prefix_messages.hpp /usr/include/catch2/internal/
-}
-
-k_pre_record() {
+k_pre_install() {
   DESTDIR=$KPKG_TMP_DIR ninja install
+
   sudo cp ../src/catch2/internal/catch_config_prefix_messages.hpp $KPKG_TMP_DIR/usr/include/catch2/internal/
 }

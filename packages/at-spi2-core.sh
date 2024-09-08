@@ -23,11 +23,7 @@ k_check() {
   dbus-run-session ninja test
 }
 
-k_install() {
-  ninja install
-  rm /tmp/at-spi-dbus-bus.service
-}
-
-k_pre_record() {
+k_pre_install() {
   DESTDIR=$KPKG_TMP_DIR ninja install
+  rm /tmp/at-spi-dbus-bus.service
 }

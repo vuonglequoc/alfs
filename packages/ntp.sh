@@ -19,12 +19,11 @@ k_configure() {
 }
 
 k_install() {
-  make install
-  install -v -o ntp -g ntp -d /var/lib/ntp
-}
+make DESTDIR=$KPKG_TMP_DIR install
 
-k_post_install() {
-cat > /etc/ntp.conf << "EOF"
+install -v -o ntp -g ntp -d $KPKG_TMP_DIR/var/lib/ntp
+
+cat > $KPKG_TMP_DIR/etc/ntp.conf << "EOF"
 # Asia
 server 0.asia.pool.ntp.org
 
@@ -44,7 +43,7 @@ driftfile /var/lib/ntp/ntp.drift
 pidfile   /run/ntpd.pid
 EOF
 
-cat >> /etc/ntp.conf << "EOF"
+cat >> $KPKG_TMP_DIR/etc/ntp.conf << "EOF"
 # Security session
 restrict    default limited kod nomodify notrap nopeer noquery
 restrict -6 default limited kod nomodify notrap nopeer noquery
@@ -53,14 +52,9 @@ restrict 127.0.0.1
 restrict ::1
 EOF
 
-ln -v -sf ../init.d/setclock /etc/rc.d/rc0.d/K46setclock
-ln -v -sf ../init.d/setclock /etc/rc.d/rc6.d/K46setclock
+ln -v -sf ../init.d/setclock $KPKG_TMP_DIR/etc/rc.d/rc0.d/K46setclock
+ln -v -sf ../init.d/setclock $KPKG_TMP_DIR/etc/rc.d/rc6.d/K46setclock
 
-echo "Please add the following command to root's crontab: ntpd -q with fcrontab -e"
-}
-
-k_pre_record() {
-  make DESTDIR=$KPKG_TMP_DIR install
-  install -v -o ntp -g ntp -d $KPKG_TMP_DIR/var/lib/ntp
-  cp /etc/ntp.conf $KPKG_TMP_DIR/etc/ntp.conf
+k_post_install() {
+  echo "Please add the following command to root's crontab: 0 0 * * * ntpd -q with sudo fcrontab -e"
 }

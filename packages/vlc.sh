@@ -21,10 +21,6 @@ k_configure() {
               --disable-xcb
 }
 
-k_install() {
-  make docdir=/usr/share/doc/vlc-3.0.21 install
-}
-
-k_pre_record() {
+k_pre_install() {
   make DESTDIR=$KPKG_TMP_DIR docdir=/usr/share/doc/vlc-3.0.21 install
 }

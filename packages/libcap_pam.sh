@@ -15,12 +15,7 @@ k_check() {
   :
 }
 
-k_install() {
-  install -v -m755 pam_cap/pam_cap.so /usr/lib/security
-  install -v -m644 pam_cap/capability.conf /etc/security
-}
-
-k_pre_record() {
+k_pre_install() {
   install -v -m755 -d $KPKG_TMP_DIR/usr/lib/security
   install -v -m755 -d $KPKG_TMP_DIR/etc/security
   install -v -m755 pam_cap/pam_cap.so $KPKG_TMP_DIR/usr/lib/security

@@ -25,12 +25,11 @@ k_check() {
   :
 }
 
-k_install() {
-  mkdir -p /usr/share/themes
-  mv $KPKG_SRC_FOLDER /usr/share/themes/Nordic
+k_pre_install() {
+  mkdir -p $KPKG_TMP_DIR/usr/share/themes
+  mv $KPKG_SRC_FOLDER $KPKG_TMP_DIR/usr/share/themes/Nordic
 }
 
-k_pre_record() {
-  mkdir -p $KPKG_TMP_DIR/usr/share/themes/Nordic
-  cp /usr/share/themes/Nordic/* $KPKG_TMP_DIR/usr/share/themes/Nordic/
+k_build_clean() {
+  :
 }

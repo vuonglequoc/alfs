@@ -22,15 +22,8 @@ k_check() {
   :
 }
 
-k_install() {
-  ninja install
-}
-
-k_post_install() {
-  mv -v /usr/share/doc/xorgproto{,-2024.1}
-}
-
-k_pre_record() {
+k_pre_install() {
   DESTDIR=$KPKG_TMP_DIR ninja install
+
   mv -v $KPKG_TMP_DIR/usr/share/doc/xorgproto{,-2024.1}
 }

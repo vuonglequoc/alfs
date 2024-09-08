@@ -26,13 +26,11 @@ k_check() {
   :
 }
 
-k_install() {
-  mkdir -p /usr/share/fonts/truetype/FiraCode
-  mv $KPKG_ROOT/sources/$KPKG_SRC_FOLDER/ttf/*.ttf /usr/share/fonts/truetype/FiraCode/
-  fc-cache -f -v
+k_pre_install() {
+  mkdir -p $KPKG_TMP_DIR/usr/share/fonts/truetype/FiraCode
+  mv $KPKG_ROOT/sources/$KPKG_SRC_FOLDER/ttf/*.ttf $KPKG_TMP_DIR/usr/share/fonts/truetype/FiraCode/
 }
 
-k_pre_record() {
-  mkdir -p $KPKG_TMP_DIR/usr/share/fonts/truetype/FiraCode
-  cp /usr/share/fonts/truetype/FiraCode/*.ttf $KPKG_TMP_DIR/usr/share/fonts/truetype/FiraCode/
+k_post_install() {
+  fc-cache -f -v
 }

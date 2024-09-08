@@ -25,15 +25,8 @@ k_check() {
   ./ninja_test --gtest_filter=-SubprocessTest.SetWithLots
 }
 
-k_install() {
-  install -vm755 ninja /usr/bin/
-  install -vDm644 misc/bash-completion /usr/share/bash-completion/completions/ninja
-  install -vDm644 misc/zsh-completion  /usr/share/zsh/site-functions/_ninja
-}
-
-k_pre_record() {
-  mkdir -p $KPKG_TMP_DIR/usr/bin/
-  install -vm755 ninja $KPKG_TMP_DIR/usr/bin/
+k_pre_install() {
+  install -vDm755 ninja $KPKG_TMP_DIR/usr/bin/ninja
   install -vDm644 misc/bash-completion $KPKG_TMP_DIR/usr/share/bash-completion/completions/ninja
   install -vDm644 misc/zsh-completion  $KPKG_TMP_DIR/usr/share/zsh/site-functions/_ninja
 }

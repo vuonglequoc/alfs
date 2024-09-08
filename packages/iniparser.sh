@@ -11,14 +11,7 @@ k_check() {
   :
 }
 
-k_install() {
-  sudo mkdir -p /usr/include/iniparser/
-  sudo cp src/*.h /usr/include/iniparser/
-  sudo cp libiniparser.* /usr/lib/
-  sudo ln -svf libiniparser.so.1 /usr/lib/libiniparser.so
-}
-
-k_pre_record() {
+k_pre_install() {
   sudo mkdir -p $KPKG_TMP_DIR/usr/include/iniparser/
   sudo cp src/*.h $KPKG_TMP_DIR/usr/include/iniparser/
   sudo cp libiniparser.* $KPKG_TMP_DIR/usr/lib/

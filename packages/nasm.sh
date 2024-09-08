@@ -15,8 +15,10 @@ k_check() {
   :
 }
 
-k_post_install() {
-  install -m755 -d         /usr/share/doc/nasm-2.16.03/html
-  cp -v doc/html/*.html    /usr/share/doc/nasm-2.16.03/html
-  cp -v doc/*.{txt,ps,pdf} /usr/share/doc/nasm-2.16.03
+k_pre_install() {
+  make DESTDIR=$KPKG_TMP_DIR install
+
+  install -m755 -d         $KPKG_TMP_DIR/usr/share/doc/nasm-2.16.03/html
+  cp -v doc/html/*.html    $KPKG_TMP_DIR/usr/share/doc/nasm-2.16.03/html
+  cp -v doc/*.{txt,ps,pdf} $KPKG_TMP_DIR/usr/share/doc/nasm-2.16.03
 }

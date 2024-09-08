@@ -20,11 +20,7 @@ k_check() {
   :
 }
 
-k_install() {
+k_pre_install() {
   rm -rf /usr/share/icons/Adwaita/
-  ninja install
-}
-
-k_pre_record() {
   DESTDIR=$KPKG_TMP_DIR ninja install
 }

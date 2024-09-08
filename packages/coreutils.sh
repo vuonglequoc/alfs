@@ -27,8 +27,10 @@ k_check() {
   groupdel dummy
 }
 
-k_post_install() {
-  mv -v /usr/bin/chroot /usr/sbin
-  mv -v /usr/share/man/man1/chroot.1 /usr/share/man/man8/chroot.8
-  sed -i 's/"1"/"8"/' /usr/share/man/man8/chroot.8
+k_pre_install() {
+  make DESTDIR=$KPKG_TMP_DIR install
+
+  mv -v $KPKG_TMP_DIR/usr/bin/chroot $KPKG_TMP_DIR/usr/sbin
+  mv -v $KPKG_TMP_DIR/usr/share/man/man1/chroot.1 $KPKG_TMP_DIR/usr/share/man/man8/chroot.8
+  sed -i 's/"1"/"8"/' $KPKG_TMP_DIR/usr/share/man/man8/chroot.8
 }

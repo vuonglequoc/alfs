@@ -22,7 +22,9 @@ k_check() {
   :
 }
 
-k_post_install() {
-  cp -v -R docs -T /usr/share/doc/freetype-2.13.2
-  rm -v /usr/share/doc/freetype-2.13.2/freetype-config.1
+k_pre_install() {
+  make DESTDIR=$KPKG_TMP_DIR install
+
+  cp -v -R docs -T $KPKG_TMP_DIR/usr/share/doc/freetype-2.13.2
+  rm -v $KPKG_TMP_DIR/usr/share/doc/freetype-2.13.2/freetype-config.1
 }

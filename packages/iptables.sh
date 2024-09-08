@@ -13,8 +13,10 @@ k_check() {
   :
 }
 
-k_post_install() {
-cat > /etc/rc.d/rc.iptables << "EOF"
+k_pre_install() {
+make DESTDIR=$KPKG_TMP_DIR install
+
+cat > $KPKG_TMP_DIR/etc/rc.d/rc.iptables << "EOF"
 #!/bin/sh
 
 # Begin rc.iptables
@@ -154,27 +156,13 @@ iptables -A INPUT  -p tcp --sport $HTTPPORT -m conntrack --ctstate ESTABLISHED -
 iptables -A OUTPUT -p tcp -m tcp --dport $HTTPSPORT -j ACCEPT
 iptables -A INPUT  -p tcp --sport $HTTPSPORT -m conntrack --ctstate ESTABLISHED -j ACCEPT
 EOF
-chmod 700 /etc/rc.d/rc.iptables
+chmod 700 $KPKG_TMP_DIR/etc/rc.d/rc.iptables
 
 # start the iptables at system boot
 cd $KPKG_ROOT/sources
 tar -xf blfs-bootscripts-20240416.tar.xz
 cd blfs-bootscripts-20240416
-make install-iptables
+make DESTDIR=$KPKG_TMP_DIR install-iptables
 cd $KPKG_ROOT/sources
 rm -r blfs-bootscripts-20240416
-}
-
-k_pre_record() {
-  cd $KPKG_ROOT/sources/$KPKG_SRC_FOLDER
-  make DESTDIR=$KPKG_TMP_DIR install
-
-  cp /etc/rc.d/rc.iptables $KPKG_TMP_DIR/etc/rc.d/rc.iptables
-
-  cd $KPKG_ROOT/sources
-  tar -xf blfs-bootscripts-20240416.tar.xz
-  cd blfs-bootscripts-20240416
-  make DESTDIR=$KPKG_TMP_DIR install-iptables
-  cd $KPKG_ROOT/sources
-  rm -r blfs-bootscripts-20240416
 }

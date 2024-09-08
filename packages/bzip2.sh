@@ -15,23 +15,7 @@ k_configure() {
   :
 }
 
-k_install() {
-  make PREFIX=/usr install
-}
-
-k_post_install() {
-  cp -av libbz2.so.* /usr/lib
-  ln -sv libbz2.so.1.0.8 /usr/lib/libbz2.so
-
-  cp -v bzip2-shared /usr/bin/bzip2
-  for i in /usr/bin/{bzcat,bunzip2}; do
-    ln -sfv bzip2 $i
-  done
-
-  rm -fv /usr/lib/libbz2.a
-}
-
-k_pre_record() {
+k_pre_install() {
   make DESTDIR=$KPKG_TMP_DIR PREFIX=/usr install
 
   cp -av libbz2.so.* $KPKG_TMP_DIR/usr/lib

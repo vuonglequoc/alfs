@@ -12,10 +12,6 @@ k_configure() {
               --disable-static
 }
 
-k_install() {
-  make DOCUMENTATION_PATH=/usr/share/doc/imagemagick-7.1.1 install
-}
-
-k_pre_record() {
+k_pre_install() {
   make DESTDIR=$KPKG_TMP_DIR DOCUMENTATION_PATH=/usr/share/doc/imagemagick-7.1.1 install
 }

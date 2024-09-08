@@ -31,29 +31,21 @@ k_check() {
   :
 }
 
-k_install() {
-  ninja install
+k_pre_install() {
+  # glib without gobject-introspection
+  DESTDIR=$KPKG_TMP_DIR ninja install
 
+  # gobject-introspection
   tar xf ../../gobject-introspection-1.80.1.tar.xz
-
   meson setup gobject-introspection-1.80.1 gi-build \
               --prefix=/usr --buildtype=release
   ninja -C gi-build
-
   # ninja -C gi-build test
+  DESTDIR=$KPKG_TMP_DIR ninja -C gi-build install
 
-  ninja -C gi-build install
-
+  # glib with gobject-introspection
   meson configure -Dintrospection=enabled &&
   ninja
-
-  ninja install
-
-  mkdir -p /usr/share/doc/glib-2.81.0
-  cp -r ../docs/reference/{gio,glib,gobject} /usr/share/doc/glib-2.81.0
-}
-
-k_pre_record() {
   DESTDIR=$KPKG_TMP_DIR ninja install
 
   mkdir -p $KPKG_TMP_DIR/usr/share/doc/glib-2.81.0

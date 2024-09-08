@@ -11,12 +11,8 @@ k_check() {
   :
 }
 
-k_build() {
-  make install
-  rm -v /usr/lib/libSDL2*.a
-}
-
-k_pre_record() {
+k_pre_install() {
   make DESTDIR=$KPKG_TMP_DIR install
+
   rm -v $KPKG_TMP_DIR/usr/lib/libSDL2*.a
 }

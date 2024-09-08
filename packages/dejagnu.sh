@@ -17,7 +17,9 @@ k_build() {
   makeinfo --plaintext       -o doc/dejagnu.txt  ../doc/dejagnu.texi
 }
 
-k_post_install() {
-  install -v -dm755  /usr/share/doc/dejagnu-1.6.3
-  install -v -m644   doc/dejagnu.{html,txt} /usr/share/doc/dejagnu-1.6.3
+k_pre_install() {
+  make DESTDIR=$KPKG_TMP_DIR install
+
+  install -v -dm755  $KPKG_TMP_DIR/usr/share/doc/dejagnu-1.6.3
+  install -v -m644   doc/dejagnu.{html,txt} $KPKG_TMP_DIR/usr/share/doc/dejagnu-1.6.3
 }

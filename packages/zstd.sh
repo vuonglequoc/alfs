@@ -11,15 +11,7 @@ k_build() {
   make prefix=/usr
 }
 
-k_install() {
-  make prefix=/usr install
-}
-
-k_post_install() {
-  rm -v /usr/lib/libzstd.a
-}
-
-k_pre_record() {
+k_pre_install() {
   make DESTDIR=$KPKG_TMP_DIR prefix=/usr install
 
   rm -v $KPKG_TMP_DIR/usr/lib/libzstd.a

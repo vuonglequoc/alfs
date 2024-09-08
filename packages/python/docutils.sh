@@ -15,6 +15,10 @@ k_check() {
   :
 }
 
+k_pre_install() {
+  :
+}
+
 k_install() {
   pip3 install --no-index --find-links=dist --no-cache-dir --no-user docutils
 }
@@ -25,12 +29,4 @@ k_post_install() {
   done
 
   rm -rfv /usr/bin/__pycache__
-}
-
-k_pre_record() {
-  :
-}
-
-k_record() {
-  :
 }

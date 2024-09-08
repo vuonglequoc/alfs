@@ -15,10 +15,6 @@ k_check() {
   LD_LIBRARY_PATH=libmp3lame/.libs make test
 }
 
-k_install() {
-  make pkghtmldir=/usr/share/doc/lame-3.100 install
-}
-
-k_pre_record() {
+k_pre_install() {
   make DESTDIR=$KPKG_TMP_DIR pkghtmldir=/usr/share/doc/lame-3.100 install
 }

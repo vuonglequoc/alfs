@@ -27,34 +27,7 @@ k_check() {
   make -j1 tests
 }
 
-k_post_install() {
-  install -v -m755    contrib/ssh-copy-id /usr/bin
-
-  install -v -m644    contrib/ssh-copy-id.1 \
-                      /usr/share/man/man1
-  install -v -m755 -d /usr/share/doc/openssh-9.8p1
-  install -v -m644    INSTALL LICENCE OVERVIEW README* \
-                      /usr/share/doc/openssh-9.8p1
-
-  echo "PermitRootLogin no" >> /etc/ssh/sshd_config
-
-  # disable password logins
-  # echo "PasswordAuthentication no" >> /etc/ssh/sshd_config
-  # echo "KbdInteractiveAuthentication no" >> /etc/ssh/sshd_config
-
-  # start the SSH server at system boot
-  cd $KPKG_ROOT/sources
-  tar -xf blfs-bootscripts-20240416.tar.xz
-  cd blfs-bootscripts-20240416
-  make install-sshd
-  cd $KPKG_ROOT/sources
-  rm -r blfs-bootscripts-20240416
-}
-
-k_pre_record() {
-  cp -v /var/lib/sshd $KPKG_TMP_DIR/var/lib/sshd
-
-  cd $KPKG_ROOT/sources/$KPKG_SRC_FOLDER
+k_pre_install() {
   make DESTDIR=$KPKG_TMP_DIR install
 
   install -v -m755    contrib/ssh-copy-id $KPKG_TMP_DIR/usr/bin
@@ -65,8 +38,13 @@ k_pre_record() {
   install -v -m644    INSTALL LICENCE OVERVIEW README* \
                       $KPKG_TMP_DIR/usr/share/doc/openssh-9.8p1
 
-  cp -v /etc/ssh/sshd_config $KPKG_TMP_DIR/etc/ssh/sshd_config
+  echo "PermitRootLogin no" >> $KPKG_TMP_DIR/etc/ssh/sshd_config
 
+  # disable password logins
+  # echo "PasswordAuthentication no" >> $KPKG_TMP_DIR/etc/ssh/sshd_config
+  # echo "KbdInteractiveAuthentication no" >> $KPKG_TMP_DIR/etc/ssh/sshd_config
+
+  # start the SSH server at system boot
   cd $KPKG_ROOT/sources
   tar -xf blfs-bootscripts-20240416.tar.xz
   cd blfs-bootscripts-20240416

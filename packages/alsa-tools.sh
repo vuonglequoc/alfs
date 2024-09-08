@@ -47,8 +47,3 @@ k_build() {
 k_check() {
   :
 }
-
-k_pre_record() {
-  mkdir -p $KPKG_TMP_DIR/usr/bin/
-  cp /usr/bin/{as10k1,cspctl,hda-verb,hdsploader,hwmixvolume,init_audigy,init_audigy_eq10,init_live,lo10k1,mixartloader,pcxhrloader,sbiload,sscape_ctl,us428control,usx2yloader,vxloader} $KPKG_TMP_DIR/usr/bin/
-}

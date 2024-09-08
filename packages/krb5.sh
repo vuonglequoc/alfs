@@ -23,17 +23,10 @@ k_check() {
   make -j1 -k check
 }
 
-k_install() {
-  make install
-  cp -vfr ../doc -T /usr/share/doc/krb5-1.21.3
-}
-
-k_post_install() {
-  sed '/PROG_RPATH_FLAGS/d' -i /usr/bin/krb5-config
-}
-
-k_pre_record() {
+k_pre_install() {
   make DESTDIR=$KPKG_TMP_DIR install
 
   cp -vfr ../doc -T $KPKG_TMP_DIR/usr/share/doc/krb5-1.21.3
+
+  sed '/PROG_RPATH_FLAGS/d' -i $KPKG_TMP_DIR/usr/bin/krb5-config
 }

@@ -11,10 +11,6 @@ k_check() {
   :
 }
 
-k_install() {
-  make install LIBDIR=/usr/lib
-}
-
-k_pre_record() {
+k_pre_install() {
   make DESTDIR=$KPKG_TMP_DIR install LIBDIR=/usr/lib
 }

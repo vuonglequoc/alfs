@@ -33,13 +33,11 @@ k_check() {
   :
 }
 
-k_install() {
-  mkdir /etc/pam.d
-  make install
-}
+k_pre_install() {
+mkdir $KPKG_TMP_DIR/etc/pam.d
+make DESTDIR=$KPKG_TMP_DIR install
 
-k_post_install() {
-cat > /usr/bin/run-parts << "EOF" &&
+cat > $KPKG_TMP_DIR/usr/bin/run-parts << "EOF"
 #!/bin/sh
 # run-parts:  Runs all the scripts found in a directory.
 # from Slackware, by Patrick J. Volkerding with ideas borrowed
@@ -90,11 +88,11 @@ done
 exit 0
 EOF
 
-chmod -v 755 /usr/bin/run-parts
+chmod -v 755 $KPKG_TMP_DIR/usr/bin/run-parts
 
-install -vdm754 /etc/cron.{hourly,daily,weekly,monthly}
+install -vdm754 $KPKG_TMP_DIR/etc/cron.{hourly,daily,weekly,monthly}
 
-cat > /var/spool/fcron/systab.orig << "EOF"
+cat > $KPKG_TMP_DIR/var/spool/fcron/systab.orig << "EOF"
 &bootrun 01 * * * * root run-parts /etc/cron.hourly
 &bootrun 02 4 * * * root run-parts /etc/cron.daily
 &bootrun 22 4 * * 0 root run-parts /etc/cron.weekly
@@ -105,27 +103,12 @@ EOF
 cd $KPKG_ROOT/sources
 tar -xf blfs-bootscripts-20240416.tar.xz
 cd blfs-bootscripts-20240416
-make install-fcron
+make DESTDIR=$KPKG_TMP_DIR install-fcron
 cd $KPKG_ROOT/sources
 rm -r blfs-bootscripts-20240416
-
-/etc/rc.d/init.d/fcron start &&
-fcrontab -z -u systab
 }
 
-k_pre_record() {
-  cd $KPKG_ROOT/sources/fcron-3.2.1
-  mkdir -p $KPKG_TMP_DIR/etc/pam.d
-  make DESTDIR=$KPKG_TMP_DIR install
-
-  cp /usr/bin/run-parts $KPKG_TMP_DIR/usr/bin/run-parts
-  install -vdm754 $KPKG_TMP_DIR/etc/cron.{hourly,daily,weekly,monthly}
-  cp /var/spool/fcron/systab.orig $KPKG_TMP_DIR/var/spool/fcron/systab.orig
-
-  cd $KPKG_ROOT/sources
-  tar -xf blfs-bootscripts-20240416.tar.xz
-  cd blfs-bootscripts-20240416
-  make DESTDIR=$KPKG_TMP_DIR install-fcron
-  cd $KPKG_ROOT/sources
-  rm -r blfs-bootscripts-20240416
+k_post_install() {
+  /etc/rc.d/init.d/fcron start
+  fcrontab -z -u systab
 }

@@ -23,23 +23,16 @@ k_check() {
   ninja test
 }
 
-k_install() {
-  ninja install
-}
-
-k_post_install() {
-  groupadd -r -g 200 seat
-  usermod -aG seat $NONROOT_USER
-
-  install -m 754 $KPKG_ROOT/alfs/defaults/init.d/seatd      /etc/rc.d/init.d/
-  ln -sf  ../init.d/seatd /etc/rc.d/rc5.d/S40seatd
-}
-
-k_pre_record() {
+k_pre_install() {
   DESTDIR=$KPKG_TMP_DIR ninja install
 
   mkdir -p $KPKG_TMP_DIR/etc/rc.d/init.d/
   mkdir -p $KPKG_TMP_DIR/etc/rc.d/rc5.d/
   install -m 754 $KPKG_ROOT/alfs/defaults/init.d/seatd      $KPKG_TMP_DIR/etc/rc.d/init.d/
   ln -sf  ../init.d/seatd $KPKG_TMP_DIR/etc/rc.d/rc5.d/S40seatd
+}
+
+k_post_install() {
+  groupadd -r -g 200 seat
+  usermod -aG seat $NONROOT_USER
 }

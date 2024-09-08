@@ -125,24 +125,22 @@ k_check() {
   :
 }
 
-k_install() {
-  export MACH_BUILD_PYTHON_NATIVE_PACKAGE_SOURCE=none &&
-  ./mach install
-}
+k_pre_install() {
+export MACH_BUILD_PYTHON_NATIVE_PACKAGE_SOURCE=none &&
+DESTDIR=$KPKG_TMP_DIR ./mach install
 
-k_post_install() {
 unset MACH_BUILD_PYTHON_NATIVE_PACKAGE_SOURCE
 unset MOZBUILD_STATE_PATH
 
 # Configuring Firefox
-mkdir -pv /usr/share/applications
-mkdir -pv /usr/share/pixmaps
+mkdir -pv $KPKG_TMP_DIR/usr/share/applications
+mkdir -pv $KPKG_TMP_DIR/usr/share/pixmaps
 
 MIMETYPE="text/xml;text/mml;text/html;"
 MIMETYPE+="application/xhtml+xml;application/vnd.mozilla.xul+xml;"
 MIMETYPE+="x-scheme-handler/http;x-scheme-handler/https"
 
-cat > /usr/share/applications/firefox.desktop << EOF
+cat > $KPKG_TMP_DIR/usr/share/applications/firefox.desktop << EOF
 [Desktop Entry]
 Encoding=UTF-8
 Name=Firefox Web Browser
@@ -158,19 +156,9 @@ StartupNotify=true
 EOF
 
 unset MIMETYPE
-
-ln -sfv /usr/lib/firefox/browser/chrome/icons/default/default128.png \
-        /usr/share/pixmaps/firefox.png
 }
 
-k_pre_record() {
-  mkdir -p $KPKG_TMP_DIR/usr/lib/
-  mkdir -p $KPKG_TMP_DIR/usr/bin/
-  mkdir -p $KPKG_TMP_DIR/usr/share/applications
-  mkdir -p $KPKG_TMP_DIR/usr/share/pixmaps
-  cp -r /usr/bin/firefox $KPKG_TMP_DIR/usr/bin/firefox
-  cp -r /usr/lib/firefox/* $KPKG_TMP_DIR/usr/lib/firefox/
-  cp /usr/share/applications/firefox.desktop $KPKG_TMP_DIR/usr/share/applications/firefox.desktop
-  ln -sfv $KPKG_TMP_DIR/usr/lib/firefox/browser/chrome/icons/default/default128.png \
-          $KPKG_TMP_DIR/usr/share/pixmaps/firefox.png
+k_post_install() {
+ln -sfv /usr/lib/firefox/browser/chrome/icons/default/default128.png \
+        /usr/share/pixmaps/firefox.png
 }

@@ -21,25 +21,7 @@ k_check() {
   :
 }
 
-k_install() {
-  make install
-  install -v -dm755                          /usr/share/doc/cyrus-sasl-2.1.28/html
-  install -v -m644  saslauthd/LDAP_SASLAUTHD /usr/share/doc/cyrus-sasl-2.1.28
-  install -v -m644  doc/legacy/*.html        /usr/share/doc/cyrus-sasl-2.1.28/html
-  install -v -dm700 /var/lib/sasl
-}
-
-k_post_install() {
-  cd $KPKG_ROOT/sources
-  tar -xf blfs-bootscripts-20240416.tar.xz
-  cd blfs-bootscripts-20240416
-  make install-saslauthd
-  cd $KPKG_ROOT/sources
-  rm -r blfs-bootscripts-20240416
-}
-
-k_pre_record() {
-  cd $KPKG_ROOT/sources/$KPKG_SRC_FOLDER
+k_pre_install() {
   make DESTDIR=$KPKG_TMP_DIR install
 
   install -v -dm755                          $KPKG_TMP_DIR/usr/share/doc/cyrus-sasl-2.1.28/html

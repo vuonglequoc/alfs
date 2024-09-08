@@ -23,16 +23,14 @@ k_check() {
   :
 }
 
-k_install() {
-  mkdir -p /usr/share/fonts/truetype/NotoSansJP
-  cd /usr/share/fonts/truetype/NotoSansJP
+k_pre_install() {
+  mkdir -p $KPKG_TMP_DIR/usr/share/fonts/truetype/NotoSansJP
+  cd $KPKG_TMP_DIR/usr/share/fonts/truetype/NotoSansJP
   wget https://github.com/google/fonts/raw/main/ofl/notosansjp/NotoSansJP%5Bwght%5D.ttf
-  fc-cache -f -v
 }
 
-k_pre_record() {
-  mkdir -p $KPKG_TMP_DIR/usr/share/fonts/truetype/NotoSansJP
-  cp /usr/share/fonts/truetype/NotoSansJP/*.ttf $KPKG_TMP_DIR/usr/share/fonts/truetype/NotoSansJP/
+k_post_install() {
+  fc-cache -f -v
 }
 
 k_build_clean() {

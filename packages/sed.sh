@@ -17,13 +17,7 @@ k_check() {
   su tester -c "PATH=$PATH make check"
 }
 
-k_install() {
-  make install
-  install -d -m755           /usr/share/doc/sed-4.9
-  install -m644 doc/sed.html /usr/share/doc/sed-4.9
-}
-
-k_pre_record() {
+k_pre_install() {
   make DESTDIR=$KPKG_TMP_DIR install
 
   install -d -m755           $KPKG_TMP_DIR/usr/share/doc/sed-4.9

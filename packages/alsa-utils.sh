@@ -32,8 +32,3 @@ EOF
 # add us to audio group to access audio cards
 gpasswd -a $NONROOT_USER audio
 }
-
-k_pre_record() {
-  make DESTDIR=$KPKG_TMP_DIR install
-  cp /etc/asound.conf $KPKG_TMP_DIR/etc/asound.conf
-}

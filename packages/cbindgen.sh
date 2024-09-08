@@ -19,10 +19,6 @@ k_check() {
   cargo test --release
 }
 
-k_install() {
-  install -Dm755 target/release/cbindgen /usr/bin/
-}
-
-k_pre_record() {
+k_pre_install() {
   install -Dm755 target/release/cbindgen $KPKG_TMP_DIR/usr/bin/
 }

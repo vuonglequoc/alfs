@@ -15,6 +15,8 @@ k_configure() {
               --disable-vlock
 }
 
-k_post_install() {
-  cp -R -v docs/doc -T /usr/share/doc/kbd-2.6.4
+k_pre_install() {
+  make DESTDIR=$KPKG_TMP_DIR install
+
+  cp -R -v docs/doc -T $KPKG_TMP_DIR/usr/share/doc/kbd-2.6.4
 }

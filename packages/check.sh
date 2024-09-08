@@ -8,10 +8,6 @@ k_configure() {
               --disable-static
 }
 
-k_install() {
-  make docdir=/usr/share/doc/check-0.15.2 install
-}
-
-k_pre_record() {
+k_pre_install() {
   make DESTDIR=$KPKG_TMP_DIR docdir=/usr/share/doc/check-0.15.2 install
 }

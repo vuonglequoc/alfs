@@ -11,14 +11,9 @@ k_configure() {
   ./configure --prefix=/usr --disable-static
 }
 
-k_install() {
-  make install
-  mkdir -v /usr/share/doc/libpng-1.6.43
-  cp -v README libpng-manual.txt /usr/share/doc/libpng-1.6.43
-}
-
-k_pre_record() {
+k_pre_install() {
   make DESTDIR=$KPKG_TMP_DIR install
+
   mkdir -v $KPKG_TMP_DIR/usr/share/doc/libpng-1.6.43
   cp -v README libpng-manual.txt $KPKG_TMP_DIR/usr/share/doc/libpng-1.6.43
 }

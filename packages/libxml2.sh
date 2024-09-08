@@ -19,13 +19,9 @@ k_check() {
   grep -E '^Total|expected|Ran' check.log
 }
 
-k_post_install() {
-  rm -vf /usr/lib/libxml2.la
-  sed '/libs=/s/xml2.*/xml2"/' -i /usr/bin/xml2-config
-}
-
-k_pre_record() {
+k_pre_install() {
   make DESTDIR=$KPKG_TMP_DIR install
 
   rm -vf $KPKG_TMP_DIR/usr/lib/libxml2.la
+  sed '/libs=/s/xml2.*/xml2"/' -i $KPKG_TMP_DIR/usr/bin/xml2-config
 }

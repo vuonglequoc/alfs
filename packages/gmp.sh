@@ -20,12 +20,7 @@ k_check() {
   awk '/# PASS:/{total+=$3} ; END{print total}' gmp-check-log
 }
 
-k_install() {
-  make install
-  make install-html
-}
-
-k_pre_record() {
+k_pre_install() {
   make DESTDIR=$KPKG_TMP_DIR install
   make DESTDIR=$KPKG_TMP_DIR install-html
 }

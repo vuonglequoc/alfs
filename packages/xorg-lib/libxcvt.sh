@@ -23,14 +23,10 @@ k_check() {
   :
 }
 
-k_install() {
-  ninja install
+k_pre_install() {
+  DESTDIR=$KPKG_TMP_DIR ninja install
 }
 
 k_post_install() {
   /sbin/ldconfig
-}
-
-k_pre_record() {
-  DESTDIR=$KPKG_TMP_DIR ninja install
 }

@@ -18,6 +18,8 @@ k_check() {
   make test-only
 }
 
-k_post_install() {
-  ln -sf node /usr/share/doc/node-20.16.0
+k_pre_install() {
+  make DESTDIR=$KPKG_TMP_DIR install
+
+  ln -sf node $KPKG_TMP_DIR/usr/share/doc/node-20.16.0
 }

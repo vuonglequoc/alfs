@@ -20,7 +20,3 @@ k_configure() {
 k_check() {
   :
 }
-
-k_pre_record() {
-  make DESTDIR=$KPKG_TMP_DIR install
-}

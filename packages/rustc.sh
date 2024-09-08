@@ -91,22 +91,27 @@ k_check() {
     awk '{sum1 += $4; sum2 += $6} END { print sum1 " passed; " sum2 " failed" }'
 }
 
-k_install() {
-  { [ ! -e /usr/include/libssh2.h ] ||
-    export LIBSSH2_SYS_USE_PKG_CONFIG=1; }
-  python3 x.py install
-}
+k_pre_install() {
+# Install to /opt/rustc-1.79.0
+{ [ ! -e /usr/include/libssh2.h ] ||
+  export LIBSSH2_SYS_USE_PKG_CONFIG=1; }
+python3 x.py install
 
-k_post_install() {
-find /opt/rustc-1.79.0 -name "*.old" -delete
+mkdir -p $KPKG_TMP_DIR/opt/
+mv /opt/rustc-1.79.0 $KPKG_TMP_DIR/opt/
+ln -sfv rustc-1.79.0 \
+        $KPKG_TMP_DIR/opt/rustc
 
-install -vdm755 /usr/share/zsh/site-functions
+find $KPKG_TMP_DIR/opt/rustc-1.79.0 -name "*.old" -delete
+
+install -vdm755 $KPKG_TMP_DIR/usr/share/zsh/site-functions
 ln -sfv /opt/rustc/share/zsh/site-functions/_cargo \
-        /usr/share/zsh/site-functions
+        $KPKG_TMP_DIR/usr/share/zsh/site-functions
 
 unset LIBSSH2_SYS_USE_PKG_CONFIG
 
-cat > /etc/profile.d/rustc.sh << "EOF"
+mkdir -p $KPKG_TMP_DIR/etc/profile.d
+cat > $KPKG_TMP_DIR/etc/profile.d/rustc.sh << "EOF"
 # Begin /etc/profile.d/rustc.sh
 
 pathprepend /opt/rustc/bin           PATH
@@ -119,18 +124,4 @@ EOF
 
 # Source rustc.sh in non-root user
 # source /etc/profile.d/rustc.sh
-}
-
-k_pre_record() {
-  mkdir -p $KPKG_TMP_DIR/opt/rustc-1.79.0
-  cp -r /opt/rustc-1.79.0 $KPKG_TMP_DIR/opt/rustc-1.79.0
-  ln -sfv $KPKG_TMP_DIR/opt/rustc-1.79.0 \
-          $KPKG_TMP_DIR/opt/rustc
-
-  install -vdm755 $KPKG_TMP_DIR/usr/share/zsh/site-functions
-  ln -sfv $KPKG_TMP_DIR/opt/rustc/share/zsh/site-functions/_cargo \
-          $KPKG_TMP_DIR/usr/share/zsh/site-functions
-
-  mkdir -p $KPKG_TMP_DIR/etc/profile.d
-  cp /etc/profile.d/rustc.sh $KPKG_TMP_DIR/etc/profile.d/rustc.sh
 }

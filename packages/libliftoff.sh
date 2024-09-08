@@ -20,10 +20,6 @@ k_check() {
   ninja test
 }
 
-k_install() {
-  ninja install
-}
-
-k_pre_record() {
+k_pre_install() {
   DESTDIR=$KPKG_TMP_DIR ninja install
 }

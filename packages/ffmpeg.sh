@@ -39,15 +39,7 @@ k_check() {
   :
 }
 
-k_install() {
-  make install
-
-  install -v -m755    tools/qt-faststart /usr/bin
-  install -v -m755 -d           /usr/share/doc/ffmpeg-7.0.2
-  install -v -m644    doc/*.txt /usr/share/doc/ffmpeg-7.0.2
-}
-
-k_pre_record() {
+k_pre_install() {
   make DESTDIR=$KPKG_TMP_DIR install
 
   install -v -m755    tools/qt-faststart $KPKG_TMP_DIR/usr/bin

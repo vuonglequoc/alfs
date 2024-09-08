@@ -59,19 +59,7 @@ k_check() {
   sh -c 'ulimit -c 0 && ninja check-all'
 }
 
-k_install() {
-  ninja install
-  cp bin/FileCheck /usr/bin
-}
-
-k_post_install() {
-  mkdir -pv /etc/clang
-  for i in clang clang++; do
-    echo -fstack-protector-strong > /etc/clang/$i.cfg
-  done
-}
-
-k_pre_record() {
+k_pre_install() {
   DESTDIR=$KPKG_TMP_DIR ninja install
   cp bin/FileCheck $KPKG_TMP_DIR/usr/bin
 

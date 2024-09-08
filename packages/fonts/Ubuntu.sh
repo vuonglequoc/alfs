@@ -23,9 +23,9 @@ k_check() {
   :
 }
 
-k_install() {
-  mkdir -p /usr/share/fonts/truetype/Ubuntu
-  cd /usr/share/fonts/truetype/Ubuntu
+k_pre_install() {
+  mkdir -p $KPKG_TMP_DIR/usr/share/fonts/truetype/Ubuntu
+  cd $KPKG_TMP_DIR/usr/share/fonts/truetype/Ubuntu
   wget https://github.com/google/fonts/blob/main/ufl/ubuntu/Ubuntu-Bold.ttf
   wget https://github.com/google/fonts/blob/main/ufl/ubuntu/Ubuntu-BoldItalic.ttf
   wget https://github.com/google/fonts/blob/main/ufl/ubuntu/Ubuntu-Italic.ttf
@@ -34,12 +34,10 @@ k_install() {
   wget https://github.com/google/fonts/blob/main/ufl/ubuntu/Ubuntu-Medium.ttf
   wget https://github.com/google/fonts/blob/main/ufl/ubuntu/Ubuntu-MediumItalic.ttf
   wget https://github.com/google/fonts/blob/main/ufl/ubuntu/Ubuntu-Regular.ttf
-  fc-cache -f -v
 }
 
-k_pre_record() {
-  mkdir -p $KPKG_TMP_DIR/usr/share/fonts/truetype/Ubuntu
-  cp /usr/share/fonts/truetype/Ubuntu/*.ttf $KPKG_TMP_DIR/usr/share/fonts/truetype/Ubuntu/
+k_post_install() {
+  fc-cache -f -v
 }
 
 k_build_clean() {

@@ -41,55 +41,7 @@ k_check() {
   :
 }
 
-k_install() {
-  install -vm755 -d {/usr/lib,/etc}/udev/{hwdb.d,rules.d,network}
-  install -vm755 -d /usr/{lib,share}/pkgconfig
-  install -vm755 udevadm                             /usr/bin/
-  install -vm755 systemd-hwdb                        /usr/bin/udev-hwdb
-  ln      -svfn  ../bin/udevadm                      /usr/sbin/udevd
-  cp      -av    libudev.so{,*[0-9]}                 /usr/lib/
-  install -vm644 ../src/libudev/libudev.h            /usr/include/
-  install -vm644 src/libudev/*.pc                    /usr/lib/pkgconfig/
-  install -vm644 src/udev/*.pc                       /usr/share/pkgconfig/
-  install -vm644 ../src/udev/udev.conf               /etc/udev/
-  install -vm644 rules.d/* ../rules.d/README         /usr/lib/udev/rules.d/
-  install -vm644 $(find ../rules.d/*.rules \
-                        -not -name '*power-switch*') /usr/lib/udev/rules.d/
-  install -vm644 hwdb.d/*  ../hwdb.d/{*.hwdb,README} /usr/lib/udev/hwdb.d/
-  install -vm755 $udev_helpers                       /usr/lib/udev
-  install -vm644 ../network/99-default.link          /usr/lib/udev/network
-
-  # Install some custom rules and support files useful in an LFS environment
-  tar -xvf ../../udev-lfs-20230818.tar.xz
-  make -f udev-lfs-20230818/Makefile.lfs install
-
-  # Install the man pages
-  tar -xf ../../systemd-man-pages-255.tar.xz                            \
-      --no-same-owner --strip-components=1                              \
-      -C /usr/share/man --wildcards '*/udev*' '*/libudev*'              \
-                                    '*/systemd.link.5'                  \
-                                    '*/systemd-'{hwdb,udevd.service}.8
-
-  sed 's|systemd/network|udev/network|'                                 \
-      /usr/share/man/man5/systemd.link.5                                \
-    > /usr/share/man/man5/udev.link.5
-
-  sed 's/systemd\(\\\?-\)/udev\1/' /usr/share/man/man8/systemd-hwdb.8   \
-                                > /usr/share/man/man8/udev-hwdb.8
-
-  sed 's|lib.*udevd|sbin/udevd|'                                        \
-      /usr/share/man/man8/systemd-udevd.service.8                       \
-    > /usr/share/man/man8/udevd.8
-
-  rm /usr/share/man/man*/systemd*
-
-  # unset udev_helpers
-  # unset later in k_pre_record
-
-  udev-hwdb update
-}
-
-k_pre_record() {
+k_pre_install() {
   install -vm755 -d {$KPKG_TMP_DIR/usr/lib,$KPKG_TMP_DIR/etc}/udev/{hwdb.d,rules.d,network}
   install -vm755 -d $KPKG_TMP_DIR/usr/{lib,share}/pkgconfig
   install -vm755 udevadm                             $KPKG_TMP_DIR/usr/bin/
@@ -107,13 +59,32 @@ k_pre_record() {
   install -vm755 $udev_helpers                       $KPKG_TMP_DIR/usr/lib/udev
   install -vm644 ../network/99-default.link          $KPKG_TMP_DIR/usr/lib/udev/network
 
-  tar -xf $KPKG_ROOT/sources/systemd-man-pages-255.tar.xz                            \
+  # Install some custom rules and support files useful in an LFS environment
+  tar -xvf ../../udev-lfs-20230818.tar.xz
+  make DESTDIR=$KPKG_TMP_DIR -f udev-lfs-20230818/Makefile.lfs install
+
+  # Install the man pages
+  tar -xf $KPKG_ROOT/sources/systemd-man-pages-255.tar.xz               \
       --no-same-owner --strip-components=1                              \
-      -C $KPKG_TMP_DIR/usr/share/man --wildcards '*/udev*' '*/libudev*'              \
+      -C $KPKG_TMP_DIR/usr/share/man --wildcards '*/udev*' '*/libudev*' \
                                     '*/systemd.link.5'                  \
                                     '*/systemd-'{hwdb,udevd.service}.8
+
+  sed 's|systemd/network|udev/network|'             \
+      /usr/share/man/man5/systemd.link.5            \
+    > $KPKG_TMP_DIR/usr/share/man/man5/udev.link.5
+
+  sed 's/systemd\(\\\?-\)/udev\1/'                  \
+      /usr/share/man/man8/systemd-hwdb.8            \
+    > $KPKG_TMP_DIR/usr/share/man/man8/udev-hwdb.8
+
+  sed 's|lib.*udevd|sbin/udevd|'                    \
+      /usr/share/man/man8/systemd-udevd.service.8   \
+    > $KPKG_TMP_DIR/usr/share/man/man8/udevd.8
 
   rm $KPKG_TMP_DIR/usr/share/man/man*/systemd*
 
   unset udev_helpers
+
+  udev-hwdb update
 }

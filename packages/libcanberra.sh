@@ -15,10 +15,6 @@ k_check() {
   :
 }
 
-k_install() {
-  make docdir=/usr/share/doc/libcanberra-0.30 install
-}
-
-k_pre_record() {
+k_pre_install() {
   make DESTDIR=$KPKG_TMP_DIR docdir=/usr/share/doc/libcanberra-0.30 install
 }

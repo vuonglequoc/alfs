@@ -18,15 +18,17 @@ k_configure() {
                --disable-fsck
 }
 
-k_post_install() {
-  rm -fv /usr/lib/{libcom_err,libe2p,libext2fs,libss}.a
+k_pre_install() {
+  make DESTDIR=$KPKG_TMP_DIR install
 
-  gunzip -v /usr/share/info/libext2fs.info.gz
-  install-info --dir-file=/usr/share/info/dir /usr/share/info/libext2fs.info
+  rm -fv $KPKG_TMP_DIR/usr/lib/{libcom_err,libe2p,libext2fs,libss}.a
+
+  gunzip -v $KPKG_TMP_DIR/usr/share/info/libext2fs.info.gz
+  install-info --dir-file=$KPKG_TMP_DIR/usr/share/info/dir $KPKG_TMP_DIR/usr/share/info/libext2fs.info
 
   makeinfo -o      doc/com_err.info ../lib/et/com_err.texinfo
-  install -v -m644 doc/com_err.info /usr/share/info
-  install-info --dir-file=/usr/share/info/dir /usr/share/info/com_err.info
+  install -v -m644 doc/com_err.info $KPKG_TMP_DIR/usr/share/info
+  install-info --dir-file=$KPKG_TMP_DIR/usr/share/info/dir $KPKG_TMP_DIR/usr/share/info/com_err.info
 
-  sed 's/metadata_csum_seed,//' -i /etc/mke2fs.conf
+  sed 's/metadata_csum_seed,//' -i $KPKG_TMP_DIR/etc/mke2fs.conf
 }

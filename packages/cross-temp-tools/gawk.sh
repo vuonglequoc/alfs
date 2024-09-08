@@ -17,6 +17,10 @@ k_check() {
   :
 }
 
+k_pre_install() {
+  :
+}
+
 k_install() {
   make DESTDIR=$LFS install
 }

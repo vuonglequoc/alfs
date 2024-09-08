@@ -19,6 +19,6 @@ k_check() {
   LC_ALL=C make check -k
 }
 
-k_install() {
-  make DOC_INSTALL_DIR='$(docdir)' install
+k_pre_install() {
+  make DESTDIR=$KPKG_TMP_DIR DOC_INSTALL_DIR='$(docdir)' install
 }

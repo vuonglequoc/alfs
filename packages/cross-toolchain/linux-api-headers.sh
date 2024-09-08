@@ -19,6 +19,10 @@ k_check() {
   :
 }
 
+k_pre_install() {
+  :
+}
+
 k_install() {
   find usr/include -type f ! -name '*.h' -delete
   cp -rv usr/include $LFS/usr

@@ -30,9 +30,9 @@ k_check() {
   :
 }
 
-k_install() {
-  make exec_prefix=/usr install
-  make -C man install-man
+k_pre_install() {
+  make DESTDIR=$KPKG_TMP_DIR exec_prefix=/usr install
+  make DESTDIR=$KPKG_TMP_DIR -C man install-man
 }
 
 k_post_install() {
@@ -46,15 +46,4 @@ k_post_install() {
 
   # passwd root
   echo 'root:root' | chpasswd
-}
-
-k_pre_record() {
-  cp /etc/shadow $KPKG_TMP_DIR/etc/shadow
-  cp /etc/gshadow $KPKG_TMP_DIR/etc/gshadow
-
-  make DESTDIR=$KPKG_TMP_DIR exec_prefix=/usr install
-  make DESTDIR=$KPKG_TMP_DIR -C man install-man
-
-  mkdir -p $KPKG_TMP_DIR/etc/default
-  cp -v /etc/default/* $KPKG_TMP_DIR/etc/default/*
 }

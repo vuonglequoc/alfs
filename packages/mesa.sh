@@ -34,16 +34,9 @@ k_check() {
   ninja test
 }
 
-k_install() {
-  ninja install
-}
-
-k_post_install() {
-  cp -rv ../docs -T /usr/share/doc/mesa-24.1.5
-}
-
-k_pre_record() {
+k_pre_install() {
   DESTDIR=$KPKG_TMP_DIR ninja install
+
   mkdir -p $KPKG_TMP_DIR/usr/share/doc/
   cp -rv ../docs -T $KPKG_TMP_DIR/usr/share/doc/mesa-24.1.5
 }

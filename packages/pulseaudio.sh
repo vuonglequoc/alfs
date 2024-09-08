@@ -25,12 +25,8 @@ k_check() {
   ninja test
 }
 
-k_install() {
-  ninja install
-  rm /usr/share/dbus-1/system.d/pulseaudio-system.conf
-}
-
-k_pre_record() {
+k_pre_install() {
   DESTDIR=$KPKG_TMP_DIR ninja install
+
   rm $KPKG_TMP_DIR/usr/share/dbus-1/system.d/pulseaudio-system.conf
 }

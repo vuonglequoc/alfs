@@ -48,7 +48,7 @@ k_check() {
   :
 }
 
-k_install() {
+k_pre_install() {
   make TO_BIN='lua5.2 luac5.2'                     \
        TO_LIB="liblua5.2.so liblua5.2.so.5.2 liblua5.2.so.5.2.4" \
        INSTALL_DATA="cp -d"                        \
@@ -69,9 +69,5 @@ k_install() {
   mv install/usr/share/man/man1/{luac.1,luac5.2.1}
 
   chown -R root:root install
-  cp -a install/* /
-}
-
-k_pre_record() {
   cp -a install/* $KPKG_TMP_DIR/
 }

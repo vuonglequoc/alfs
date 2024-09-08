@@ -44,30 +44,30 @@ k_check() {
   make test
 }
 
-k_install() {
-  make install
+k_pre_install() {
+  make DESTDIR=$KPKG_TMP_DIR install
 
-  sed -e "s/\.la/.so/" -i /etc/openldap/slapd.{conf,ldif}{,.default}
+  sed -e "s/\.la/.so/" -i $KPKG_TMP_DIR/etc/openldap/slapd.{conf,ldif}{,.default}
 
-  install -v -dm700 -o ldap -g ldap /var/lib/openldap
+  install -v -dm700 -o ldap -g ldap $KPKG_TMP_DIR/var/lib/openldap
 
-  install -v -dm700 -o ldap -g ldap /etc/openldap/slapd.d
-  chmod   -v    640     /etc/openldap/slapd.{conf,ldif}
-  chown   -v  root:ldap /etc/openldap/slapd.{conf,ldif}
+  install -v -dm700 -o ldap -g ldap $KPKG_TMP_DIR/etc/openldap/slapd.d
+  chmod   -v    640     $KPKG_TMP_DIR/etc/openldap/slapd.{conf,ldif}
+  chown   -v  root:ldap $KPKG_TMP_DIR/etc/openldap/slapd.{conf,ldif}
 
-  install -v -dm755 /usr/share/doc/openldap-2.6.8
+  install -v -dm755 $KPKG_TMP_DIR/usr/share/doc/openldap-2.6.8
   cp      -vfr      doc/{drafts,rfc,guide} \
-                    /usr/share/doc/openldap-2.6.8
-}
+                    $KPKG_TMP_DIR/usr/share/doc/openldap-2.6.8
 
-k_post_install() {
   cd $KPKG_ROOT/sources
   tar -xf blfs-bootscripts-20240416.tar.xz
   cd blfs-bootscripts-20240416
-  make install-slapd
+  make DESTDIR=$KPKG_TMP_DIR install-slapd
   cd $KPKG_ROOT/sources
   rm -r blfs-bootscripts-20240416
+}
 
+k_post_install() {
   # Testing the Configuration
   /etc/rc.d/init.d/slapd start
   ldapsearch -x -b '' -s base '(objectclass=*)' namingContexts
@@ -92,28 +92,4 @@ k_post_install() {
 
   # # numResponses: 2
   # # numEntries: 1
-}
-
-k_pre_record() {
-  cd $KPKG_ROOT/sources/$KPKG_SRC_FOLDER
-  make DESTDIR=$KPKG_TMP_DIR install
-
-  sed -e "s/\.la/.so/" -i $KPKG_TMP_DIR/etc/openldap/slapd.{conf,ldif}{,.default}
-
-  install -v -dm700 -o ldap -g ldap $KPKG_TMP_DIR/var/lib/openldap
-
-  install -v -dm700 -o ldap -g ldap $KPKG_TMP_DIR/etc/openldap/slapd.d
-  chmod   -v    640     $KPKG_TMP_DIR/etc/openldap/slapd.{conf,ldif}
-  chown   -v  root:ldap $KPKG_TMP_DIR/etc/openldap/slapd.{conf,ldif}
-
-  install -v -dm755 $KPKG_TMP_DIR/usr/share/doc/openldap-2.6.8
-  cp      -vfr      doc/{drafts,rfc,guide} \
-                    $KPKG_TMP_DIR/usr/share/doc/openldap-2.6.8
-
-  cd $KPKG_ROOT/sources
-  tar -xf blfs-bootscripts-20240416.tar.xz
-  cd blfs-bootscripts-20240416
-  make DESTDIR=$KPKG_TMP_DIR install-slapd
-  cd $KPKG_ROOT/sources
-  rm -r blfs-bootscripts-20240416
 }

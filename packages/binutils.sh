@@ -30,15 +30,7 @@ k_check() {
   grep '^FAIL:' $(find -name '*.log')
 }
 
-k_install() {
-  make tooldir=/usr install
-}
-
-k_post_install() {
-  rm -fv /usr/lib/lib{bfd,ctf,ctf-nobfd,gprofng,opcodes,sframe}.a
-}
-
-k_pre_record() {
+k_pre_install() {
   make DESTDIR=$KPKG_TMP_DIR tooldir=/usr install
 
   rm -fv $KPKG_TMP_DIR/usr/lib/lib{bfd,ctf,ctf-nobfd,gprofng,opcodes,sframe}.a

@@ -23,23 +23,10 @@ k_check() {
   make test
 }
 
-k_install() {
-  make install
-}
-
-k_post_install() {
-  # TODO check docs
-  install -v -d -m755 /usr/share/doc/graphite2-1.3.14
-
-  cp      -v -f    doc/{GTF,manual}.html \
-                      /usr/share/doc/graphite2-1.3.14
-  cp      -v -f    doc/{GTF,manual}.pdf \
-                      /usr/share/doc/graphite2-1.3.14
-}
-
-k_pre_record() {
+k_pre_install() {
   make DESTDIR=$KPKG_TMP_DIR install
 
+  # TODO check docs
   install -v -d -m755 $KPKG_TMP_DIR/usr/share/doc/graphite2-1.3.14
 
   cp      -v -f    doc/{GTF,manual}.html \

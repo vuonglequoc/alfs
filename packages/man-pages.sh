@@ -19,10 +19,6 @@ k_check() {
   :
 }
 
-k_install() {
-  make prefix=/usr install
-}
-
-k_pre_record() {
+k_pre_install() {
   make DESTDIR=$KPKG_TMP_DIR prefix=/usr install
 }

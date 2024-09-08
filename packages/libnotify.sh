@@ -25,18 +25,7 @@ k_check() {
   :
 }
 
-k_install() {
-  ninja install
-}
-
-k_post_install() {
-  if [ -e /usr/share/doc/libnotify ]; then
-    rm -rf /usr/share/doc/libnotify-0.8.3
-    mv -v  /usr/share/doc/libnotify{,-0.8.3}
-  fi
-}
-
-k_pre_record() {
+k_pre_install() {
   DESTDIR=$KPKG_TMP_DIR ninja install
 
   if [ -e $KPKG_TMP_DIR/usr/share/doc/libnotify ]; then

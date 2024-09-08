@@ -11,15 +11,9 @@ k_configure() {
               CFLAGS="${CFLAGS:--g -O3} -fPIC"
 }
 
-k_install() {
-  make install
-  cp liba52/a52_internal.h /usr/include/a52dec
-  install -v -m644 -D doc/liba52.txt \
-      /usr/share/doc/liba52-0.8.0/liba52.txt
-}
-
-k_pre_record() {
+k_pre_install() {
   make DESTDIR=$KPKG_TMP_DIR install
+
   cp liba52/a52_internal.h $KPKG_TMP_DIR/usr/include/a52dec
   install -v -m644 -D doc/liba52.txt \
       $KPKG_TMP_DIR/usr/share/doc/liba52-0.8.0/liba52.txt

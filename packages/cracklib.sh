@@ -18,25 +18,17 @@ k_check() {
   make test
 }
 
-k_post_install() {
-  install -v -m644 -D    ../cracklib-words-2.10.0.xz \
-                           /usr/share/dict/cracklib-words.xz
-
-  unxz -v                  /usr/share/dict/cracklib-words.xz
-  ln -v -sf cracklib-words /usr/share/dict/words
-  echo $(hostname) >>      /usr/share/dict/cracklib-extra-words
-  install -v -m755 -d      /usr/lib/cracklib
-
-  create-cracklib-dict     /usr/share/dict/cracklib-words \
-                           /usr/share/dict/cracklib-extra-words
-}
-
-k_pre_record() {
+k_pre_install() {
   make DESTDIR=$KPKG_TMP_DIR install
 
-  install -v -m755 -d      $KPKG_TMP_DIR/usr/share/dict/
-  cp /usr/share/dict/cracklib-words $KPKG_TMP_DIR/usr/share/dict/cracklib-words
+  install -v -m644 -D    ../cracklib-words-2.10.0.xz \
+                           $KPKG_TMP_DIR/usr/share/dict/cracklib-words.xz
+
+  unxz -v                  $KPKG_TMP_DIR/usr/share/dict/cracklib-words.xz
   ln -v -sf cracklib-words $KPKG_TMP_DIR/usr/share/dict/words
-  cp /usr/share/dict/cracklib-extra-words $KPKG_TMP_DIR/usr/share/dict/cracklib-extra-words
+  echo $(hostname) >>      $KPKG_TMP_DIR/usr/share/dict/cracklib-extra-words
   install -v -m755 -d      $KPKG_TMP_DIR/usr/lib/cracklib
+
+  create-cracklib-dict     $KPKG_TMP_DIR/usr/share/dict/cracklib-words \
+                           $KPKG_TMP_DIR/usr/share/dict/cracklib-extra-words
 }

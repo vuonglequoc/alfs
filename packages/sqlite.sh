@@ -22,14 +22,7 @@ k_check() {
   :
 }
 
-k_install() {
-  make install
-
-  install -v -m755 -d /usr/share/doc/sqlite-3.46.0
-  cp -v -R sqlite-doc-3460000/* /usr/share/doc/sqlite-3.46.0
-}
-
-k_pre_record() {
+k_pre_install() {
   make DESTDIR=$KPKG_TMP_DIR install
 
   install -v -m755 -d $KPKG_TMP_DIR/usr/share/doc/sqlite-3.46.0

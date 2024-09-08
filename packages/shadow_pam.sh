@@ -27,13 +27,11 @@ k_check() {
   :
 }
 
-k_install() {
-  make exec_prefix=/usr pamddir= install
-  make -C man install-man
-}
+k_pre_install() {
+make DESTDIR=$KPKG_TMP_DIR exec_prefix=/usr pamddir= install
+make DESTDIR=$KPKG_TMP_DIR -C man install-man
 
-k_post_install() {
-install -v -m644 /etc/login.defs /etc/login.defs.orig
+install -v -m644 $KPKG_TMP_DIR/etc/login.defs $KPKG_TMP_DIR/etc/login.defs.orig
 for FUNCTION in FAIL_DELAY               \
                 FAILLOG_ENAB             \
                 LASTLOG_ENAB             \
@@ -51,10 +49,10 @@ for FUNCTION in FAIL_DELAY               \
                 CHFN_AUTH ENCRYPT_METHOD \
                 ENVIRON_FILE
 do
-  sed -i "s/^${FUNCTION}/# &/" /etc/login.defs
+  sed -i "s/^${FUNCTION}/# &/" $KPKG_TMP_DIR/etc/login.defs
 done
 
-cat > /etc/pam.d/login << "EOF"
+cat > $KPKG_TMP_DIR/etc/pam.d/login << "EOF"
 # Begin /etc/pam.d/login
 
 # Set failure delay before next prompt to 3 seconds
@@ -99,7 +97,7 @@ password  include     system-password
 # End /etc/pam.d/login
 EOF
 
-cat > /etc/pam.d/passwd << "EOF"
+cat > $KPKG_TMP_DIR/etc/pam.d/passwd << "EOF"
 # Begin /etc/pam.d/passwd
 
 password  include     system-password
@@ -107,7 +105,7 @@ password  include     system-password
 # End /etc/pam.d/passwd
 EOF
 
-cat > /etc/pam.d/su << "EOF"
+cat > $KPKG_TMP_DIR/etc/pam.d/su << "EOF"
 # Begin /etc/pam.d/su
 
 # always allow root
@@ -136,7 +134,7 @@ session   include     system-session
 # End /etc/pam.d/su
 EOF
 
-cat > /etc/pam.d/chpasswd << "EOF"
+cat > $KPKG_TMP_DIR/etc/pam.d/chpasswd << "EOF"
 # Begin /etc/pam.d/chpasswd
 
 # always allow root
@@ -150,9 +148,9 @@ password  include     system-password
 # End /etc/pam.d/chpasswd
 EOF
 
-sed -e s/chpasswd/newusers/ /etc/pam.d/chpasswd >/etc/pam.d/newusers
+sed -e s/chpasswd/newusers/ $KPKG_TMP_DIR/etc/pam.d/chpasswd > $KPKG_TMP_DIR/etc/pam.d/newusers
 
-cat > /etc/pam.d/chage << "EOF"
+cat > $KPKG_TMP_DIR/etc/pam.d/chage << "EOF"
 # Begin /etc/pam.d/chage
 
 # always allow root
@@ -168,33 +166,15 @@ EOF
 for PROGRAM in chfn chgpasswd chsh groupadd groupdel \
                groupmems groupmod useradd userdel usermod
 do
-  install -v -m644 /etc/pam.d/chage /etc/pam.d/${PROGRAM}
-  sed -i "s/chage/$PROGRAM/" /etc/pam.d/${PROGRAM}
+  install -v -m644 $KPKG_TMP_DIR/etc/pam.d/chage /etc/pam.d/${PROGRAM}
+  sed -i "s/chage/$PROGRAM/" $KPKG_TMP_DIR/etc/pam.d/${PROGRAM}
 done
-
-# At this point, you should do a simple test to see if Shadow is working as expected. Open another terminal and log in as root, and then run login and login as another user. If you do not see any errors, then all is well and you should proceed with the rest of the configuration.
-
-if [ -f /etc/login.access ]; then mv -v /etc/login.access{,.NOUSE}; fi
-
-if [ -f /etc/limits ]; then mv -v /etc/limits{,.NOUSE}; fi
 }
 
-k_pre_record() {
-  make DESTDIR=$KPKG_TMP_DIR exec_prefix=/usr pamddir= install
-  make DESTDIR=$KPKG_TMP_DIR -C man install-man
+k_post_install() {
+  # At this point, you should do a simple test to see if Shadow is working as expected. Open another terminal and log in as root, and then run login and login as another user. If you do not see any errors, then all is well and you should proceed with the rest of the configuration.
 
-  cp /etc/login.defs $KPKG_TMP_DIR/etc/login.defs
-  cp /etc/login.defs.orig $KPKG_TMP_DIR/etc/login.defs.orig
-  mkdir $KPKG_TMP_DIR/etc/pam.d
-  cp /etc/pam.d/* $KPKG_TMP_DIR/etc/pam.d
+  if [ -f /etc/login.access ]; then mv -v /etc/login.access{,.NOUSE}; fi
 
-  for PROGRAM in chfn chgpasswd chsh groupadd groupdel \
-                 groupmems groupmod useradd userdel usermod
-  do
-    install -v -m644 $KPKG_TMP_DIR/etc/pam.d/chage $KPKG_TMP_DIR/etc/pam.d/${PROGRAM}
-    sed -i "s/chage/$PROGRAM/" $KPKG_TMP_DIR/etc/pam.d/${PROGRAM}
-  done
-
-  if [ -f /etc/login.access ]; then mv -v $KPKG_TMP_DIR/etc/login.access{,.NOUSE}; fi
-  if [ -f /etc/limits ]; then mv -v $KPKG_TMP_DIR/etc/limits{,.NOUSE}; fi
+  if [ -f /etc/limits ]; then mv -v /etc/limits{,.NOUSE}; fi
 }

@@ -22,19 +22,7 @@ k_build() {
   make -C doc html
 }
 
-k_install() {
-  make install
-
-  install -v -m755 -d /usr/share/doc/gnupg-2.5.0/html
-  install -v -m644    doc/gnupg_nochunks.html \
-                      /usr/share/doc/gnupg-2.5.0/html/gnupg.html
-  install -v -m644    ../doc/*.texi doc/gnupg.txt \
-                      /usr/share/doc/gnupg-2.5.0
-  install -v -m644    doc/gnupg.html/* \
-                      /usr/share/doc/gnupg-2.5.0/html
-}
-
-k_pre_record() {
+k_pre_install() {
   make DESTDIR=$KPKG_TMP_DIR install
 
   install -v -m755 -d $KPKG_TMP_DIR/usr/share/doc/gnupg-2.5.0/html

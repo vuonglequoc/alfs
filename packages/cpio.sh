@@ -20,16 +20,7 @@ k_check() {
   :
 }
 
-k_install() {
-  make install
-  install -v -m755 -d /usr/share/doc/cpio-2.15/html
-  install -v -m644    doc/html/* \
-                      /usr/share/doc/cpio-2.15/html
-  install -v -m644    doc/cpio.{html,txt} \
-                      /usr/share/doc/cpio-2.15
-}
-
-k_pre_record() {
+k_pre_install() {
   make DESTDIR=$KPKG_TMP_DIR install
 
   install -v -m755 -d $KPKG_TMP_DIR/usr/share/doc/cpio-2.15/html

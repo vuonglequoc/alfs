@@ -16,6 +16,8 @@ k_configure() {
               --disable-servers
 }
 
-k_post_install() {
-  mv -v /usr/{,s}bin/ifconfig
+k_pre_install() {
+  make DESTDIR=$KPKG_TMP_DIR install
+
+  mv -v $KPKG_TMP_DIR/usr/{,s}bin/ifconfig
 }
