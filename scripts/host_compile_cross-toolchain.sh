@@ -21,7 +21,7 @@ else
   echo
   echo "Check out README.md"
   echo
-  exit
+  # exit
 fi
 
 source $ALFS/kpkg/kpkg.sh

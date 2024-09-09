@@ -12,7 +12,7 @@ else
   echo
   echo "No LFS partition found at /mnt/lfs."
   echo
-  exit
+  # exit
 fi
 
 mkdir -v $LFS/sources

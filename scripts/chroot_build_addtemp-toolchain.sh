@@ -20,7 +20,7 @@ else
   echo
   echo "Check out README.md"
   echo
-  exit
+  # exit
 fi
 
 # 7.2. Changing Ownership

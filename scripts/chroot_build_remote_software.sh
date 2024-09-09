@@ -20,7 +20,7 @@ else
   echo
   echo "Check out README.md"
   echo
-  exit
+  # exit
 fi
 
 if [ -z "$NONROOT_USER" ]
