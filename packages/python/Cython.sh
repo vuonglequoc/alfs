@@ -1,7 +1,7 @@
 #!/bin/bash
 
-KPKG_SRC_FILE=Cython-3.0.10.tar.gz
-KPKG_SRC_FOLDER=Cython-3.0.10
+KPKG_SRC_FILE=cython-3.0.11.tar.gz
+KPKG_SRC_FOLDER=cython-3.0.11
 
 k_configure() {
   :

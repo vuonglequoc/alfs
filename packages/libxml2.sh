@@ -1,7 +1,11 @@
 #!/bin/bash
 
-KPKG_SRC_FILE=libxml2-2.13.2.tar.xz
-KPKG_SRC_FOLDER=libxml2-2.13.2
+KPKG_SRC_FILE=libxml2-2.13.3.tar.xz
+KPKG_SRC_FOLDER=libxml2-2.13.3
+
+k_pre_configure() {
+  patch -Np1 -i ../libxml2-2.13.3-upstream_fix-2.patch
+}
 
 k_configure() {
   ./configure --prefix=/usr           \
@@ -10,7 +14,7 @@ k_configure() {
               --with-history          \
               --with-icu              \
               PYTHON=/usr/bin/python3 \
-              --docdir=/usr/share/doc/libxml2-2.13.2
+              --docdir=/usr/share/doc/libxml2-2.13.3
 }
 
 k_check() {

@@ -1,7 +1,7 @@
 #!/bin/bash
 
-KPKG_SRC_FILE=systemd-255.tar.gz
-KPKG_SRC_FOLDER=systemd-255
+KPKG_SRC_FILE=systemd-256.4.tar.gz
+KPKG_SRC_FOLDER=systemd-256.4
 
 k_pre_configure() {
   sed -i -e 's/GROUP="render"/GROUP="video"/' \
@@ -16,15 +16,14 @@ k_pre_configure() {
 }
 
 k_configure() {
-  meson setup \
-        --prefix=/usr                 \
-        --buildtype=release           \
-        -Dmode=release                \
-        -Ddev-kvm-mode=0660           \
-        -Dlink-udev-shared=false      \
-        -Dlogind=false                \
-        -Dvconsole=false              \
-        ..
+  meson setup ..                  \
+        --prefix=/usr             \
+        --buildtype=release       \
+        -D mode=release           \
+        -D dev-kvm-mode=0660      \
+        -D link-udev-shared=false \
+        -D logind=false           \
+        -D vconsole=false
 
   export udev_helpers=$(grep "'name' :" ../src/udev/meson.build | \
                         awk '{print $3}' | tr -d ",'" | grep -v 'udevadm')
@@ -64,11 +63,12 @@ k_pre_install() {
   make DESTDIR=$KPKG_TMP_DIR -f udev-lfs-20230818/Makefile.lfs install
 
   # Install the man pages
-  tar -xf $KPKG_ROOT/sources/systemd-man-pages-255.tar.xz               \
-      --no-same-owner --strip-components=1                              \
-      -C $KPKG_TMP_DIR/usr/share/man --wildcards '*/udev*' '*/libudev*' \
-                                    '*/systemd.link.5'                  \
-                                    '*/systemd-'{hwdb,udevd.service}.8
+  tar -xf $KPKG_ROOT/sources/systemd-man-pages-256.4.tar.xz \
+      --no-same-owner --strip-components=1                  \
+      -C $KPKG_TMP_DIR/usr/share/man                        \
+      --wildcards '*/udev*' '*/libudev*'                    \
+                  '*/systemd.link.5'                        \
+                  '*/systemd-'{hwdb,udevd.service}.8
 
   sed 's|systemd/network|udev/network|'             \
       /usr/share/man/man5/systemd.link.5            \
@@ -86,5 +86,6 @@ k_pre_install() {
 
   unset udev_helpers
 
+  # Configuring Udev
   udev-hwdb update
 }

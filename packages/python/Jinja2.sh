@@ -1,7 +1,7 @@
 #!/bin/bash
 
-KPKG_SRC_FILE=Jinja2-3.1.3.tar.gz
-KPKG_SRC_FOLDER=Jinja2-3.1.3
+KPKG_SRC_FILE=jinja2-3.1.4.tar.gz
+KPKG_SRC_FOLDER=jinja2-3.1.4
 
 k_configure() {
   :

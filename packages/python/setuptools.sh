@@ -1,7 +1,7 @@
 #!/bin/bash
 
-KPKG_SRC_FILE=setuptools-69.1.0.tar.gz
-KPKG_SRC_FOLDER=setuptools-69.1.0
+KPKG_SRC_FILE=setuptools-72.2.0.tar.gz
+KPKG_SRC_FOLDER=setuptools-72.2.0
 
 k_configure() {
   :

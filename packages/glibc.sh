@@ -1,10 +1,10 @@
 #!/bin/bash
 
-KPKG_SRC_FILE=glibc-2.39.tar.xz
-KPKG_SRC_FOLDER=glibc-2.39
+KPKG_SRC_FILE=glibc-2.40.tar.xz
+KPKG_SRC_FOLDER=glibc-2.40
 
 k_pre_configure() {
-  patch -Np1 -i ../glibc-2.39-fhs-1.patch
+  patch -Np1 -i ../glibc-2.40-fhs-1.patch
 
   mkdir -v build
   cd       build
@@ -30,12 +30,13 @@ make DESTDIR=$KPKG_TMP_DIR install
 
 sed '/RTLDLIST=/s@/usr@@g' -i $KPKG_TMP_DIR/usr/bin/ldd
 
+# install all the locales listed in the glibc-2.40/localedata/SUPPORTED file
 mkdir -pv $KPKG_TMP_DIR/usr/lib/locale
-
 make DESTDIR=$KPKG_TMP_DIR localedata/install-locales
 
-localedef -i C -f UTF-8 C.UTF-8
-localedef -i ja_JP -f SHIFT_JIS ja_JP.SJIS 2> /dev/null || true
+# create and install locales not listed in the glibc-2.40/localedata/SUPPORTED file
+localedef -i C -f UTF-8 C.UTF-8 $KPKG_TMP_DIR/usr/lib/locale/locale-archive
+localedef -i ja_JP -f SHIFT_JIS ja_JP.SJIS $KPKG_TMP_DIR/usr/lib/locale/locale-archive 2> /dev/null || true
 
 # 8.5.2.1. Adding nsswitch.conf
 

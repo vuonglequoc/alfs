@@ -1,7 +1,7 @@
 #!/bin/bash
 
-KPKG_SRC_FILE=Vulkan-Headers-1.3.290.tar.gz
-KPKG_SRC_FOLDER=Vulkan-Headers-1.3.290
+KPKG_SRC_FILE=Vulkan-Headers-1.3.294.tar.gz
+KPKG_SRC_FOLDER=Vulkan-Headers-1.3.294
 
 k_pre_configure() {
   mkdir build

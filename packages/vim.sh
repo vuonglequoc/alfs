@@ -1,7 +1,7 @@
 #!/bin/bash
 
-KPKG_SRC_FILE=vim-9.1.0041.tar.gz
-KPKG_SRC_FOLDER=vim-9.1.0041
+KPKG_SRC_FILE=vim-9.1.0722.tar.gz
+KPKG_SRC_FOLDER=vim-9.1.0722
 
 k_pre_configure() {
   echo '#define SYS_VIMRC_FILE "/etc/vimrc"' >> src/feature.h
@@ -25,7 +25,7 @@ for L in  $KPKG_TMP_DIR/usr/share/man/{,*/}man1/vim.1; do
     ln -sv vim.1 $(dirname $L)/vi.1
 done
 
-ln -sv ../vim/vim91/doc $KPKG_TMP_DIR/usr/share/doc/vim-9.1.0041
+ln -sv ../vim/vim91/doc $KPKG_TMP_DIR/usr/share/doc/vim-9.1.0722
 
 cat > $KPKG_TMP_DIR/etc/vimrc << "EOF"
 " Begin /etc/vimrc

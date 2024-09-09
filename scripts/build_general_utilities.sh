@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # CMake already built in build_post_lfs
-# LLVM-18.1.8
-# Rustc-1.79.0
+# LLVM
+# Rustc
 
 source /alfs/kpkg/kpkg.sh
 

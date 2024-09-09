@@ -67,7 +67,7 @@
 #   wayland-protocols *
 #   wlroots
 #   pcre2
-#     CMake-3.30.2
+#     CMake
 #   json-c
 #     libpng-1.6.43
 #     Pixman-0.43.4
@@ -91,7 +91,7 @@
 #     GLib
 #     libpng
 #     libjpeg
-#       CMake-3.30.2
+#       CMake
 #       libjpeg-turbo-3.0.1
 #     libtiff
 #     shared-mime-info-2.4

@@ -1,7 +1,7 @@
 #!/bin/bash
 
-KPKG_SRC_FILE=ncurses-6.4-20230520.tar.xz
-KPKG_SRC_FOLDER=ncurses-6.4-20230520
+KPKG_SRC_FILE=ncurses-6.5.tar.gz
+KPKG_SRC_FOLDER=ncurses-6.5
 
 k_pre_configure() {
   sed -i s/mawk// configure
@@ -25,8 +25,7 @@ k_configure() {
               --with-cxx-shared            \
               --without-debug              \
               --without-ada                \
-              --disable-stripping          \
-              --enable-widec
+              --disable-stripping
 }
 
 k_check() {

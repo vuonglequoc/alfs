@@ -1,7 +1,7 @@
 #!/bin/bash
 
-KPKG_SRC_FILE=gcc-13.2.0.tar.xz
-KPKG_SRC_FOLDER=gcc-13.2.0
+KPKG_SRC_FILE=gcc-14.2.0.tar.xz
+KPKG_SRC_FOLDER=gcc-14.2.0
 
 k_pre_configure() {
   tar -xf ../mpfr-4.2.1.tar.xz
@@ -26,7 +26,7 @@ k_configure() {
   ../configure                  \
       --target=$LFS_TGT         \
       --prefix=$LFS/tools       \
-      --with-glibc-version=2.39 \
+      --with-glibc-version=2.40 \
       --with-sysroot=$LFS       \
       --with-newlib             \
       --without-headers         \

@@ -1,13 +1,10 @@
 #!/bin/bash
 
-KPKG_SRC_FILE=coreutils-9.4.tar.xz
-KPKG_SRC_FOLDER=coreutils-9.4
+KPKG_SRC_FILE=coreutils-9.5.tar.xz
+KPKG_SRC_FOLDER=coreutils-9.5
 
 k_pre_configure() {
-  patch -Np1 -i ../coreutils-9.4-i18n-1.patch
-
-  sed -e '/n_out += n_hold/,+4 s|.*bufsize.*|//&|' \
-      -i src/split.c
+  patch -Np1 -i ../coreutils-9.5-i18n-2.patch
 
   autoreconf -fiv
 }
@@ -22,7 +19,7 @@ k_check() {
   make NON_ROOT_USERNAME=tester check-root
   groupadd -g 102 dummy -U tester
   chown -Rv tester .
-  su tester -c "PATH=$PATH make RUN_EXPENSIVE_TESTS=yes check"
+  su tester -c "PATH=$PATH make RUN_EXPENSIVE_TESTS=yes check" < /dev/null
 
   groupdel dummy
 }

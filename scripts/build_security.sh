@@ -10,19 +10,19 @@
 
 # Already installed but may need rebuild
 #       MIT Kerberos V5-1.21.2
-#     libtirpc-1.3.4
+#     libtirpc
 #   Linux-PAM-1.6.0
-# libcap-2.69 with PAM -> need rebuild
+# libcap with PAM -> need rebuild
 #   Linux-PAM-1.6.0
 #   CrackLib-2.9.11
 #   libpwquality-1.4.5
-# Shadow-4.14.5 -> need rebuild
+# Shadow -> need rebuild
 #   Linux-PAM-1.6.0
 #   MIT Kerberos V5-1.21.2
 #       Linux-PAM-1.6.0
 #       MIT Kerberos V5-1.21.2
-#         UnZip-6.0
-#       SQLite-3.45.1
+#         UnZip
+#       SQLite
 #     Cyrus SASL-2.1.28
 #   OpenLDAP-2.6.7
 # Sudo-1.9.15p5 -> need rebuild
@@ -38,17 +38,17 @@
 # stunnel-5.72
 
 #     NSPR-4.35
-#     SQLite-3.45.1
-#   nss-3.98
+#     SQLite
+#   nss
 #         libgpg-error-1.47
 #       libgcrypt-1.10.3
 #         ICU-74.2
-#       libxml2-2.12.5
-#         libxml2-2.12.5
+#       libxml2
+#         libxml2
 #         sgml-common-0.6.3
-#         UnZip-6.0
+#         UnZip
 #       docbook-xml-4.5
-#         libxml2-2.12.5
+#         libxml2
 #         Zip-3.0
 #       docbook-xsl-nons-1.79.2
 #     libxslt-1.1.39
@@ -60,9 +60,9 @@
 #     make-ca-1.13
 #     libtasn1-4.19.0
 #     libunistring-1.1
-#     Unbound-1.19.1
+#     Unbound
 #     p11-kit-0.25.3
-#   GnuTLS-3.8.3
+#   GnuTLS
 #     libgpg-error-1.47
 #   libassuan-2.5.6
 #   libgcrypt-1.10.3
@@ -76,22 +76,22 @@
 #       libidn2-2.3.7
 #     libpsl-0.21.5
 #     make-ca-1.13
-#     GnuTLS-3.8.3
+#     GnuTLS
 #     OpenLDAP-2.6.7
 #   cURL-8.6.0
 #         cURL-8.6.0
 #         libarchive-3.7.2
 #         libuv-1.48.0,
-#       CMake-3.28.3
+#       CMake
 #       NASM-2.16.01
 #         Python
-#         cython-0.29.36
+#         cython
 #       yasm-1.3.0
 #     libjpeg-turbo
 #     libpng
-#   ImageMagick-7.1.1-28
+#   ImageMagick
 #   libusb-1.0.27
-#   SQLite-3.45.1
+#   SQLite
 # GnuPG-2.4.4
 
 if [ -z "$NONROOT_USER" ]

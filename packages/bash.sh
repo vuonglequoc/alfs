@@ -1,17 +1,14 @@
 #!/bin/bash
 
-KPKG_SRC_FILE=bash-5.2.21.tar.gz
-KPKG_SRC_FOLDER=bash-5.2.21
-
-k_pre_configure() {
-  patch -Np1 -i ../bash-5.2.21-upstream_fixes-1.patch
-}
+KPKG_SRC_FILE=bash-5.2.32.tar.gz
+KPKG_SRC_FOLDER=bash-5.2.32
 
 k_configure() {
   ./configure --prefix=/usr             \
               --without-bash-malloc     \
               --with-installed-readline \
-              --docdir=/usr/share/doc/bash-5.2.21
+              bash_cv_strtold_broken=no \
+              --docdir=/usr/share/doc/bash-5.2.32
 }
 
 k_check() {

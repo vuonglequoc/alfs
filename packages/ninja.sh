@@ -1,7 +1,7 @@
 #!/bin/bash
 
-KPKG_SRC_FILE=ninja-1.11.1.tar.gz
-KPKG_SRC_FOLDER=ninja-1.11.1
+KPKG_SRC_FILE=ninja-1.12.1.tar.gz
+KPKG_SRC_FOLDER=ninja-1.12.1
 
 k_pre_configure() {
   export NINJAJOBS=4
@@ -21,8 +21,10 @@ k_build() {
 }
 
 k_check() {
-  ./ninja ninja_test
-  ./ninja_test --gtest_filter=-SubprocessTest.SetWithLots
+  # The package tests cannot run in the chroot environment. They require cmake.
+  # ./ninja ninja_test
+  # ./ninja_test --gtest_filter=-SubprocessTest.SetWithLots
+  :
 }
 
 k_pre_install() {

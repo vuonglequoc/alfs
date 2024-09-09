@@ -5,6 +5,7 @@ KPKG_SRC_FOLDER=unzip60
 
 k_pre_configure() {
   patch -Np1 -i ../unzip-6.0-consolidated_fixes-1.patch
+  patch -Np1 -i ../unzip-6.0-gcc14-1.patch
 }
 
 k_configure() {

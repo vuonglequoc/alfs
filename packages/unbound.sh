@@ -1,7 +1,7 @@
 #!/bin/bash
 
-KPKG_SRC_FILE=unbound-1.20.0.tar.gz
-KPKG_SRC_FOLDER=unbound-1.20.0
+KPKG_SRC_FILE=unbound-1.21.0.tar.gz
+KPKG_SRC_FOLDER=unbound-1.21.0
 
 k_pre_configure() {
   groupadd -g 88 unbound

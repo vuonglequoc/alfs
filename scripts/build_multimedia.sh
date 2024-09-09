@@ -30,14 +30,14 @@
 #       Which-2.21
 #     libvpx-1.14.1
 #     Opus-1.5.2
-#     x264-20240216
-#       CMake-3.30.1
-#     x265-20240216
+#     x264
+#       CMake
+#     x265
 #     NASM-2.16.03 or yasm-1.3.0
 #     alsa-lib-1.2.12
 #       alsa-lib-1.2.12
 #       PulseAudio-17.0
-#     SDL2-2.30.5
+#     SDL2
 #   FFmpeg-7.0.2
 #     libsndfile-1.2.2
 #   PulseAudio-17.0
@@ -55,14 +55,14 @@
 #   liba52-0.8.0
 #   libgcrypt-1.11.0
 #   Lua-5.2.4
-#   libssh2-1.11.0
+#   libssh2
 #   libogg-1.3.5
 #   libaom-3.9.1
 #   libass-0.17.3
 #   libvorbis-1.3.7
 #   Opus-1.5.2
 #   libvpx-1.14.1
-#   x264-20240216
+#   x264
 #   Fontconfig-2.15.0
 #   FreeType-2.13.2
 #   FriBidi-1.0.15
@@ -74,15 +74,15 @@
 #   libass-0.17.3
 #     FFmpeg-7.0.2
 #     Glad-2.0.6
-#       Vulkan-Headers-1.3.290
-#     Vulkan-Loader-1.3.290           ???
+#       Vulkan-Headers
+#     Vulkan-Loader           ???
 #   libplacebo-7.349.0
 #   Mesa-24.1.4
 #   PulseAudio-17.0
 #   libva-2.22.0
 #   libvdpau-1.5
 #   Lua-5.2.4
-#   SDL2-2.30.5
+#   SDL2
 #   libcdio-2.1.0
 #     libdvdread-6.1.3
 #   libdvdnav-6.1.1

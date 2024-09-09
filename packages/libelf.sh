@@ -1,7 +1,7 @@
 #!/bin/bash
 
-KPKG_SRC_FILE=elfutils-0.190.tar.bz2
-KPKG_SRC_FOLDER=elfutils-0.190
+KPKG_SRC_FILE=elfutils-0.191.tar.bz2
+KPKG_SRC_FOLDER=elfutils-0.191
 
 k_configure() {
   ./configure --prefix=/usr        \

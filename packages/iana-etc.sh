@@ -1,7 +1,7 @@
 #!/bin/bash
 
-KPKG_SRC_FILE=iana-etc-20240125.tar.gz
-KPKG_SRC_FOLDER=iana-etc-20240125
+KPKG_SRC_FILE=iana-etc-20240806.tar.gz
+KPKG_SRC_FOLDER=iana-etc-20240806
 
 k_configure() {
   :

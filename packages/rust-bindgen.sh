@@ -1,7 +1,7 @@
 #!/bin/bash
 
-KPKG_SRC_FILE=rust-bindgen-0.69.4.tar.gz
-KPKG_SRC_FOLDER=rust-bindgen-0.69.4
+KPKG_SRC_FILE=rust-bindgen-0.70.0.tar.gz
+KPKG_SRC_FOLDER=rust-bindgen-0.70.0
 
 k_pre_configure() {
   source /etc/profile

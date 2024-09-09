@@ -4,6 +4,6 @@
 clear > /etc/issue
 ## Customize Logon message
 cat >> /etc/issue << "EOF"
-LFS 12.1 \n \l
+LFS 12.2 \n \l
 
 EOF

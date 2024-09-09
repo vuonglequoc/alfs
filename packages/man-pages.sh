@@ -1,7 +1,7 @@
 #!/bin/bash
 
-KPKG_SRC_FILE=man-pages-6.06.tar.xz
-KPKG_SRC_FOLDER=man-pages-6.06
+KPKG_SRC_FILE=man-pages-6.9.1.tar.xz
+KPKG_SRC_FOLDER=man-pages-6.9.1
 
 k_pre_configure() {
   rm -v man3/crypt*

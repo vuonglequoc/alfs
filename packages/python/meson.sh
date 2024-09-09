@@ -1,7 +1,7 @@
 #!/bin/bash
 
-KPKG_SRC_FILE=meson-1.3.2.tar.gz
-KPKG_SRC_FOLDER=meson-1.3.2
+KPKG_SRC_FILE=meson-1.5.1.tar.gz
+KPKG_SRC_FOLDER=meson-1.5.1
 
 k_configure() {
   :

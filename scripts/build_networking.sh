@@ -1,10 +1,10 @@
 #!/bin/bash
 
-#   LLVM-17.0.6 (with Clang)
+#   LLVM (with Clang)
 #       make-ca-1.13
-#       Net-SSLeay-1.92
+#       Net-SSLeay
 #     IO-Socket-SSL-2.085
-#     libcap-2.69 with PAM
+#     libcap with PAM
 #     libevent-2.1.12
 #     libedit
 #   ntp-4.2.8p17

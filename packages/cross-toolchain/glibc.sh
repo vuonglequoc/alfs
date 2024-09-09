@@ -1,7 +1,7 @@
 #!/bin/bash
 
-KPKG_SRC_FILE=glibc-2.39.tar.xz
-KPKG_SRC_FOLDER=glibc-2.39
+KPKG_SRC_FILE=glibc-2.40.tar.xz
+KPKG_SRC_FOLDER=glibc-2.40
 
 k_pre_configure() {
   case $(uname -m) in
@@ -12,7 +12,7 @@ k_pre_configure() {
       ;;
   esac
 
-  patch -Np1 -i ../glibc-2.39-fhs-1.patch
+  patch -Np1 -i ../glibc-2.40-fhs-1.patch
 
   mkdir -v build
   cd       build
@@ -44,5 +44,12 @@ k_install() {
 }
 
 k_post_install() {
+  # Fix a hard coded path to the executable loader in the ldd script
   sed '/RTLDLIST=/s@/usr@@g' -i $LFS/usr/bin/ldd
+
+  # sanity check
+  echo 'int main(){}' | $LFS_TGT-gcc -xc -
+  readelf -l a.out | grep ld-linux
+  # [Requesting program interpreter: /lib64/ld-linux-x86-64.so.2]
+  rm -v a.out
 }

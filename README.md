@@ -1,4 +1,4 @@
-# Automated Linux From Scratch 12.1 (SysV)
+# Automated Linux From Scratch 12.2 (SysV)
 
 Tested with Debian 12 Bookworm:
 - CPU 4 cores (Intel(R) Core(TM) i5-8259U CPU @ 2.30GHz), RAM 4GB, swap 3GB.
@@ -6,9 +6,9 @@ Tested with Debian 12 Bookworm:
 
 Target: x86_64 architecture with UEFI
 
-*This project is based on the Official LFS 12.1 Book*
+*This project is based on the Official LFS 12.2 Book*
 
-https://www.linuxfromscratch.org/lfs/view/12.1/
+https://www.linuxfromscratch.org/lfs/view/12.2/
 
 ## Package Requirements
 
@@ -138,11 +138,11 @@ sudo -E $ALFS/scripts/chroot_make_system_bootable.sh
 
 Below is how I installed GRUB with UEFI support while inside the chrooted LFS system
 
-https://www.linuxfromscratch.org/blfs/view/12.1/postlfs/grub-efi.html
+https://www.linuxfromscratch.org/blfs/view/12.2/postlfs/grub-efi.html
 
 Consider reading the LFS book for backing up your bootloader.
 
-https://www.linuxfromscratch.org/lfs/view/12.1/chapter10/grub.html
+https://www.linuxfromscratch.org/lfs/view/12.2/chapter10/grub.html
 
 | :warning: make certain you are in chroot |
 | --- |
@@ -383,9 +383,9 @@ root=/dev/sdb3
 
 ### References
 
-*Linux From Scratch 12 Book*: https://www.linuxfromscratch.org/lfs/view/12.1/
+*Linux From Scratch 12 Book*: https://www.linuxfromscratch.org/lfs/view/12.2/
 
-*Beyond Linux From Scrach 12 Book*: https://www.linuxfromscratch.org/blfs/view/12.1/
+*Beyond Linux From Scrach 12 Book*: https://www.linuxfromscratch.org/blfs/view/12.2/
 
 *Windy's ALFS*: https://github.com/mattwind/alfs
 

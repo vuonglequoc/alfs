@@ -1,7 +1,7 @@
 #!/bin/bash
 
-KPKG_SRC_FILE=zstd-1.5.5.tar.gz
-KPKG_SRC_FOLDER=zstd-1.5.5
+KPKG_SRC_FILE=zstd-1.5.6.tar.gz
+KPKG_SRC_FOLDER=zstd-1.5.6
 
 k_configure() {
   :

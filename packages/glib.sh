@@ -16,11 +16,11 @@ k_pre_configure() {
 }
 
 k_configure() {
-  meson setup ..                 \
-        --prefix=/usr            \
-        --buildtype=release      \
-        -Dintrospection=disabled \
-        -Dman-pages=enabled
+  meson setup ..                  \
+        --prefix=/usr             \
+        --buildtype=release       \
+        -D introspection=disabled \
+        -D man-pages=enabled
 }
 
 k_build() {
@@ -36,18 +36,21 @@ k_pre_install() {
   DESTDIR=$KPKG_TMP_DIR ninja install
 
   # gobject-introspection
-  tar xf ../../gobject-introspection-1.80.1.tar.xz
-  meson setup gobject-introspection-1.80.1 gi-build \
+  tar xf ../../gobject-introspection-1.81.2.tar.xz
+  meson setup gobject-introspection-1.81.2 gi-build \
               --prefix=/usr --buildtype=release
   ninja -C gi-build
   # ninja -C gi-build test
   DESTDIR=$KPKG_TMP_DIR ninja -C gi-build install
 
   # glib with gobject-introspection
-  meson configure -Dintrospection=enabled &&
+  meson configure -Dintrospection=enabled
   ninja
   DESTDIR=$KPKG_TMP_DIR ninja install
+}
 
-  mkdir -p $KPKG_TMP_DIR/usr/share/doc/glib-2.81.0
-  cp -r ../docs/reference/{gio,glib,gobject} $KPKG_TMP_DIR/usr/share/doc/glib-2.81.0
+k_post_install() {
+  # as a non-root user
+  # LC_ALL=C ninja test
+  :
 }

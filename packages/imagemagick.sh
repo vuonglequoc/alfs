@@ -1,7 +1,7 @@
 #!/bin/bash
 
-KPKG_SRC_FILE=ImageMagick-7.1.1-35.tar.xz
-KPKG_SRC_FOLDER=ImageMagick-7.1.1-35
+KPKG_SRC_FILE=ImageMagick-7.1.1-36.tar.xz
+KPKG_SRC_FOLDER=ImageMagick-7.1.1-36
 
 k_configure() {
   ./configure --prefix=/usr     \

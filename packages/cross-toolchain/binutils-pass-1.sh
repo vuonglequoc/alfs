@@ -1,7 +1,7 @@
 #!/bin/bash
 
-KPKG_SRC_FILE=binutils-2.42.tar.xz
-KPKG_SRC_FOLDER=binutils-2.42
+KPKG_SRC_FILE=binutils-2.43.1.tar.xz
+KPKG_SRC_FOLDER=binutils-2.43.1
 
 k_pre_configure() {
   mkdir -v build
@@ -15,6 +15,7 @@ k_configure() {
                --disable-nls       \
                --enable-gprofng=no \
                --disable-werror    \
+               --enable-new-dtags  \
                --enable-default-hash-style=gnu
 }
 

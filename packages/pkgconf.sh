@@ -1,12 +1,12 @@
 #!/bin/bash
 
-KPKG_SRC_FILE=pkgconf-2.1.1.tar.xz
-KPKG_SRC_FOLDER=pkgconf-2.1.1
+KPKG_SRC_FILE=pkgconf-2.3.0.tar.xz
+KPKG_SRC_FOLDER=pkgconf-2.3.0
 
 k_configure() {
 ./configure --prefix=/usr              \
             --disable-static           \
-            --docdir=/usr/share/doc/pkgconf-2.1.1
+            --docdir=/usr/share/doc/pkgconf-2.3.0
 }
 
 k_check() {

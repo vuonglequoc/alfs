@@ -1,7 +1,7 @@
 #!/bin/bash
 
-KPKG_SRC_FILE=wheel-0.42.0.tar.gz
-KPKG_SRC_FOLDER=wheel-0.42.0
+KPKG_SRC_FILE=wheel-0.44.0.tar.gz
+KPKG_SRC_FOLDER=wheel-0.44.0
 
 k_configure() {
   :

@@ -1,7 +1,7 @@
 #!/bin/bash
 
-KPKG_SRC_FILE=binutils-2.42.tar.xz
-KPKG_SRC_FOLDER=binutils-2.42
+KPKG_SRC_FILE=binutils-2.43.1.tar.xz
+KPKG_SRC_FOLDER=binutils-2.43.1
 
 k_pre_configure() {
   sed '6009s/$add_dir//' -i ltmain.sh
@@ -20,6 +20,7 @@ k_configure() {
       --enable-gprofng=no        \
       --disable-werror           \
       --enable-64-bit-bfd        \
+      --enable-new-dtags         \
       --enable-default-hash-style=gnu
 }
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 
-KPKG_SRC_FILE=coreutils-9.4.tar.xz
-KPKG_SRC_FOLDER=coreutils-9.4
+KPKG_SRC_FILE=coreutils-9.5.tar.xz
+KPKG_SRC_FOLDER=coreutils-9.5
 
 k_configure() {
   ./configure --prefix=/usr                     \

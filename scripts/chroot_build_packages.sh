@@ -2,13 +2,13 @@
 
 source /alfs/kpkg/kpkg.sh
 
-# 8.3. Man-pages-6.06
 kpkg_install man-pages
 kpkg_install iana-etc
 kpkg_install glibc
 kpkg_install zlib
 kpkg_install bzip2
 kpkg_install xz
+kpkg_install lz4
 kpkg_install zstd
 kpkg_install file
 kpkg_install readline

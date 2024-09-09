@@ -1,15 +1,13 @@
 #!/bin/bash
 
-KPKG_SRC_FILE=sysklogd-1.5.1.tar.gz
-KPKG_SRC_FOLDER=sysklogd-1.5.1
-
-k_pre_configure() {
-  sed -i '/Error loading kernel symbols/{n;n;d}' ksym_mod.c
-  sed -i 's/union wait/int/' syslogd.c
-}
+KPKG_SRC_FILE=sysklogd-2.6.1.tar.gz
+KPKG_SRC_FOLDER=sysklogd-2.6.1
 
 k_configure() {
-  :
+  ./configure --prefix=/usr      \
+              --sysconfdir=/etc  \
+              --runstatedir=/run \
+              --without-logger
 }
 
 k_check() {
@@ -29,6 +27,9 @@ kern.* -/var/log/kern.log
 mail.* -/var/log/mail.log
 user.* -/var/log/user.log
 *.emerg *
+
+# Do not open any internet ports.
+secure_mode 2
 
 # End /etc/syslog.conf
 EOF

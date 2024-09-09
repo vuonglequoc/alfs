@@ -1,7 +1,7 @@
 #!/bin/bash
 
-KPKG_SRC_FILE=ncurses-6.4-20230520.tar.xz
-KPKG_SRC_FOLDER=ncurses-6.4-20230520
+KPKG_SRC_FILE=ncurses-6.5.tar.xz
+KPKG_SRC_FOLDER=ncurses-6.5
 
 k_configure() {
   ./configure --prefix=/usr           \
@@ -11,7 +11,6 @@ k_configure() {
               --without-normal        \
               --with-cxx-shared       \
               --enable-pc-files       \
-              --enable-widec          \
               --with-pkg-config-libdir=/usr/lib/pkgconfig
 }
 
@@ -23,8 +22,8 @@ k_pre_install() {
   make DESTDIR=$PWD/dest install
 
   mkdir -p $KPKG_TMP_DIR/usr/lib
-  install -vm755 dest/usr/lib/libncursesw.so.6.4 $KPKG_TMP_DIR/usr/lib
-  rm -v  dest/usr/lib/libncursesw.so.6.4
+  install -vm755 dest/usr/lib/libncursesw.so.6.5 $KPKG_TMP_DIR/usr/lib
+  rm -v  dest/usr/lib/libncursesw.so.6.5
 
   sed -e 's/^#if.*XOPEN.*$/#if 1/' \
       -i dest/usr/include/curses.h
@@ -37,5 +36,5 @@ k_pre_install() {
 
   ln -sfv libncursesw.so $KPKG_TMP_DIR/usr/lib/libcurses.so
 
-  cp -v -R doc -T $KPKG_TMP_DIR/usr/share/doc/ncurses-6.4-20230520
+  cp -v -R doc -T $KPKG_TMP_DIR/usr/share/doc/ncurses-6.5
 }

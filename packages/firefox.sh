@@ -1,9 +1,12 @@
 #!/bin/bash
 
+# Firefox 131 - NSS 3.104
+# Firefox 130 - NSS 3.103
+# Firefox 128 - NSS 3.101
 # Firefox 125 - NSS 3.99
 # https://wiki.mozilla.org/NSS:Release_Versions
-KPKG_SRC_FILE=firefox-125.0.3.source.tar.xz
-KPKG_SRC_FOLDER=firefox-125.0.3
+KPKG_SRC_FILE=firefox-130.0.source.tar.xz
+KPKG_SRC_FOLDER=firefox-130.0
 
 k_pre_configure() {
   source /etc/profile
@@ -68,10 +71,7 @@ ac_add_options --disable-updater
 ac_add_options --disable-tests
 
 # This enables SIMD optimization in the shipped encoding_rs crate.
-# ac_add_options --enable-rust-simd
-# The Rust code for SIMD optimization is much more outdated
-# so it does not build with recent Rustc.
-ac_add_options --disable-rust-simd
+ac_add_options --enable-rust-simd
 
 ac_add_options --enable-system-ffi
 ac_add_options --enable-system-pixman
@@ -116,6 +116,8 @@ echo "AIzaSyDxKL42zsPjbke5O8_rPVpVrLrJ8aeE9rQ" > google-key
 }
 
 k_build() {
+  mountpoint -q /dev/shm || mount -t tmpfs devshm /dev/shm
+
   export MACH_BUILD_PYTHON_NATIVE_PACKAGE_SOURCE=none &&
   export MOZBUILD_STATE_PATH=${PWD}/mozbuild          &&
   ./mach build
@@ -156,9 +158,7 @@ StartupNotify=true
 EOF
 
 unset MIMETYPE
-}
 
-k_post_install() {
 ln -sfv /usr/lib/firefox/browser/chrome/icons/default/default128.png \
-        /usr/share/pixmaps/firefox.png
+        $KPKG_TMP_DIR/usr/share/pixmaps/firefox.png
 }

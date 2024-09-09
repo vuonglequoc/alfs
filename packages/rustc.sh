@@ -1,14 +1,11 @@
 #!/bin/bash
 
-KPKG_SRC_FILE=rustc-1.79.0-src.tar.xz
-KPKG_SRC_FOLDER=rustc-1.79.0-src
+KPKG_SRC_FILE=rustc-1.80.1-src.tar.xz
+KPKG_SRC_FOLDER=rustc-1.80.1-src
 
 k_pre_configure() {
-  mkdir -pv /opt/rustc-1.79.0
-  ln -svfn rustc-1.79.0 /opt/rustc
-
-  # Same for 1.79.0
-  patch -Np1 -i ../rustc-1.76.0-testsuite_fix-1.patch
+  mkdir -pv /opt/rustc-1.80.1
+  ln -svfn rustc-1.80.1 /opt/rustc
 }
 
 k_configure() {
@@ -20,7 +17,7 @@ cat << EOF > config.toml
 # Tell x.py the editors have reviewed the content of this file
 # and updated it to follow the major changes of the building system,
 # so x.py will not warn us to do such a review.
-change-id = 118703
+change-id = 125535
 
 [llvm]
 # by default, rust will build for a myriad of architectures
@@ -48,18 +45,12 @@ tools = ["cargo", "clippy", "rustdoc", "rustfmt"]
 vendor = true
 
 [install]
-prefix = "/opt/rustc-1.79.0"
-docdir = "share/doc/rustc-1.79.0"
+prefix = "/opt/rustc-1.80.1"
+docdir = "share/doc/rustc-1.80.1"
 
 [rust]
 channel = "stable"
-description = "for BLFS 12.1"
-
-# BLFS used to not install the FileCheck executable from llvm,
-# so disabled codegen tests.  The assembly tests rely on FileCheck
-# and cannot easily be disabled, so those will anyway fail if
-# FileCheck has not been installed.
-#codegen-tests = false
+description = "for BLFS 12.2"
 
 # Enable the same optimizations as the official upstream build.
 lto = "thin"
@@ -79,49 +70,67 @@ EOF
 
 k_build() {
   { [ ! -e /usr/include/libssh2.h ] ||
-    export LIBSSH2_SYS_USE_PKG_CONFIG=1; }
+    export LIBSSH2_SYS_USE_PKG_CONFIG=1; }    &&
+  { [ ! -e /usr/include/sqlite3.h ] ||
+    export LIBSQLITE3_SYS_USE_PKG_CONFIG=1; } &&
   python3 x.py build
 }
 
 k_check() {
   SSL_CERT_DIR=/etc/ssl/certs \
-  python3 x.py test --verbose --no-fail-fast | tee rustc-testlog
+  python3 x.py test --verbose --no-fail-fast --keep-stage-std=1 | \
+      tee rustc-testlog
 
   grep '^test result:' rustc-testlog |
     awk '{sum1 += $4; sum2 += $6} END { print sum1 " passed; " sum2 " failed" }'
 }
 
 k_pre_install() {
-# Install to /opt/rustc-1.79.0
+# Install to /opt/rustc-1.80.1
 { [ ! -e /usr/include/libssh2.h ] ||
-  export LIBSSH2_SYS_USE_PKG_CONFIG=1; }
-python3 x.py install
+  export LIBSSH2_SYS_USE_PKG_CONFIG=1; }    &&
+{ [ ! -e /usr/include/sqlite3.h ] ||
+  export LIBSQLITE3_SYS_USE_PKG_CONFIG=1; } &&
+python3 x.py install rustc std
 
 mkdir -p $KPKG_TMP_DIR/opt/
-mv /opt/rustc-1.79.0 $KPKG_TMP_DIR/opt/
-ln -sfv rustc-1.79.0 \
+mv /opt/rustc-1.80.1 $KPKG_TMP_DIR/opt/
+ln -sfv rustc-1.80.1 \
         $KPKG_TMP_DIR/opt/rustc
 
-find $KPKG_TMP_DIR/opt/rustc-1.79.0 -name "*.old" -delete
+install -vm755 \
+  build/host/stage1-tools/*/*/{cargo{,-clippy,-fmt},clippy-driver,rustfmt} \
+  $KPKG_TMP_DIR/opt/rustc-1.80.1/bin &&
+install -vDm644 \
+  src/tools/cargo/src/etc/_cargo \
+  $KPKG_TMP_DIR/opt/rustc-1.80.1/share/zsh/site-functions/_cargo &&
+install -vm644 src/tools/cargo/src/etc/man/* \
+  $KPKG_TMP_DIR/opt/rustc-1.80.1/share/man/man1
+
+# fix the installation of documentation and symlink a Zsh completion file into the correct location
+rm -fv $KPKG_TMP_DIR/opt/rustc-1.80.1/share/doc/rustc-1.80.1/*.old
+install -vm644 README.md                                \
+               $KPKG_TMP_DIR/opt/rustc-1.80.1/share/doc/rustc-1.80.1
 
 install -vdm755 $KPKG_TMP_DIR/usr/share/zsh/site-functions
 ln -sfv /opt/rustc/share/zsh/site-functions/_cargo \
         $KPKG_TMP_DIR/usr/share/zsh/site-functions
 
-unset LIBSSH2_SYS_USE_PKG_CONFIG
+unset LIB{SSH2,SQLITE3}_SYS_USE_PKG_CONFIG
 
+# Configuring Rust
 mkdir -p $KPKG_TMP_DIR/etc/profile.d
 cat > $KPKG_TMP_DIR/etc/profile.d/rustc.sh << "EOF"
 # Begin /etc/profile.d/rustc.sh
 
 pathprepend /opt/rustc/bin           PATH
 
-# Include /opt/rustc/man in the MANPATH variable to access manual pages
-pathappend  /opt/rustc/share/man     MANPATH
-
 # End /etc/profile.d/rustc.sh
 EOF
+}
 
-# Source rustc.sh in non-root user
-# source /etc/profile.d/rustc.sh
+k_post_install() {
+  # Source rustc.sh in non-root user
+  # source /etc/profile.d/rustc.sh
+  :
 }

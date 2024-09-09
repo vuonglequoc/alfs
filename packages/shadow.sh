@@ -1,8 +1,8 @@
 #!/bin/bash
 # default pwd is root
 
-KPKG_SRC_FILE=shadow-4.14.5.tar.xz
-KPKG_SRC_FOLDER=shadow-4.14.5
+KPKG_SRC_FILE=shadow-4.16.0.tar.xz
+KPKG_SRC_FOLDER=shadow-4.16.0
 
 k_pre_configure() {
   sed -i 's/groups$(EXEEXT) //' src/Makefile.in

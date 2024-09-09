@@ -1,10 +1,10 @@
 #!/bin/bash
 
-KPKG_SRC_FILE=sqlite-autoconf-3460000.tar.gz
-KPKG_SRC_FOLDER=sqlite-autoconf-3460000
+KPKG_SRC_FILE=sqlite-autoconf-3460100.tar.gz
+KPKG_SRC_FOLDER=sqlite-autoconf-3460100
 
 k_pre_configure() {
-  unzip -q ../sqlite-doc-3460000.zip
+  unzip -q ../sqlite-doc-3460100.zip
 }
 
 k_configure() {
@@ -25,6 +25,6 @@ k_check() {
 k_pre_install() {
   make DESTDIR=$KPKG_TMP_DIR install
 
-  install -v -m755 -d $KPKG_TMP_DIR/usr/share/doc/sqlite-3.46.0
-  cp -v -R sqlite-doc-3460000/* $KPKG_TMP_DIR/usr/share/doc/sqlite-3.46.0
+  install -v -m755 -d $KPKG_TMP_DIR/usr/share/doc/sqlite-3.46.1
+  cp -v -R sqlite-doc-3460100/* $KPKG_TMP_DIR/usr/share/doc/sqlite-3.46.1
 }

@@ -1,10 +1,10 @@
 #!/bin/bash
 
-KPKG_SRC_FILE=nss-3.99.tar.gz
-KPKG_SRC_FOLDER=nss-3.99
+KPKG_SRC_FILE=nss-3.103.tar.gz
+KPKG_SRC_FOLDER=nss-3.103
 
 k_pre_configure() {
-  patch -Np1 -i ../nss-3.99-standalone-1.patch
+  patch -Np1 -i ../nss-3.103-standalone-1.patch
 
   cd nss
 }
