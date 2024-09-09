@@ -1,7 +1,7 @@
 #!/bin/bash
 
-KPKG_SRC_FILE=linux-6.7.4.tar.xz
-KPKG_SRC_FOLDER=linux-6.7.4
+KPKG_SRC_FILE=linux-6.10.7.tar.xz
+KPKG_SRC_FOLDER=linux-6.10.7
 
 k_pre_configure() {
   make mrproper
