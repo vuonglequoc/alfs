@@ -2,9 +2,10 @@
 
 # 1. Most firmware
 cd /sources
-tar -xf linux-firmware-20240709.tar.gz
-mv linux-firmware-20240709/* /lib/firmware/
-rm -r linux-firmware-20240709
+# tar -xf linux-firmware-20240709.tar.gz
+# mv linux-firmware-20240709/* /lib/firmware/
+# rm -r linux-firmware-20240709
+# TODO: check only needed firmware
 
 # 2. Microcode updates for CPUs
 head -n7 /proc/cpuinfo
