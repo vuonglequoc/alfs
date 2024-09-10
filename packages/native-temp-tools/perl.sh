@@ -34,3 +34,11 @@ k_configure() {
 k_check() {
   :
 }
+
+k_pre_install() {
+  make DESTDIR=$KPKG_TMP_DIR install
+
+  # Clean output file of installman
+  # TODO: check
+  rm $KPKG_TMP_DIR/*.0
+}
