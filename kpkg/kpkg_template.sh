@@ -45,22 +45,30 @@ k_pre_install() {
 }
 
 k_install() {
+  INSTALL_TIME=$(timestamp)
+  DIST_FILE=$KPKG_DIST_DIR/${KPKG_SRC_FOLDER}_$INSTALL_TIME.tar.xz
+
   pushd $KPKG_TMP_DIR
     # Record
     if [[ "$KPKG_RECORD" -eq 1 ]]; then
       # Info
-      echo "$KPKG_SRC_FOLDER $(timestamp)" >> $KPKG_LIST_FILE
+      echo "$INSTALL_TIME $KPKG_SRC_FOLDER" >> $KPKG_LIST_FILE
       # Detail
       find . -type f > $KPKG_LOG_DIR/$KPKG_SRC_FOLDER.dest
       sed -i "s/.\//\//" $KPKG_LOG_DIR/$KPKG_SRC_FOLDER.dest
-
-      # Compress
-      tar -cJpf $KPKG_DIST_DIR/${KPKG_SRC_FOLDER}_$(timestamp).tar.xz .
     fi
-    # Install
-    cp -r . /
-    # Clean
+
+    # Compress
+    tar -cJpf $DIST_FILE .
+
+    # Clean KPKG_TMP_DIR
     rm -rf ./*
+  popd
+
+  pushd $KPKG_ROOT
+    # Install by untar instead of cp command
+    # Because cp command can cause "Bus error" while overwrite using lib
+    tar -xpf $DIST_FILE
   popd
 }
 

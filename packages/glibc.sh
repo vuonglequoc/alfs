@@ -31,12 +31,13 @@ make DESTDIR=$KPKG_TMP_DIR install
 sed '/RTLDLIST=/s@/usr@@g' -i $KPKG_TMP_DIR/usr/bin/ldd
 
 # install all the locales listed in the glibc-2.40/localedata/SUPPORTED file
+# to /usr/lib/locale/locale-archive
 mkdir -pv $KPKG_TMP_DIR/usr/lib/locale
 make DESTDIR=$KPKG_TMP_DIR localedata/install-locales
 
 # create and install locales not listed in the glibc-2.40/localedata/SUPPORTED file
-localedef -i C -f UTF-8 C.UTF-8 $KPKG_TMP_DIR/usr/lib/locale/locale-archive
-localedef -i ja_JP -f SHIFT_JIS ja_JP.SJIS $KPKG_TMP_DIR/usr/lib/locale/locale-archive 2> /dev/null || true
+localedef -i C -f UTF-8 C.UTF-8 --prefix=$KPKG_TMP_DIR
+localedef -i ja_JP -f SHIFT_JIS ja_JP.SJIS --prefix=$KPKG_TMP_DIR 2> /dev/null || true
 
 # 8.5.2.1. Adding nsswitch.conf
 
