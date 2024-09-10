@@ -1,0 +1,11 @@
+--- config.h	2024-09-10 00:02:00.567331037 +0000
++++ config.h.fix	2024-09-10 00:02:52.281334405 +0000
+@@ -3639,7 +3639,7 @@
+  */
+ /*#define PERL_LC_ALL_USES_NAME_VALUE_PAIRS  	/ **/
+ /*#define  PERL_LC_ALL_SEPARATOR 	/ **/
+-/*#define  PERL_LC_ALL_CATEGORY_POSITIONS_INIT  	/ **/
++#define  PERL_LC_ALL_CATEGORY_POSITIONS_INIT { 12, 11, 10, 9, 8, 7, 5, 4, 3, 2, 1, 0 }
+ 
+ /* USE_DYNAMIC_LOADING:
+  *	This symbol, if defined, indicates that dynamic loading of
