@@ -23,6 +23,8 @@ kpkg_install_proc()
 
   export KPKG_ROOT
   export KPKG_RECORD
+  KPKG_DIST_SUB_DIR=$sub_dir
+  export KPKG_DIST_SUB_DIR
 
   source $1/kpkg/kpkg_template.sh
   source $1/packages/$2.sh
@@ -33,14 +35,13 @@ kpkg_install_proc()
     fi
   fi
 
-  if [ ! -d "$KPKG_DIST_DIR" ]; then
-    mkdir -p $KPKG_DIST_DIR
+  if [ ! -d "$KPKG_DIST_DIR/$KPKG_DIST_SUB_DIR" ]; then
+    mkdir -p $KPKG_DIST_DIR/$KPKG_DIST_SUB_DIR
   fi
   if [ ! -d "$KPKG_TMP_DIR" ]; then
     mkdir -p $KPKG_TMP_DIR
   fi
 
-  export KPKG_RECORD
   export KPKG_DIR
   export KPKG_LOG_DIR
   export KPKG_DIST_DIR
@@ -63,6 +64,7 @@ kpkg_install_proc()
 
   unset KPKG_ROOT
   unset KPKG_RECORD
+  unset KPKG_DIST_SUB_DIR
   unset KPKG_DIR
   unset KPKG_LOG_DIR
   unset KPKG_DIST_DIR
