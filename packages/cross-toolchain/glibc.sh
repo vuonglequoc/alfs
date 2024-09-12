@@ -36,17 +36,13 @@ k_check() {
 }
 
 k_pre_install() {
-  :
-}
+  make DESTDIR=$KPKG_TMP_DIR/$LFS install
 
-k_install() {
-  make DESTDIR=$LFS install
+  # Fix a hard coded path to the executable loader in the ldd script
+  sed '/RTLDLIST=/s@/usr@@g' -i $KPKG_TMP_DIR/$LFS/usr/bin/ldd
 }
 
 k_post_install() {
-  # Fix a hard coded path to the executable loader in the ldd script
-  sed '/RTLDLIST=/s@/usr@@g' -i $LFS/usr/bin/ldd
-
   # sanity check
   echo 'int main(){}' | $LFS_TGT-gcc -xc -
   readelf -l a.out | grep ld-linux

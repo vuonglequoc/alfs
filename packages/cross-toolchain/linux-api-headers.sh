@@ -20,10 +20,7 @@ k_check() {
 }
 
 k_pre_install() {
-  :
-}
-
-k_install() {
   find usr/include -type f ! -name '*.h' -delete
-  cp -rv usr/include $LFS/usr
+  mkdir -p $KPKG_TMP_DIR/$LFS/usr
+  cp -rv usr/include $KPKG_TMP_DIR/$LFS/usr
 }

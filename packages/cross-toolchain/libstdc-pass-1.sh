@@ -10,9 +10,9 @@ k_pre_configure() {
 
 k_configure() {
   ../libstdc++-v3/configure      \
+      --prefix=/usr              \
       --host=$LFS_TGT            \
       --build=$(../config.guess) \
-      --prefix=/usr              \
       --disable-multilib         \
       --disable-nls              \
       --disable-libstdcxx-pch    \
@@ -24,13 +24,7 @@ k_check() {
 }
 
 k_pre_install() {
-  :
-}
+  make DESTDIR=$KPKG_TMP_DIR/$LFS install
 
-k_install() {
-  make DESTDIR=$LFS install
-}
-
-k_post_install() {
-  rm -v $LFS/usr/lib/lib{stdc++{,exp,fs},supc++}.la
+  rm -v $KPKG_TMP_DIR/$LFS/usr/lib/lib{stdc++{,exp,fs},supc++}.la
 }
