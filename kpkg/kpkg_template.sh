@@ -71,7 +71,7 @@ k_install() {
     rm -rf ./*
   popd
 
-  pushd $KPKG_ROOT/
+  pushd /
     echo Extracting $DIST_FILE
     # Install by untar instead of cp command
     # Because cp command can cause "Bus error" while overwrite using lib
