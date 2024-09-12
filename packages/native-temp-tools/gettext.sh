@@ -12,9 +12,6 @@ k_check() {
 }
 
 k_pre_install() {
-  :
-}
-
-k_install() {
-  cp -v gettext-tools/src/{msgfmt,msgmerge,xgettext} /usr/bin
+  mkdir -p $KPKG_TMP_DIR/usr/bin
+  cp -v gettext-tools/src/{msgfmt,msgmerge,xgettext} $KPKG_TMP_DIR/usr/bin
 }

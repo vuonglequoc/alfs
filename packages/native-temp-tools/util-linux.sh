@@ -4,7 +4,7 @@ KPKG_SRC_FILE=util-linux-2.40.2.tar.xz
 KPKG_SRC_FOLDER=util-linux-2.40.2
 
 k_pre_configure() {
-  mkdir -pv /var/lib/hwclock
+  mkdir -pv $KPKG_TMP_DIR/var/lib/hwclock
 }
 
 k_configure() {
