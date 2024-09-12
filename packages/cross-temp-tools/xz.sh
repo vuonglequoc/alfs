@@ -16,13 +16,7 @@ k_check() {
 }
 
 k_pre_install() {
-  :
-}
+  make DESTDIR=$KPKG_TMP_DIR/$LFS install
 
-k_install() {
-  make DESTDIR=$LFS install
-}
-
-k_post_install() {
-  rm -v $LFS/usr/lib/liblzma.la
+  rm -v $KPKG_TMP_DIR/$LFS/usr/lib/liblzma.la
 }

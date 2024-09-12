@@ -33,15 +33,9 @@ k_check() {
 }
 
 k_pre_install() {
-  :
-}
+  make DESTDIR=$KPKG_TMP_DIR/$LFS TIC_PATH=$(pwd)/build/progs/tic install
 
-k_install() {
-  make DESTDIR=$LFS TIC_PATH=$(pwd)/build/progs/tic install
-}
-
-k_post_install() {
-  ln -sv libncursesw.so $LFS/usr/lib/libncurses.so
+  ln -sv libncursesw.so $KPKG_TMP_DIR/$LFS/usr/lib/libncurses.so
   sed -e 's/^#if.*XOPEN.*$/#if 1/' \
-      -i $LFS/usr/include/curses.h
+      -i $KPKG_TMP_DIR/$LFS/usr/include/curses.h
 }

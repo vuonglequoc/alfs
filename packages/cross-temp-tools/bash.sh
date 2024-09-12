@@ -16,13 +16,7 @@ k_check() {
 }
 
 k_pre_install() {
-  :
-}
+  make DESTDIR=$KPKG_TMP_DIR/$LFS install
 
-k_install() {
-  make DESTDIR=$LFS install
-}
-
-k_post_install() {
-  ln -sv bash $LFS/bin/sh
+  ln -sv bash $KPKG_TMP_DIR$LFS/bin/sh
 }

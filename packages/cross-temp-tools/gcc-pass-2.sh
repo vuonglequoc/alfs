@@ -53,14 +53,8 @@ k_check() {
 }
 
 k_pre_install() {
-  :
-}
+  make DESTDIR=$KPKG_TMP_DIR/$LFS install
 
-k_install() {
-  make DESTDIR=$LFS install
-}
-
-k_post_install() {
-  ln -sv gcc $LFS/usr/bin/cc
-  ln -sv gcc $LFS/usr/bin/cc1
+  ln -sv gcc $KPKG_TMP_DIR/$LFS/usr/bin/cc
+  ln -sv gcc $KPKG_TMP_DIR/$LFS/usr/bin/cc1
 }
