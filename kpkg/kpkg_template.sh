@@ -13,7 +13,7 @@ k_prepare_source() {
   cd $KPKG_ROOT/sources
 
   echo "Extracting source file..."
-  tar xvf $KPKG_SRC_FILE
+  tar -xphvf $KPKG_SRC_FILE
 
   cd $KPKG_SRC_FOLDER
 }
@@ -58,17 +58,29 @@ k_install() {
       sed -i "s/.\//\//" $KPKG_LOG_DIR/$KPKG_SRC_FOLDER.dest
     fi
 
+    echo Compressing to $DIST_FILE
     # Compress
-    tar -cJpf $DIST_FILE .
+    # -c: create
+    # -J: xz
+    # -p: preserve-permissions
+    # -v: verbose
+    # -f: file
+    tar -cJpvf $DIST_FILE .
 
     # Clean KPKG_TMP_DIR
     rm -rf ./*
   popd
 
   pushd $KPKG_ROOT/
+    echo Extracting $DIST_FILE
     # Install by untar instead of cp command
     # Because cp command can cause "Bus error" while overwrite using lib
-    tar -xpf $DIST_FILE
+    # -x: extract
+    # -p: preserve-permissions
+    # -h: dereference : follow symlinks
+    # -v: verbose
+    # -f: file
+    tar -xphvf $DIST_FILE
   popd
 }
 
