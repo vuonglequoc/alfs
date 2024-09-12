@@ -31,12 +31,13 @@ kpkg_install_proc()
     if [ ! -d "$KPKG_LOG_DIR" ]; then
       mkdir -p $KPKG_LOG_DIR
     fi
-    if [ ! -d "$KPKG_DIST_DIR" ]; then
-      mkdir -p $KPKG_DIST_DIR
-    fi
-    if [ ! -d "$KPKG_TMP_DIR" ]; then
-      mkdir -p $KPKG_TMP_DIR
-    fi
+  fi
+
+  if [ ! -d "$KPKG_DIST_DIR" ]; then
+    mkdir -p $KPKG_DIST_DIR
+  fi
+  if [ ! -d "$KPKG_TMP_DIR" ]; then
+    mkdir -p $KPKG_TMP_DIR
   fi
 
   export KPKG_RECORD
