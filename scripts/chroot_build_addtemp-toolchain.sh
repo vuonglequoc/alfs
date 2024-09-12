@@ -29,8 +29,6 @@ case $(uname -m) in
   x86_64) chown -Rv root:root $LFS/lib64 ;;
 esac
 
-chown -Rv root:root $LFS/alfs
-
 # 7.3. Preparing Virtual Kernel File Systems
 mkdir -pv $LFS/{dev,proc,sys,run}
 
