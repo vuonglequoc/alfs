@@ -23,8 +23,6 @@ kpkg_install_proc()
 
   export KPKG_ROOT
   export KPKG_RECORD
-  KPKG_DIST_SUB_DIR=$sub_dir
-  export KPKG_DIST_SUB_DIR
 
   source $1/kpkg/kpkg_template.sh
   source $1/packages/$2.sh
@@ -34,6 +32,9 @@ kpkg_install_proc()
       mkdir -p $KPKG_LOG_DIR
     fi
   fi
+
+  KPKG_DIST_SUB_DIR=$sub_dir
+  export KPKG_DIST_SUB_DIR
 
   if [ ! -d "$KPKG_DIST_DIR/$KPKG_DIST_SUB_DIR" ]; then
     mkdir -p $KPKG_DIST_DIR/$KPKG_DIST_SUB_DIR
