@@ -26,9 +26,9 @@ fi
 # 7.13.2. Backup
 echo "Backing up.."
 cd $LFS
-tar -cJpf $HOME/lfs-temp-tools-12.2.tar.xz .
+XZ_DEFAULTS="-T 0" tar -cJpf $HOME/lfs-temp-tools-12.2.tar.xz .
 
 # 7.13.3. Restore
 # cd $LFS
 # rm -rf ./*
-# tar -xpf $HOME/lfs-temp-tools-12.2.tar.xz
+# XZ_DEFAULTS="-T 0" tar -xpf $HOME/lfs-temp-tools-12.2.tar.xz

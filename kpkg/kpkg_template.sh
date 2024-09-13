@@ -14,7 +14,7 @@ k_prepare_source() {
   cd $KPKG_ROOT/sources
 
   echo "Extracting source file..."
-  tar -xphvf $KPKG_SRC_FILE
+  XZ_DEFAULTS="-T 0" tar -xphvf $KPKG_SRC_FILE
 
   cd $KPKG_SRC_FOLDER
 }
@@ -66,7 +66,7 @@ k_install() {
     # -p: preserve-permissions
     # -v: verbose
     # -f: file
-    tar -cJpvf $DIST_FILE .
+    XZ_DEFAULTS="-T 0" tar -cJpvf $DIST_FILE .
 
     # Clean KPKG_TMP_DIR
     rm -rf ./*
@@ -81,7 +81,7 @@ k_install() {
     # -h: dereference : follow symlinks
     # -v: verbose
     # -f: file
-    tar -xphvf $DIST_FILE
+    XZ_DEFAULTS="-T 0" tar -xphvf $DIST_FILE
   popd
 }
 
