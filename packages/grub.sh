@@ -4,8 +4,9 @@ KPKG_SRC_FILE=grub-2.12.tar.xz
 KPKG_SRC_FOLDER=grub-2.12
 
 k_pre_configure() {
-  mkdir -pv $KPKG_TMP_DIR/usr/share/fonts/unifont
-  gunzip -c ../unifont-15.1.04.pcf.gz > $KPKG_TMP_DIR/usr/share/fonts/unifont/unifont.pcf
+  # For build `unicode.pf2`, need install unifont to system firstly
+  mkdir -pv /usr/share/fonts/unifont
+  gunzip -c ../unifont-15.1.04.pcf.gz > /usr/share/fonts/unifont/unifont.pcf
 
   unset {C,CPP,CXX,LD}FLAGS
 
@@ -33,4 +34,8 @@ k_pre_install() {
 
   mkdir -pv $KPKG_TMP_DIR/usr/share/bash-completion/completions
   mv -v $KPKG_TMP_DIR/etc/bash_completion.d/grub $KPKG_TMP_DIR/usr/share/bash-completion/completions
+
+  # Prepare for GRUB's graphical
+  mkdir -pv $KPKG_TMP_DIR/boot/grub/fonts
+  cp $KPKG_TMP_DIR/usr/share/grub/unicode.pf2 $KPKG_TMP_DIR/boot/grub/fonts/unicode.pf2
 }
