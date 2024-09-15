@@ -41,6 +41,8 @@ k_check() {
 }
 
 k_pre_install() {
+  install -vm755 -d $KPKG_TMP_DIR/usr/{bin,sbin,include}
+  install -vm755 -d $KPKG_TMP_DIR/usr/share/man/{man5,man8}
   install -vm755 -d {$KPKG_TMP_DIR/usr/lib,$KPKG_TMP_DIR/etc}/udev/{hwdb.d,rules.d,network}
   install -vm755 -d $KPKG_TMP_DIR/usr/{lib,share}/pkgconfig
   install -vm755 udevadm                             $KPKG_TMP_DIR/usr/bin/
@@ -71,21 +73,23 @@ k_pre_install() {
                   '*/systemd-'{hwdb,udevd.service}.8
 
   sed 's|systemd/network|udev/network|'             \
-      /usr/share/man/man5/systemd.link.5            \
+      $KPKG_TMP_DIR/usr/share/man/man5/systemd.link.5            \
     > $KPKG_TMP_DIR/usr/share/man/man5/udev.link.5
 
   sed 's/systemd\(\\\?-\)/udev\1/'                  \
-      /usr/share/man/man8/systemd-hwdb.8            \
+      $KPKG_TMP_DIR/usr/share/man/man8/systemd-hwdb.8            \
     > $KPKG_TMP_DIR/usr/share/man/man8/udev-hwdb.8
 
   sed 's|lib.*udevd|sbin/udevd|'                    \
-      /usr/share/man/man8/systemd-udevd.service.8   \
+      $KPKG_TMP_DIR/usr/share/man/man8/systemd-udevd.service.8   \
     > $KPKG_TMP_DIR/usr/share/man/man8/udevd.8
 
   rm $KPKG_TMP_DIR/usr/share/man/man*/systemd*
 
   unset udev_helpers
+}
 
+k_post_install() {
   # Configuring Udev
   udev-hwdb update
 }

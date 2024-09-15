@@ -17,6 +17,7 @@ k_check() {
 k_pre_install() {
 make DESTDIR=$KPKG_TMP_DIR BINDIR=/sbin install
 
+mkdir -pv $KPKG_TMP_DIR/etc
 cat > $KPKG_TMP_DIR/etc/syslog.conf << "EOF"
 # Begin /etc/syslog.conf
 

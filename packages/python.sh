@@ -17,6 +17,7 @@ k_check() {
 k_pre_install() {
 make DESTDIR=$KPKG_TMP_DIR install
 
+mkdir $KPKG_TMP_DIR/etc
 cat > $KPKG_TMP_DIR/etc/pip.conf << EOF
 [global]
 root-user-action = ignore

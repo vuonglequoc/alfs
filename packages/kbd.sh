@@ -18,5 +18,6 @@ k_configure() {
 k_pre_install() {
   make DESTDIR=$KPKG_TMP_DIR install
 
+  mkdir -pv $KPKG_TMP_DIR/usr/share/doc
   cp -R -v docs/doc -T $KPKG_TMP_DIR/usr/share/doc/kbd-2.6.4
 }

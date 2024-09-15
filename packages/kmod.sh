@@ -20,6 +20,7 @@ k_check() {
 k_pre_install() {
   make DESTDIR=$KPKG_TMP_DIR install
 
+  mkdir -pv $KPKG_TMP_DIR/usr/sbin
   for target in depmod insmod modinfo modprobe rmmod; do
     ln -sfv ../bin/kmod $KPKG_TMP_DIR/usr/sbin/$target
     rm -fv $KPKG_TMP_DIR/usr/bin/$target

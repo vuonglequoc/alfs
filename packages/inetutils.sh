@@ -3,6 +3,11 @@
 KPKG_SRC_FILE=inetutils-2.5.tar.xz
 KPKG_SRC_FOLDER=inetutils-2.5
 
+k_pre_configure() {
+  # make the package build with gcc-14.1 or later
+  sed -i 's/def HAVE_TERMCAP_TGETENT/ 1/' telnet/telnet.c
+}
+
 k_configure() {
   ./configure --prefix=/usr        \
               --bindir=/usr/bin    \
@@ -19,5 +24,6 @@ k_configure() {
 k_pre_install() {
   make DESTDIR=$KPKG_TMP_DIR install
 
+  mkdir -pv $KPKG_TMP_DIR/usr/sbin
   mv -v $KPKG_TMP_DIR/usr/{,s}bin/ifconfig
 }

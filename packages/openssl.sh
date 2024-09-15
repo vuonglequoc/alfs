@@ -19,6 +19,6 @@ k_pre_install() {
   sed -i '/INSTALL_LIBS/s/libcrypto.a libssl.a//' Makefile
   make DESTDIR=$KPKG_TMP_DIR MANSUFFIX=ssl install
 
-  mv -v /usr/share/doc/openssl $KPKG_TMP_DIR/usr/share/doc/openssl-3.3.1
+  mv -v $KPKG_TMP_DIR/usr/share/doc/openssl $KPKG_TMP_DIR/usr/share/doc/openssl-3.3.1
   cp -vfr doc/* $KPKG_TMP_DIR/usr/share/doc/openssl-3.3.1
 }

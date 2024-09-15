@@ -25,6 +25,7 @@ k_check() {
 k_pre_install() {
   make DESTDIR=$KPKG_TMP_DIR install
 
+  mkdir -pv $KPKG_TMP_DIR/usr/share/doc
   cp -v -R docs -T $KPKG_TMP_DIR/usr/share/doc/freetype-2.13.2
   rm -v $KPKG_TMP_DIR/usr/share/doc/freetype-2.13.2/freetype-config.1
 }

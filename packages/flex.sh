@@ -9,7 +9,9 @@ k_configure() {
               --disable-static
 }
 
-k_post_install() {
-  ln -sv flex   /usr/bin/lex
-  ln -sv flex.1 /usr/share/man/man1/lex.1
+k_pre_install() {
+  make DESTDIR=$KPKG_TMP_DIR install
+
+  ln -sv flex   $KPKG_TMP_DIR/usr/bin/lex
+  ln -sv flex.1 $KPKG_TMP_DIR/usr/share/man/man1/lex.1
 }

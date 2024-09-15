@@ -25,8 +25,10 @@ for L in  $KPKG_TMP_DIR/usr/share/man/{,*/}man1/vim.1; do
     ln -sv vim.1 $(dirname $L)/vi.1
 done
 
+mkdir -pv $KPKG_TMP_DIR/usr/share/doc
 ln -sv ../vim/vim91/doc $KPKG_TMP_DIR/usr/share/doc/vim-9.1.0722
 
+mkdir -pv $KPKG_TMP_DIR/etc
 cat > $KPKG_TMP_DIR/etc/vimrc << "EOF"
 " Begin /etc/vimrc
 

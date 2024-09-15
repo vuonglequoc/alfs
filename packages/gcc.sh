@@ -54,19 +54,22 @@ k_pre_install() {
   mkdir -pv $KPKG_TMP_DIR/usr/share/gdb/auto-load/usr/lib
   mv -v $KPKG_TMP_DIR/usr/lib/*gdb.py $KPKG_TMP_DIR/usr/share/gdb/auto-load/usr/lib
 
-  chown -Rv root:root \
-      $KPKG_TMP_DIR/usr/lib/gcc/$(gcc -dumpmachine)/13.2.0/include{,-fixed}
-
   # Create a symlink required by the FHS for "historical" reasons
   ln -sv ../bin/cpp $KPKG_TMP_DIR/usr/lib/cpp
 
   ln -sv gcc.1 $KPKG_TMP_DIR/usr/share/man/man1/cc.1
-
-  ln -sfv ../../libexec/gcc/$(gcc -dumpmachine)/13.2.0/liblto_plugin.so \
-          $KPKG_TMP_DIR/usr/lib/bfd-plugins/
 }
 
 k_post_install() {
+  # gcc -dumpmachine
+  # Old cross-compile x86_64-lfs-linux-gnu
+  # New native        x86_64-pc-linux-gnu
+  chown -Rv root:root \
+      /usr/lib/gcc/$(gcc -dumpmachine)/14.2.0/include{,-fixed}
+
+  ln -sfv ../../libexec/gcc/$(gcc -dumpmachine)/14.2.0/liblto_plugin.so \
+          /usr/lib/bfd-plugins/
+
   # TEST
   echo 'int main(){}' > dummy.c
   cc dummy.c -v -Wl,--verbose &> dummy.log

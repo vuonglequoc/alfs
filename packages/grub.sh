@@ -4,8 +4,8 @@ KPKG_SRC_FILE=grub-2.12.tar.xz
 KPKG_SRC_FOLDER=grub-2.12
 
 k_pre_configure() {
-  mkdir -pv /usr/share/fonts/unifont
-  gunzip -c ../unifont-15.1.04.pcf.gz > /usr/share/fonts/unifont/unifont.pcf
+  mkdir -pv $KPKG_TMP_DIR/usr/share/fonts/unifont
+  gunzip -c ../unifont-15.1.04.pcf.gz > $KPKG_TMP_DIR/usr/share/fonts/unifont/unifont.pcf
 
   unset {C,CPP,CXX,LD}FLAGS
 
@@ -31,5 +31,6 @@ k_check() {
 k_pre_install() {
   make DESTDIR=$KPKG_TMP_DIR install
 
+  mkdir -pv $KPKG_TMP_DIR/usr/share/bash-completion/completions
   mv -v $KPKG_TMP_DIR/etc/bash_completion.d/grub $KPKG_TMP_DIR/usr/share/bash-completion/completions
 }

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-KPKG_SRC_FILE=ncurses-6.5.tar.xz
+KPKG_SRC_FILE=ncurses-6.5.tar.gz
 KPKG_SRC_FOLDER=ncurses-6.5
 
 k_configure() {
@@ -36,5 +36,6 @@ k_pre_install() {
 
   ln -sfv libncursesw.so $KPKG_TMP_DIR/usr/lib/libcurses.so
 
+  mkdir -p $KPKG_TMP_DIR/usr/share/doc
   cp -v -R doc -T $KPKG_TMP_DIR/usr/share/doc/ncurses-6.5
 }
