@@ -72,7 +72,7 @@ echo "search online to check which module it uses, which firmware, and where to 
 
 cd /sources/initrd/
 mkinitramfs $(uname -r)
-mv initrd.img-$(uname -r) /boot/initrd.img-$(uname -r)-lfs-12.1
+mv initrd.img-$(uname -r) /boot/initrd.img-$(uname -r)-lfs-12.2
 
 # add a new entry to /boot/grub/grub.cfg
 grub-mkconfig -o /boot/grub/grub.cfg

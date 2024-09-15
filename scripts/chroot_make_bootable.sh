@@ -42,20 +42,20 @@ kpkg_install linux
 
 # 11.1 The End
 
-echo 12.1 > /etc/lfs-release
+echo 12.2 > /etc/lfs-release
 
 cat > /etc/lsb-release << "EOF"
 DISTRIB_ID="Linux From Scratch"
-DISTRIB_RELEASE="12.1"
+DISTRIB_RELEASE="12.2"
 DISTRIB_CODENAME="Vuong Le"
 DISTRIB_DESCRIPTION="Linux From Scratch"
 EOF
 
 cat > /etc/os-release << "EOF"
 NAME="Linux From Scratch"
-VERSION="12.1"
+VERSION="12.2"
 ID=lfs
-PRETTY_NAME="Linux From Scratch 12.1"
+PRETTY_NAME="Linux From Scratch 12.2"
 VERSION_CODENAME="Vuong Le"
 HOME_URL="https://github.com/vuonglequoc/"
 EOF

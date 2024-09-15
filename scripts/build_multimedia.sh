@@ -101,9 +101,9 @@ cd /sources/linux-6.10.7
 cp /alfs/defaults/boot/config-6.10.7.base.uefi.iptables.ntfs.exfat.sound .config
 make
 make modules_install
-cp -v arch/x86_64/boot/bzImage /boot/vmlinuz-$(uname -r)-lfs-12.1
-cp -v System.map /boot/System.map-$(uname -r)-lfs-12.1
-cp -v .config /boot/config-$(uname -r)-lfs-12.1
+cp -v arch/x86_64/boot/bzImage /boot/vmlinuz-$(uname -r)-lfs-12.2
+cp -v System.map /boot/System.map-$(uname -r)-lfs-12.2
+cp -v .config /boot/config-$(uname -r)-lfs-12.2
 
 kpkg_install libaom
 kpkg_install fribidi
@@ -132,9 +132,9 @@ cd /sources/linux-6.10.7
 cp /alfs/defaults/boot/config-6.10.7.base.uefi.iptables.ntfs.exfat.sound.framebuffer .config
 make
 make modules_install
-cp -v arch/x86_64/boot/bzImage /boot/vmlinuz-$(uname -r)-lfs-12.1
-cp -v System.map /boot/System.map-$(uname -r)-lfs-12.1
-cp -v .config /boot/config-$(uname -r)-lfs-12.1
+cp -v arch/x86_64/boot/bzImage /boot/vmlinuz-$(uname -r)-lfs-12.2
+cp -v System.map /boot/System.map-$(uname -r)-lfs-12.2
+cp -v .config /boot/config-$(uname -r)-lfs-12.2
 
 kpkg_install libsndfile
 kpkg_install pulseaudio

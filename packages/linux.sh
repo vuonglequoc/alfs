@@ -21,11 +21,11 @@ k_check() {
 k_pre_install() {
 make DESTDIR=$KPKG_TMP_DIR modules_install
 
-cp -v arch/x86_64/boot/bzImage $KPKG_TMP_DIR/boot/vmlinuz-6.10.7-lfs-12.1
+cp -v arch/x86_64/boot/bzImage $KPKG_TMP_DIR/boot/vmlinuz-6.10.7-lfs-12.2
 
-cp -v System.map $KPKG_TMP_DIR/boot/System.map-6.10.7-lfs-12.1
+cp -v System.map $KPKG_TMP_DIR/boot/System.map-6.10.7-lfs-12.2
 
-cp -v .config $KPKG_TMP_DIR/boot/config-6.10.7-lfs-12.1
+cp -v .config $KPKG_TMP_DIR/boot/config-6.10.7-lfs-12.2
 
 cp -r Documentation -T $KPKG_TMP_DIR/usr/share/doc/linux-6.10.7
 
