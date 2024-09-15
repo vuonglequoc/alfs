@@ -155,7 +155,7 @@ mountpoint /sys/firmware/efi/efivars || mount -v -t efivarfs efivarfs /sys/firmw
 Prepare background
 
 ```bash
-mkdir /boot/grub/images/
+mkdir -pv /boot/grub/images/
 cp /alfs/defaults/boot/grub/images/splash.png /boot/grub/images/splash.png
 ```
 
