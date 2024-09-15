@@ -29,7 +29,6 @@ online_usrlib="libbfd-2.43.1.so
                libm.so.6
                libreadline.so.8.2
                libz.so.1.3.1
-               libzstd.so.1.5.5
                $(cd /usr/lib; find libnss*.so* -type f)"
 
 for BIN in $online_usrbin; do
