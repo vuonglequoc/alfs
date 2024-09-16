@@ -56,3 +56,9 @@ k_pre_install() {
   cd $KPKG_ROOT/sources
   rm -r blfs-bootscripts-20240416
 }
+
+k_post_install() {
+  # Make hostkey
+  ssh-keygen -A
+}
+
