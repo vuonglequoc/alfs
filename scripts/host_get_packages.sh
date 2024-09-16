@@ -17,7 +17,7 @@ fi
 
 mkdir -v $LFS/sources
 
-# wget --input-file=$LFS/alfs/wget-list --continue --directory-prefix=$LFS/sources
+# wget --input-file=$LFS/alfs/sources/wget-list --continue --directory-prefix=$LFS/sources
 # Support download package with output filename which different with URL
 download() {
   err=0
@@ -30,8 +30,8 @@ download() {
   done < $1
   return $err
 }
-download $LFS/alfs/wget-list $LFS/sources
+download $LFS/alfs/sources/wget-list $LFS/sources
 
 pushd $LFS/sources
-  md5sum -c $LFS/alfs/md5sums
+  md5sum -c $LFS/alfs/sources/md5sums
 popd
