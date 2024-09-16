@@ -40,6 +40,10 @@ k_pre_install() {
 
   echo "PermitRootLogin no" >> $KPKG_TMP_DIR/etc/ssh/sshd_config
 
+  # Make key for login
+  # ssh-keygen &&
+  # ssh-copy-id -i ~/.ssh/id_ed25519.pub REMOTE_USERNAME@REMOTE_HOSTNAME
+
   # disable password logins
   # echo "PasswordAuthentication no" >> $KPKG_TMP_DIR/etc/ssh/sshd_config
   # echo "KbdInteractiveAuthentication no" >> $KPKG_TMP_DIR/etc/ssh/sshd_config

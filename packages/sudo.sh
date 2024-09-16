@@ -19,8 +19,8 @@ k_check() {
 k_pre_install() {
 make DESTDIR=$KPKG_TMP_DIR install
 
-mkdir $KPKG_TMP_DIR/etc/sudoers.d
-cat > /etc/sudoers.d/00-sudo << "EOF"
+mkdir -pv $KPKG_TMP_DIR/etc/sudoers.d
+cat > $KPKG_TMP_DIR/etc/sudoers.d/00-sudo << "EOF"
 Defaults secure_path="/usr/sbin:/usr/bin"
 %wheel ALL=(ALL) ALL
 EOF

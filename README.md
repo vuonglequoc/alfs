@@ -18,7 +18,7 @@ Add the following packages
 sudo apt install gcc g++ make patch bison gawk git htop texinfo file dosfstools gettext
 ```
 
-Set these Enviornment Variables
+Set these Environment Variables
 
 ```bash
 export LFS=/mnt/lfs
@@ -227,6 +227,24 @@ sudo -E $ALFS/scripts/chroot_build_remote_software.sh
 ```
 
 From now on, we can use LFS system remotely for other installation with **$NONROOT_USER** user  and pass **$NONROOT_USER**.
+
+Reboot to LFS Machine
+
+```bash
+sudo reboot
+```
+
+Remote to LFS Machine from Dev Machine for the rest building
+
+```bash
+ssh $NONROOT_USER@LFS_MACHINE_IP
+```
+
+Set these Environment Variables
+
+```bash
+export NONROOT_USER=user
+```
 
 ### Post LFS Configuration and Extra Software
 

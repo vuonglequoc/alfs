@@ -16,8 +16,8 @@ echo "$NONROOT_USER:$NONROOT_USER" | chpasswd
 usermod -aG wheel $NONROOT_USER
 
 kpkg_install openssh
-kpkg_install wget
 
+kpkg_install wget
 # Ignore Certificate Check because we have not yet install make-ca
 echo "check_certificate = off" >> /home/$NONROOT_USER/.wgetrc
 
