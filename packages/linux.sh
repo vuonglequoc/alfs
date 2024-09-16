@@ -40,3 +40,7 @@ install uhci_hcd /sbin/modprobe ehci_hcd ; /sbin/modprobe -i uhci_hcd ; true
 # End /etc/modprobe.d/usb.conf
 EOF
 }
+
+k_build_clean() {
+  echo Not delete $KPKG_SRC_FOLDER for later updated
+}
