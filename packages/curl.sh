@@ -1,7 +1,7 @@
 #!/bin/bash
 
-KPKG_SRC_FILE=curl-8.8.0.tar.xz
-KPKG_SRC_FOLDER=curl-8.8.0
+KPKG_SRC_FILE=curl-8.9.1.tar.xz
+KPKG_SRC_FOLDER=curl-8.9.1
 
 k_configure() {
   ./configure --prefix=/usr              \
@@ -25,7 +25,8 @@ k_pre_install() {
                -name \*.3       -o  \
                -name CMakeLists.txt \) -delete
 
-  cp -v -R docs -T $KPKG_TMP_DIR/usr/share/doc/curl-8.8.0
+  mkdir -pv $KPKG_TMP_DIR/usr/share/doc
+  cp -v -R docs -T $KPKG_TMP_DIR/usr/share/doc/curl-8.9.1
 }
 
 k_post_install() {

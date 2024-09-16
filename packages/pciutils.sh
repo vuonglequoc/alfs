@@ -26,6 +26,7 @@ make DESTDIR=$KPKG_TMP_DIR      \
 
 chmod -v 755 $KPKG_TMP_DIR/usr/lib/libpci.so
 
+mkdir -pv $KPKG_TMP_DIR/etc/cron.weekly
 cat > $KPKG_TMP_DIR/etc/cron.weekly/update-pciids.sh << "EOF" &&
 #!/bin/bash
 /usr/sbin/update-pciids

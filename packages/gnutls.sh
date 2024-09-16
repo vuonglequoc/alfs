@@ -1,7 +1,7 @@
 #!/bin/bash
 
 KPKG_SRC_FILE=gnutls-3.8.7.1.tar.xz
-KPKG_SRC_FOLDER=gnutls-3.8.7.1
+KPKG_SRC_FOLDER=gnutls-3.8.7
 
 k_configure() {
   ./configure --prefix=/usr \

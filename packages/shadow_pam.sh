@@ -52,6 +52,7 @@ do
   sed -i "s/^${FUNCTION}/# &/" $KPKG_TMP_DIR/etc/login.defs
 done
 
+mkdir -pv $KPKG_TMP_DIR/etc/pam.d
 cat > $KPKG_TMP_DIR/etc/pam.d/login << "EOF"
 # Begin /etc/pam.d/login
 
@@ -162,19 +163,19 @@ account   include     system-account
 
 # End /etc/pam.d/chage
 EOF
-
-for PROGRAM in chfn chgpasswd chsh groupadd groupdel \
-               groupmems groupmod useradd userdel usermod
-do
-  install -v -m644 $KPKG_TMP_DIR/etc/pam.d/chage /etc/pam.d/${PROGRAM}
-  sed -i "s/chage/$PROGRAM/" $KPKG_TMP_DIR/etc/pam.d/${PROGRAM}
-done
 }
 
 k_post_install() {
-  # At this point, you should do a simple test to see if Shadow is working as expected. Open another terminal and log in as root, and then run login and login as another user. If you do not see any errors, then all is well and you should proceed with the rest of the configuration.
+for PROGRAM in chfn chgpasswd chsh groupadd groupdel \
+               groupmems groupmod useradd userdel usermod
+do
+  install -v -m644 /etc/pam.d/chage /etc/pam.d/${PROGRAM}
+  sed -i "s/chage/$PROGRAM/" /etc/pam.d/${PROGRAM}
+done
 
-  if [ -f /etc/login.access ]; then mv -v /etc/login.access{,.NOUSE}; fi
+# At this point, you should do a simple test to see if Shadow is working as expected. Open another terminal and log in as root, and then run login and login as another user. If you do not see any errors, then all is well and you should proceed with the rest of the configuration.
 
-  if [ -f /etc/limits ]; then mv -v /etc/limits{,.NOUSE}; fi
+if [ -f /etc/login.access ]; then mv -v /etc/login.access{,.NOUSE}; fi
+
+if [ -f /etc/limits ]; then mv -v /etc/limits{,.NOUSE}; fi
 }

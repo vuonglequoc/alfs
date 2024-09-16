@@ -34,7 +34,7 @@ k_check() {
 }
 
 k_pre_install() {
-mkdir $KPKG_TMP_DIR/etc/pam.d
+mkdir -pv $KPKG_TMP_DIR/etc/pam.d
 make DESTDIR=$KPKG_TMP_DIR install
 
 cat > $KPKG_TMP_DIR/usr/bin/run-parts << "EOF"

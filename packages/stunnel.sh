@@ -56,6 +56,7 @@ rm -r blfs-bootscripts-20240416
 }
 
 k_post_install() {
+  cd $KPKG_ROOT/sources/$KPKG_SRC_FOLDER
   # generate A signed SSL Certificate and a Private Key
   echo -e "US\nIllinois\nChicago\nStunnel Developers\nProvisional CA\nlocalhost\n" | make cert
   # Country Name (2 letter code) [PL]:

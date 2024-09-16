@@ -252,6 +252,14 @@ export NONROOT_USER=user
 sudo -E /alfs/scripts/build_post_lfs.sh
 ```
 
+Reboot to LFS Machine again to take effect
+
+```bash
+sudo reboot
+ssh $NONROOT_USER@LFS_MACHINE_IP
+export NONROOT_USER=user
+```
+
 ### General Libraries and Utilities
 
 ```bash

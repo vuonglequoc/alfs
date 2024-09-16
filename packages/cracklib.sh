@@ -28,7 +28,9 @@ k_pre_install() {
   ln -v -sf cracklib-words $KPKG_TMP_DIR/usr/share/dict/words
   echo $(hostname) >>      $KPKG_TMP_DIR/usr/share/dict/cracklib-extra-words
   install -v -m755 -d      $KPKG_TMP_DIR/usr/lib/cracklib
+}
 
-  create-cracklib-dict     $KPKG_TMP_DIR/usr/share/dict/cracklib-words \
-                           $KPKG_TMP_DIR/usr/share/dict/cracklib-extra-words
+k_post_install() {
+  create-cracklib-dict     /usr/share/dict/cracklib-words \
+                           /usr/share/dict/cracklib-extra-words
 }

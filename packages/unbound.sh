@@ -19,6 +19,7 @@ k_configure() {
 k_pre_install() {
   make DESTDIR=$KPKG_TMP_DIR install
 
+  mkdir -pv $KPKG_TMP_DIR/usr/bin
   mv -v $KPKG_TMP_DIR/usr/sbin/unbound-host $KPKG_TMP_DIR/usr/bin/
 
   echo "nameserver 127.0.0.1" > $KPKG_TMP_DIR/etc/resolv.conf

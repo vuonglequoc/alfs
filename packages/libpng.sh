@@ -14,6 +14,6 @@ k_configure() {
 k_pre_install() {
   make DESTDIR=$KPKG_TMP_DIR install
 
-  mkdir -v $KPKG_TMP_DIR/usr/share/doc/libpng-1.6.43
+  mkdir -pv $KPKG_TMP_DIR/usr/share/doc/libpng-1.6.43
   cp -v README libpng-manual.txt $KPKG_TMP_DIR/usr/share/doc/libpng-1.6.43
 }

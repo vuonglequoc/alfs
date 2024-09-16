@@ -26,6 +26,7 @@ k_check() {
 k_pre_install() {
   make DESTDIR=$KPKG_TMP_DIR install
 
+  mkdir -pv $KPKG_TMP_DIR/usr/share/doc
   cp -vfr ../doc -T $KPKG_TMP_DIR/usr/share/doc/krb5-1.21.3
 
   sed '/PROG_RPATH_FLAGS/d' -i $KPKG_TMP_DIR/usr/bin/krb5-config

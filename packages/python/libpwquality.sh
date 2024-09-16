@@ -24,7 +24,10 @@ make DESTDIR=$KPKG_TMP_DIR install
 
 pip3 install --no-index --find-links=dist --no-cache-dir --no-user pwquality
 
-mv $KPKG_TMP_DIR/etc/pam.d/system-password{,.orig}
+# Backup old system-password
+mv /etc/pam.d/system-password{,.orig}
+# Prepare new system-password
+mkdir -pv $KPKG_TMP_DIR/etc/pam.d
 cat > $KPKG_TMP_DIR/etc/pam.d/system-password << "EOF"
 # Begin /etc/pam.d/system-password
 

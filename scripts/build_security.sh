@@ -78,8 +78,8 @@
 #     make-ca-1.13
 #     GnuTLS
 #     OpenLDAP-2.6.7
-#   cURL-8.6.0
-#         cURL-8.6.0
+#   cURL
+#         cURL
 #         libarchive-3.7.2
 #         libuv-1.48.0,
 #       CMake
@@ -156,6 +156,7 @@ kpkg_install make-ca
 
 # Enable Certificate Check for Wget
 sed -i "s/check_certificate = off/check_certificate = on/g" /home/$NONROOT_USER/.wgetrc
+sed -i "s/check_certificate = off/check_certificate = on/g" /root/.wgetrc
 
 kpkg_install nettle
 kpkg_install libunistring

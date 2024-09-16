@@ -16,6 +16,7 @@ k_check() {
 k_pre_install() {
 make DESTDIR=$KPKG_TMP_DIR install
 
+mkdir -pv $KPKG_TMP_DIR/etc/rc.d
 cat > $KPKG_TMP_DIR/etc/rc.d/rc.iptables << "EOF"
 #!/bin/sh
 

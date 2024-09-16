@@ -3,6 +3,12 @@
 KPKG_SRC_FILE=cyrus-sasl-2.1.28.tar.gz
 KPKG_SRC_FOLDER=cyrus-sasl-2.1.28
 
+k_pre_configure() {
+  # fix a problem revealed by gcc-14
+  sed '/saslint/a #include <time.h>'       -i lib/saslutil.c &&
+  sed '/plugin_common/a #include <time.h>' -i plugins/cram.c
+}
+
 k_configure() {
   ./configure --prefix=/usr                       \
               --sysconfdir=/etc                   \

@@ -18,10 +18,12 @@ k_check() {
 
 k_pre_install() {
   make DESTDIR=$KPKG_TMP_DIR docdir=/usr/share/doc install
+}
 
-  install-catalog --add $KPKG_TMP_DIR/etc/sgml/sgml-ent.cat \
-      $KPKG_TMP_DIR/usr/share/sgml/sgml-iso-entities-8879.1986/catalog
+k_post_install() {
+  install-catalog --add /etc/sgml/sgml-ent.cat \
+      /usr/share/sgml/sgml-iso-entities-8879.1986/catalog
 
-  install-catalog --add $KPKG_TMP_DIR/etc/sgml/sgml-docbook.cat \
-      $KPKG_TMP_DIR/etc/sgml/sgml-ent.cat
+  install-catalog --add /etc/sgml/sgml-docbook.cat \
+      /etc/sgml/sgml-ent.cat
 }

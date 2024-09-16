@@ -20,6 +20,7 @@ make DESTDIR=$KPKG_TMP_DIR install
 
 install -vdm755 $KPKG_TMP_DIR/etc/ssl/local
 
+mkdir -pv $KPKG_TMP_DIR/etc/cron.weekly
 cat > $KPKG_TMP_DIR/etc/cron.weekly/update-pki.sh << "EOF"
 #!/bin/bash
 /usr/sbin/make-ca -g

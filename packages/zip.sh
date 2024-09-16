@@ -8,7 +8,7 @@ k_configure() {
 }
 
 k_build() {
-  make -f unix/Makefile generic_gcc
+  make -f unix/Makefile generic CC="gcc -std=gnu89"
 }
 
 k_check() {

@@ -26,12 +26,13 @@ k_pre_install() {
   install -vdm755 $KPKG_TMP_DIR/usr/share/xml/docbook/schema/{rng,sch}/5.1
   install -m644   schemas/rng/* $KPKG_TMP_DIR/usr/share/xml/docbook/schema/rng/5.1
   install -m644   schemas/sch/* $KPKG_TMP_DIR/usr/share/xml/docbook/schema/sch/5.1
+  mkdir -pv $KPKG_TMP_DIR/usr/bin
   install -m755   tools/db4-entities.pl $KPKG_TMP_DIR/usr/bin
   install -vdm755 $KPKG_TMP_DIR/usr/share/xml/docbook/stylesheet/docbook5
   install -m644   tools/db4-upgrade.xsl \
                   $KPKG_TMP_DIR/usr/share/xml/docbook/stylesheet/docbook5
 
-  mkdir $KPKG_TMP_DIR/etc/xml
+  mkdir -pv $KPKG_TMP_DIR/etc/xml
   if [ ! -e $KPKG_TMP_DIR/etc/xml/docbook-5.1 ]; then
     xmlcatalog --noout --create $KPKG_TMP_DIR/etc/xml/docbook-5.1
   fi

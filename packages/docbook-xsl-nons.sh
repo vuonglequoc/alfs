@@ -38,6 +38,7 @@ k_pre_install() {
 
   cp -v -R doc/* $KPKG_TMP_DIR/usr/share/doc/docbook-xsl-nons-1.79.2
 
+  mkdir -pv $KPKG_TMP_DIR/etc/xml
   sed -i '/rewrite/d' $KPKG_TMP_DIR/etc/xml/catalog
 
   if [ ! -d $KPKG_TMP_DIR/etc/xml ]; then
