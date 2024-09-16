@@ -25,9 +25,9 @@ fi
 
 echo "Backing up.."
 cd $LFS
-XZ_DEFAULTS="-T 0" tar -cJpf $HOME/lfs-12.2.tar.xz .
+XZ_DEFAULTS="-T 0" tar -cJpvf $HOME/lfs-12.2.tar.xz .
 
 # Restore
 # cd $LFS
 # rm -rf ./*
-# XZ_DEFAULTS="-T 0" tar -xpf $HOME/lfs-12.2.tar.xz
+# XZ_DEFAULTS="-T 0" tar -xphvf $HOME/lfs-12.2.tar.xz
