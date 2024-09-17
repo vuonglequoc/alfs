@@ -26,6 +26,7 @@ make DESTDIR=$KPKG_TMP_DIR install-service-dhcpcd
 cd $KPKG_ROOT/sources
 rm -r blfs-bootscripts-20240416
 
+mkdir -pv $KPKG_TMP_DIR/etc/sysconfig
 cat > $KPKG_TMP_DIR/etc/sysconfig/ifconfig.eth0 << "EOF"
 ONBOOT="yes"
 IFACE="eth0"
