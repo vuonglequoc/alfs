@@ -24,7 +24,7 @@ k_check() {
   dbus-run-session ninja test
 }
 
-k_install() {
+k_pre_install() {
   DESTDIR=$KPKG_TMP_DIR ninja install
 }
 

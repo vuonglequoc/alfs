@@ -4,6 +4,8 @@ KPKG_SRC_FILE=fcft-3.1.8.tar.gz
 KPKG_SRC_FOLDER=fcft-3.1.8
 
 k_pre_configure() {
+  patch -Np1 -i /alfs/patches/fcft-3.1.8-3rd-party_nanosvg_uninitialized_fixes-1.patch
+
   mkdir build
   cd    build
 }

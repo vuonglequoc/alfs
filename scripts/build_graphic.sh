@@ -16,8 +16,21 @@
 #   ply
 #   Cbindgen
 #   rust-bindgen
+#     util-macros
+#       util-macros
+#     xorgproto
+#           xorgproto
+#         libXau
+#         xcb-proto
+#       libxcb
+#       xtrans
+#     libX11
+#     libXext
 #   libXxf86vm
 #   libxshmfence
+#   libXfixes
+#     libXrender
+#   libXrandr
 # Mesa
 
 #   meson
@@ -42,15 +55,11 @@
 #   libinput (optional, for the libinput backend)
 #   pixman
 #     xkeyboard-config-2.42
-#           util-macros-1.20.1
-#         xorgproto-2024.1
-#       libXau-1.0.11
-#       xcb-proto-1.17.0
 #     libxcb-1.17.0
 #     Wayland-1.23.0
 #     wayland-protocols-1.36
-#       libxcvt-0.1.2
-#       font-util-1.4.1
+#       libxcvt-0.1.2           ???
+#       font-util-1.4.1         ???
 #     Xvfb from Xwayland-24.1.2 ???
 #   libxkbcommon
 #   udev (optional, for the session)
@@ -76,7 +85,6 @@
 #     Fontconfig-2.15.0
 #     GLib-2.80.4
 #     libdrm-2.4.122
-#       xtrans
 #     libX11
 #     libXext
 #     libXrender
@@ -169,6 +177,7 @@
 #     Pygments
 #     itstool
 #     gtk-doc-tools
+#     json-glib
 #   libdbusmenu-gtk3
 #   libmpdclient
 #   libsndio
@@ -194,7 +203,7 @@
 # swaylock-1.7.2
 
 #   Gtkmm
-#   JSON-GLib-1.8.0
+#   JSON-GLib
 #   libsigc++
 #   PulseAudio
 #   libcanberra-0.30
@@ -246,9 +255,22 @@ kpkg_install cbindgen
 
 kpkg_install rust-bindgen
 
+kpkg_install xorg-util/util-macros
+kpkg_install xorg/xorgproto
+kpkg_install xorg-lib/libXau
+kpkg_install xorg/xcb-proto
+kpkg_install xorg/libxcb
+kpkg_install xorg-lib/xtrans
+kpkg_install xorg-lib/libX11
+kpkg_install xorg-lib/libXext
 kpkg_install xorg-lib/libXxf86vm
 
 kpkg_install xorg-lib/libxshmfence
+
+kpkg_install xorg-lib/libXfixes
+
+kpkg_install xorg-lib/libXrender
+kpkg_install xorg-lib/libXrandr
 
 kpkg_install mesa
 
@@ -263,13 +285,8 @@ kpkg_install xorg-input-drivers/libinput
 kpkg_install pixman
 
 kpkg_install xorg-data/xkeyboard-config
-kpkg_install xorg-util/util-macros
-kpkg_install xorg/xorgproto
-kpkg_install xorg-lib/libXau
-kpkg_install xorg/xcb-proto
-kpkg_install xorg/libxcb
-kpkg_install xorg-lib/libxcvt
-kpkg_install xorg-font/font-util
+# kpkg_install xorg-lib/libxcvt
+# kpkg_install xorg-font/font-util
 kpkg_install libxkbcommon
 
 kpkg_install seatd
@@ -282,10 +299,6 @@ kpkg_install wayland/wlroots
 kpkg_install json-c
 
 ## cairo ##
-kpkg_install xorg-lib/xtrans
-kpkg_install xorg-lib/libX11
-kpkg_install xorg-lib/libXext
-kpkg_install xorg-lib/libXrender
 kpkg_install cairo
 
 ## pango ##
@@ -294,16 +307,18 @@ kpkg_install pango
 kpkg_install libtiff
 kpkg_install shared-mime-info
 kpkg_install gdk-pixbuf
-# depend on cairo, pango, harfbuzz, vala, gdk-pixbuf
 kpkg_install dbus
-# rebuild pulseaudio depend on dbus
+# rebuild pulseaudio
 kpkg_install pulseaudio
 kpkg_install vala
+# depend on cairo, pango, harfbuzz, vala, gdk-pixbuf
 kpkg_install librsvg
 # rebuild cairo
 kpkg_install cairo
 # rebuild harfbuzz
 kpkg_install harfbuzz
+# rebuild freetype
+kpkg_install freetype
 
 # https://git.sr.ht/~sircmpwn/scdoc/archive/1.11.3.tar.gz
 # make PREFIX=/usr
@@ -317,14 +332,11 @@ kpkg_install wayland/sway
 # sway #
 
 # 4.0 Graphic toolkit GTK+3
-kpkg_install xorg-lib/libXfixes
 kpkg_install xorg-lib/libXi
 kpkg_install xorg-lib/libXtst
 kpkg_install at-spi2-core
 
 kpkg_install libepoxy
-
-kpkg_install xorg-lib/libXrandr
 
 kpkg_install gtk+
 
@@ -365,6 +377,7 @@ kpkg_install python-dep/hatchling
 kpkg_install python/Pygments
 kpkg_install itstool
 kpkg_install gtk-doc-tools
+kpkg_install json-glib
 kpkg_install libdbusmenu-gtk3
 
 # MPD module
@@ -421,7 +434,6 @@ kpkg_install wayland/swayidle
 kpkg_install wayland/swaylock
 
 # 4.5 Sound: pipewire + alsamixer
-kpkg_install json-glib
 kpkg_install libcanberra
 kpkg_install pavucontrol
 

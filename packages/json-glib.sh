@@ -9,9 +9,10 @@ k_pre_configure() {
 }
 
 k_configure() {
-  meson setup .. \
-        --prefix=/usr \
-        --buildtype=release
+  meson setup ..            \
+        --prefix=/usr       \
+        --buildtype=release \
+        -Dintrospection=disabled
 }
 
 k_build() {

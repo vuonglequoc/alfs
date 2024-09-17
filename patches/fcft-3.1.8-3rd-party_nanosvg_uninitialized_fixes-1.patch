@@ -1,0 +1,74 @@
+--- fcft-3.1.8/3rd-party/nanosvg/src/nanosvg.h	2024-02-26 14:53:20.000000000 +0000
++++ fcft-3.1.8/3rd-party/nanosvg/src/nanosvg_fix.h	2024-09-17 09:59:34.268062056 +0000
+@@ -1567,7 +1567,7 @@
+ 
+ static int nsvg__parseMatrix(float* xform, const char* str)
+ {
+-	float t[6];
++	float t[6] = {0};
+ 	int na = 0;
+ 	int len = nsvg__parseTransformArgs(str, t, 6, &na);
+ 	if (na != 6) return len;
+@@ -1578,7 +1578,7 @@
+ static int nsvg__parseTranslate(float* xform, const char* str)
+ {
+ 	float args[2];
+-	float t[6];
++	float t[6] = {0};
+ 	int na = 0;
+ 	int len = nsvg__parseTransformArgs(str, args, 2, &na);
+ 	if (na == 1) args[1] = 0.0;
+@@ -1592,7 +1592,7 @@
+ {
+ 	float args[2];
+ 	int na = 0;
+-	float t[6];
++	float t[6] = {0};
+ 	int len = nsvg__parseTransformArgs(str, args, 2, &na);
+ 	if (na == 1) args[1] = args[0];
+ 	nsvg__xformSetScale(t, args[0], args[1]);
+@@ -1604,7 +1604,7 @@
+ {
+ 	float args[1];
+ 	int na = 0;
+-	float t[6];
++	float t[6] = {0};
+ 	int len = nsvg__parseTransformArgs(str, args, 1, &na);
+ 	nsvg__xformSetSkewX(t, args[0]/180.0f*NSVG_PI);
+ 	memcpy(xform, t, sizeof(float)*6);
+@@ -1615,7 +1615,7 @@
+ {
+ 	float args[1];
+ 	int na = 0;
+-	float t[6];
++	float t[6] = {0};
+ 	int len = nsvg__parseTransformArgs(str, args, 1, &na);
+ 	nsvg__xformSetSkewY(t, args[0]/180.0f*NSVG_PI);
+ 	memcpy(xform, t, sizeof(float)*6);
+@@ -1627,7 +1627,7 @@
+ 	float args[3];
+ 	int na = 0;
+ 	float m[6];
+-	float t[6];
++	float t[6] = {0};
+ 	int len = nsvg__parseTransformArgs(str, args, 3, &na);
+ 	if (na == 1)
+ 		args[1] = args[2] = 0.0f;
+@@ -1653,7 +1653,7 @@
+ 
+ static void nsvg__parseTransform(float* xform, const char* str)
+ {
+-	float t[6];
++	float t[6] = {0};
+ 	int len;
+ 	nsvg__xformIdentity(xform);
+ 	while (*str)
+@@ -2862,7 +2862,7 @@
+ 
+ static void nsvg__scaleGradient(NSVGgradient* grad, float tx, float ty, float sx, float sy)
+ {
+-	float t[6];
++	float t[6] = {0};
+ 	nsvg__xformSetTranslation(t, tx, ty);
+ 	nsvg__xformMultiply (grad->xform, t);
+ 

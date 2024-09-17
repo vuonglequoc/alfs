@@ -27,7 +27,7 @@ make DESTDIR=$KPKG_TMP_DIR install
 chown -v root:messagebus $KPKG_TMP_DIR/usr/libexec/dbus-daemon-launch-helper
 chmod -v      4750       $KPKG_TMP_DIR/usr/libexec/dbus-daemon-launch-helper
 
-dbus-uuidgen --ensure
+# dbus-uuidgen --ensure
 
 cat > $KPKG_TMP_DIR/etc/dbus-1/session-local.conf << "EOF"
 <!DOCTYPE busconfig PUBLIC

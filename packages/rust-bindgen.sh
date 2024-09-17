@@ -20,5 +20,6 @@ k_check() {
 }
 
 k_pre_install() {
-  install -v -m755 target/release/bindgen $KPKG_TMP_DIR/usr/bin
+  mkdir -pv $KPKG_TMP_DIR/usr/bin
+  install -v -vDm755 target/release/bindgen $KPKG_TMP_DIR/usr/bin
 }

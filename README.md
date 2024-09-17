@@ -344,6 +344,12 @@ I decided to use modern Wayland instead of traditional X system.
 sudo -E /alfs/scripts/build_graphic.sh
 ```
 
+Fix /tmp folder permission for XDG RUNTIME DIR
+
+```bash
+sudo chmod -R 777 /tmp
+```
+
 Let's change to Run level 5 and re-login to see the Desktop:
 
 ```bash

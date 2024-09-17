@@ -25,5 +25,5 @@ k_check() {
 
 k_pre_install() {
   DESTDIR=$KPKG_TMP_DIR ninja install
-  rm /tmp/at-spi-dbus-bus.service
+  rm $KPKG_TMP_DIR/tmp/at-spi-dbus-bus.service
 }
