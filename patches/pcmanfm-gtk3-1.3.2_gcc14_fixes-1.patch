@@ -1,0 +1,21 @@
+diff -Naur pcmanfm-1.3.2_ori/src/desktop.c pcmanfm-1.3.2_fix/src/desktop.c
+--- pcmanfm-1.3.2_ori/src/desktop.c	2021-02-02 19:21:05.000000000 +0000
++++ pcmanfm-1.3.2_fix/src/desktop.c	2024-09-17 16:20:16.992933084 +0000
+@@ -1267,7 +1267,7 @@
+         item = items->data;
+         if (item->item->is_selected)
+             if (i-- == 0)
+-                return g_object_ref(item);
++                return (AtkObject *)g_object_ref(item);
+     }
+     return NULL;
+ }
+@@ -1454,7 +1454,7 @@
+     item = g_list_nth_data(priv->items, index);
+     if (!item)
+         return NULL;
+-    return g_object_ref(item);
++    return (AtkObject *)g_object_ref(item);
+ }
+ 
+ static void fm_desktop_accessible_initialize(AtkObject *accessible, gpointer data)

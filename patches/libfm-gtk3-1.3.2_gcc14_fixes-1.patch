@@ -1,0 +1,48 @@
+diff -Naur libfm-1.3.2_ori/src/actions/action.c libfm-1.3.2_fix/src/actions/action.c
+--- libfm-1.3.2_ori/src/actions/action.c	2024-09-17 15:39:46.143733976 +0000
++++ libfm-1.3.2_fix/src/actions/action.c	2024-09-17 16:01:05.155838738 +0000
+@@ -2047,7 +2047,7 @@
+ 	gchar* _tmp9_ = NULL;
+ 	_tmp0_ = fm_all_actions;
+ 	g_hash_table_remove_all (_tmp0_);
+-	_tmp2_ = _tmp1_ = g_get_system_data_dirs ();
++	_tmp2_ = _tmp1_ = (gchar**) g_get_system_data_dirs ();
+ 	dirs = _tmp2_;
+ 	dirs_length1 = _vala_array_length (_tmp1_);
+ 	_dirs_size_ = dirs_length1;
+diff -Naur libfm-1.3.2_ori/src/gtk/exo/exo-icon-view.c libfm-1.3.2_fix/src/gtk/exo/exo-icon-view.c
+--- libfm-1.3.2_ori/src/gtk/exo/exo-icon-view.c	2024-09-17 15:44:04.079755103 +0000
++++ libfm-1.3.2_fix/src/gtk/exo/exo-icon-view.c	2024-09-17 16:02:28.804845590 +0000
+@@ -2819,7 +2819,7 @@
+   /* allocate a new event to forward */
+   new_event = gdk_event_copy ((GdkEvent *) event);
+   g_object_unref (G_OBJECT (new_event->key.window));
+-  new_event->key.window = g_object_ref (G_OBJECT (gtk_widget_get_window (icon_view->priv->search_entry)));
++  new_event->key.window = GDK_WINDOW( g_object_ref (G_OBJECT (gtk_widget_get_window (icon_view->priv->search_entry))));
+ 
+   /* send the event to the search entry. If the "preedit-changed" signal is
+    * emitted during this event, priv->search_imcontext_changed will be set.
+diff -Naur libfm-1.3.2_ori/src/gtk/fm-dnd-dest.c libfm-1.3.2_fix/src/gtk/fm-dnd-dest.c
+--- libfm-1.3.2_ori/src/gtk/fm-dnd-dest.c	2024-09-17 15:45:40.320762986 +0000
++++ libfm-1.3.2_fix/src/gtk/fm-dnd-dest.c	2024-09-17 16:01:50.090842419 +0000
+@@ -458,7 +458,7 @@
+             gtk_action_set_sensitive(act, FALSE);
+         }
+     }
+-    ri.menu = g_object_ref(gtk_ui_manager_get_widget(ui, "/popup"));
++    ri.menu = GTK_MENU(g_object_ref(gtk_ui_manager_get_widget(ui, "/popup")));
+     g_signal_connect(ri.menu, "selection-done", G_CALLBACK(gtk_widget_destroy), NULL);
+     unmap_handler = g_signal_connect(ri.menu, "unmap",
+                                      G_CALLBACK(run_unmap_handler), &ri);
+diff -Naur libfm-1.3.2_ori/src/gtk/fm-standard-view.c libfm-1.3.2_fix/src/gtk/fm-standard-view.c
+--- libfm-1.3.2_ori/src/gtk/fm-standard-view.c	2024-09-17 15:55:52.985813169 +0000
++++ libfm-1.3.2_fix/src/gtk/fm-standard-view.c	2024-09-17 16:02:07.261843826 +0000
+@@ -637,7 +637,7 @@
+                                 "text", FM_FOLDER_MODEL_COL_NAME );
+     if(fv->renderer_text)
+         g_object_unref(fv->renderer_text);
+-    fv->renderer_text = g_object_ref_sink(render);
++    fv->renderer_text = FM_CELL_RENDERER_TEXT(g_object_ref_sink(render));
+     exo_icon_view_set_search_column((ExoIconView*)fv->view, FM_FOLDER_MODEL_COL_NAME);
+     g_signal_connect(fv->view, "item-activated", G_CALLBACK(on_icon_view_item_activated), fv);
+     g_signal_connect(fv->view, "selection-changed", G_CALLBACK(on_sel_changed), fv);

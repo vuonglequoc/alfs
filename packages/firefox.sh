@@ -1,12 +1,12 @@
 #!/bin/bash
 
 # Firefox 131 - NSS 3.104
-# Firefox 130 - NSS 3.103
+# Firefox 129 - NSS 3.103
 # Firefox 128 - NSS 3.101
 # Firefox 125 - NSS 3.99
 # https://wiki.mozilla.org/NSS:Release_Versions
-KPKG_SRC_FILE=firefox-130.0.source.tar.xz
-KPKG_SRC_FOLDER=firefox-130.0
+KPKG_SRC_FILE=firefox-129.0.2.source.tar.xz
+KPKG_SRC_FOLDER=firefox-129.0.2
 
 k_pre_configure() {
   source /etc/profile
