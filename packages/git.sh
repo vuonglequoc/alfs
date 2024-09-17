@@ -17,6 +17,7 @@ k_check() {
 k_pre_install() {
   make DESTDIR=$KPKG_TMP_DIR perllibdir=/usr/lib/perl5/5.40/site_perl install
 
+  mkdir -pv $KPKG_TMP_DIR/usr/share/man
   tar -xf ../git-manpages-2.46.0.tar.xz \
       -C $KPKG_TMP_DIR/usr/share/man --no-same-owner --no-overwrite-dir
 

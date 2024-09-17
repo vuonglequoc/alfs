@@ -3,13 +3,8 @@
 KPKG_SRC_FILE=rustc-1.80.1-src.tar.xz
 KPKG_SRC_FOLDER=rustc-1.80.1-src
 
-k_pre_configure() {
-  mkdir -pv /opt/rustc-1.80.1
-  ln -svfn rustc-1.80.1 /opt/rustc
-}
-
 k_configure() {
-cat << EOF > config.toml
+cat > config.toml << EOF
 # see config.toml.example for more possible options
 # See the 8.4 book for an old example using shipped LLVM
 # e.g. if not installing clang, or using a version before 13.0
@@ -45,7 +40,12 @@ tools = ["cargo", "clippy", "rustdoc", "rustfmt"]
 vendor = true
 
 [install]
-prefix = "/opt/rustc-1.80.1"
+EOF
+
+# Custom prefix
+echo "prefix = \"$KPKG_TMP_DIR/opt/rustc-1.80.1\"" >> config.toml
+
+cat >> config.toml << EOF
 docdir = "share/doc/rustc-1.80.1"
 
 [rust]
@@ -86,15 +86,12 @@ k_check() {
 }
 
 k_pre_install() {
-# Install to /opt/rustc-1.80.1
 { [ ! -e /usr/include/libssh2.h ] ||
   export LIBSSH2_SYS_USE_PKG_CONFIG=1; }    &&
 { [ ! -e /usr/include/sqlite3.h ] ||
   export LIBSQLITE3_SYS_USE_PKG_CONFIG=1; } &&
 python3 x.py install rustc std
 
-mkdir -p $KPKG_TMP_DIR/opt/
-mv /opt/rustc-1.80.1 $KPKG_TMP_DIR/opt/
 ln -sfv rustc-1.80.1 \
         $KPKG_TMP_DIR/opt/rustc
 
@@ -109,7 +106,7 @@ install -vm644 src/tools/cargo/src/etc/man/* \
 
 # fix the installation of documentation and symlink a Zsh completion file into the correct location
 rm -fv $KPKG_TMP_DIR/opt/rustc-1.80.1/share/doc/rustc-1.80.1/*.old
-install -vm644 README.md                                \
+install -vm644 README.md                                            \
                $KPKG_TMP_DIR/opt/rustc-1.80.1/share/doc/rustc-1.80.1
 
 install -vdm755 $KPKG_TMP_DIR/usr/share/zsh/site-functions
@@ -119,7 +116,7 @@ ln -sfv /opt/rustc/share/zsh/site-functions/_cargo \
 unset LIB{SSH2,SQLITE3}_SYS_USE_PKG_CONFIG
 
 # Configuring Rust
-mkdir -p $KPKG_TMP_DIR/etc/profile.d
+mkdir -pv $KPKG_TMP_DIR/etc/profile.d
 cat > $KPKG_TMP_DIR/etc/profile.d/rustc.sh << "EOF"
 # Begin /etc/profile.d/rustc.sh
 
