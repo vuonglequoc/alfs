@@ -8,7 +8,7 @@ k_configure() {
 }
 
 k_build() {
-  log_path=/alfs/logs/packages/$KPKG_DIST_SUB_DIR/$KPKG_SRC_FOLDER
+  log_path=$KPKG_ROOT/alfs/logs/packages/$KPKG_DIST_SUB_DIR/$KPKG_SRC_FOLDER
   mkdir -pv $log_path/seq
 
   # bash -e
