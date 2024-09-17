@@ -9,10 +9,6 @@ k_configure() {
               --enable-libdebuginfod=dummy
 }
 
-k_install() {
-  make -C libelf install
-}
-
 k_pre_install() {
   make DESTDIR=$KPKG_TMP_DIR -C libelf install
 
