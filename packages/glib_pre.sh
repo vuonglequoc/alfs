@@ -19,7 +19,7 @@ k_configure() {
   meson setup ..                  \
         --prefix=/usr             \
         --buildtype=release       \
-        -D introspection=enabled \
+        -D introspection=disabled \
         -D man-pages=enabled
 }
 
@@ -33,10 +33,4 @@ k_check() {
 
 k_pre_install() {
   DESTDIR=$KPKG_TMP_DIR ninja install
-}
-
-k_post_install() {
-  # as a non-root user
-  # LC_ALL=C ninja test
-  :
 }

@@ -8,8 +8,10 @@ k_configure() {
 }
 
 k_build() {
-  # bash -e
+  log_path=/alfs/logs/packages/$KPKG_DIST_SUB_DIR/$KPKG_SRC_FOLDER
+  mkdir -pv $log_path/seq
 
+  # bash -e
   rm -rf qlo10k1 Makefile gitcompile
 
   # Build limited tools for working without GUI libraries
@@ -32,18 +34,26 @@ k_build() {
     esac
 
     pushd $tool_dir
+      echo ===== Build tool $tool_dir =====
       ./configure --prefix=/usr
-      make
-      make install
-      /sbin/ldconfig
+      make > $log_path/$tool_dir.log
+      make DESTDIR=$KPKG_TMP_DIR install >> $log_path/$tool_dir.log
     popd
-
   done
   unset tool tool_dir
-
   # exit
+
+  unset log_path
 }
 
 k_check() {
   :
+}
+
+k_pre_install() {
+  :
+}
+
+k_post_install() {
+  /sbin/ldconfig
 }

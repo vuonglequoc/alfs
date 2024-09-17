@@ -27,10 +27,9 @@ k_pre_install() {
   make DESTDIR=$KPKG_TMP_DIR install
 
   # TODO check docs
-  install -v -d -m755 $KPKG_TMP_DIR/usr/share/doc/graphite2-1.3.14
-
-  cp      -v -f    doc/{GTF,manual}.html \
-                      $KPKG_TMP_DIR/usr/share/doc/graphite2-1.3.14
-  cp      -v -f    doc/{GTF,manual}.pdf \
-                      $KPKG_TMP_DIR/usr/share/doc/graphite2-1.3.14
+  # install -v -d -m755 $KPKG_TMP_DIR/usr/share/doc/graphite2-1.3.14
+  # cp      -v -f    doc/{GTF,manual}.html \
+  #                     $KPKG_TMP_DIR/usr/share/doc/graphite2-1.3.14
+  # cp      -v -f    doc/{GTF,manual}.pdf \
+  #                     $KPKG_TMP_DIR/usr/share/doc/graphite2-1.3.14
 }

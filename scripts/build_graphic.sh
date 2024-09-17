@@ -296,6 +296,8 @@ kpkg_install shared-mime-info
 kpkg_install gdk-pixbuf
 # depend on cairo, pango, harfbuzz, vala, gdk-pixbuf
 kpkg_install dbus
+# rebuild pulseaudio depend on dbus
+kpkg_install pulseaudio
 kpkg_install vala
 kpkg_install librsvg
 # rebuild cairo

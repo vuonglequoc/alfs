@@ -3,6 +3,12 @@
 KPKG_SRC_FILE=docutils-0.21.2.tar.gz
 KPKG_SRC_FOLDER=docutils-0.21.2
 
+k_pre_configure() {
+  for f in /usr/bin/rst*.py; do
+    rm -fv /usr/bin/$(basename $f .py)
+  done
+}
+
 k_configure() {
   :
 }
@@ -21,12 +27,4 @@ k_pre_install() {
 
 k_install() {
   pip3 install --no-index --find-links=dist --no-cache-dir --no-user docutils
-}
-
-k_post_install() {
-  for f in /usr/bin/rst*.py; do
-    ln -svf $(basename $f) /usr/bin/$(basename $f .py)
-  done
-
-  rm -rfv /usr/bin/__pycache__
 }

@@ -272,10 +272,26 @@ sudo /alfs/scripts/build_general_utilities.sh
 sudo /alfs/scripts/build_networking.sh
 ```
 
+Reboot to LFS Machine again to take effect
+
+```bash
+sudo reboot
+ssh $NONROOT_USER@LFS_MACHINE_IP
+export NONROOT_USER=user
+```
+
 ### Multimedia
 
 ```bash
 sudo -E /alfs/scripts/build_multimedia.sh
+```
+
+Reboot to LFS Machine again to take effect
+
+```bash
+sudo reboot
+ssh $NONROOT_USER@LFS_MACHINE_IP
+export NONROOT_USER=user
 ```
 
 Using sample:
@@ -285,18 +301,29 @@ Using sample:
 ffplay music.mp3
 nvlc music.mp3
 mpv music.mp3
+```
 
+```bash
 # Play video without sound
-sudo ffmpeg -re -i ${VIDEO} -filter:v scale=1024:-1 -c:v rawvideo -pix_fmt bgra -f fbdev /dev/fb0
+sudo -E ffmpeg -re -i ${VIDEO} -filter:v scale=1024:-1 -c:v rawvideo -pix_fmt bgra -f fbdev /dev/fb0
+```
 
+```bash
 # Play video with sound
-sudo ffmpeg -re -i ${VIDEO} -filter:v scale=1024:-1 -c:v rawvideo -pix_fmt bgra -f fbdev /dev/fb0 > ${VIDEO}_video.log 2>&1 < /dev/null &
+sudo -E ffmpeg -re -i ${VIDEO} -filter:v scale=1024:-1 -c:v rawvideo -pix_fmt bgra -f fbdev /dev/fb0 > ${VIDEO}_video.log 2>&1 < /dev/null &
 ffplay ${VIDEO} -autoexit > ${VIDEO}_sound.log 2>&1 < /dev/null &
+# Stop
+sudo pkill -9 ffmpeg
+sudo pkill -9 ffplay
+```
 
+```bash
 # Play Youtube video + sound with yt-dlp
 # Need to install yt-dlp
 ./yt-dlp ${VIDEO_URL} -o - 2>/dev/null | tee >(sudo ffmpeg -re -i - -filter:v scale=1024:-1 -c:v rawvideo -pix_fmt bgra -loglevel quiet -f fbdev /dev/fb0) >(ffplay -autoexit -loglevel quiet -) >/dev/null
+```
 
+```bash
 # Adjust audio Volume
 sudo alsamixer
 ```

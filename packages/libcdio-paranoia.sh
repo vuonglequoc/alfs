@@ -1,14 +1,14 @@
 #!/bin/bash
 
-KPKG_SRC_FILE=libcdio-2.1.0.tar.bz2
-KPKG_SRC_FOLDER=libcdio-2.1.0
+KPKG_SRC_FILE=libcdio-paranoia-10.2+2.0.2.tar.bz2
+KPKG_SRC_FOLDER=libcdio-paranoia-10.2+2.0.2
 
 k_configure() {
   ./configure --prefix=/usr --disable-static
 }
 
 k_check() {
-  make check -k
+  make check
 }
 
 k_pre_install() {
