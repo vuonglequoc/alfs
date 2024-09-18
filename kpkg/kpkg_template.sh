@@ -11,6 +11,15 @@ KPKG_SRC_FILE=
 KPKG_SRC_FOLDER=
 
 k_prepare_source() {
+  if [ -z "${KPKG_SRC_FILE}" ]; then
+    echo k_prepare_source KPKG_SRC_FILE is empty
+    exit
+  fi
+  if [ -z "${KPKG_SRC_FOLDER}" ]; then
+    echo k_prepare_source KPKG_SRC_FOLDER is empty
+    exit
+  fi
+
   cd $KPKG_ROOT/sources
 
   echo "Extracting source file..."
@@ -46,6 +55,11 @@ k_pre_install() {
 }
 
 k_install() {
+  if [ -z "${KPKG_SRC_FOLDER}" ]; then
+    echo k_install KPKG_SRC_FOLDER is empty
+    exit
+  fi
+
   INSTALL_TIME=$(timestamp)
   DIST_FILE=$KPKG_DIST_DIR/$KPKG_DIST_SUB_DIR/${KPKG_SRC_FOLDER}_$INSTALL_TIME.tar.xz
 
@@ -90,6 +104,11 @@ k_post_install() {
 }
 
 k_build_clean() {
+  if [ -z "${KPKG_SRC_FOLDER}" ]; then
+    echo k_build_clean KPKG_SRC_FOLDER is empty
+    exit
+  fi
+
   cd $KPKG_ROOT/sources
   rm -rf $KPKG_SRC_FOLDER
   echo Deleting $KPKG_SRC_FOLDER
